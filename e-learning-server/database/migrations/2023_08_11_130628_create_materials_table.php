@@ -12,6 +12,7 @@ return new class extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_id');
+            $table->boolean('is_announcement');
             $table->string('description');
             $table->string('file_url');
             $table->timestamps();
