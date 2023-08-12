@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-<<<<<<< HEAD
         // DB::table('user_types')->insert([
 		// 	'name' => "admin",
         //     '_rules' => "",
@@ -71,42 +70,5 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'joe@gmail.com',
         //     'password' =>Hash::make('123456')
         // ]);
-=======
-        DB::table('user_types')->insert([
-            'name' => "admin",
-            '_rules' => "",
-            'created_at' => date('Y-m-d'),
-            'updated_at' => date('Y-m-d')
-        ]);
-
-        DB::table('user_types')->insert([
-            'name' => "teacher",
-            '_rules' => "",
-            'created_at' => date('Y-m-d'),
-            'updated_at' => date('Y-m-d')
-        ]);
-
-        DB::table('user_types')->insert([
-            'name' => "parent",
-            '_rules' => "",
-            'created_at' => date('Y-m-d'),
-            'updated_at' => date('Y-m-d')
-        ]);
-
-        DB::table('user_types')->insert([
-            'name' => "student",
-            '_rules' => "",
-            'created_at' => date('Y-m-d'),
-            'updated_at' => date('Y-m-d')
-        ]);
-
-        DB::table('users')->insert([
-            'user_type_id' => 1,
-            'parent_id' => 0,
-            'name' => 'Hussien',
-            'email' => 'hsn@gmail.com',
-            'password' => Hash::make('123456')
-        ]);
->>>>>>> 20fba17a2b25bde5305fc737a3abe544cdf5fe94
     }
 }

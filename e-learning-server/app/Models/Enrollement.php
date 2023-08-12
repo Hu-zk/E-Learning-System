@@ -28,4 +28,8 @@ class Enrollement extends Model
     {
         return $this->hasOne(Submission::class, 'enrollment_id');
     }
+
+    public function scopeCompleted($query){
+        return $query->where("is_completed", 1);
+    } 
 }
