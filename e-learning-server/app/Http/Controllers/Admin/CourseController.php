@@ -20,5 +20,18 @@ class CourseController extends Controller
         return response()->json(["message" => "course created successfully", "course" => $course]);
     }
 
-    
+    function updateCourse(Request $request, $courseId) {
+
+        $course = Course::find($courseId);
+
+        $validatedData = $request->validate([
+            "teacher_id" => 'required|exists:users,id',
+            "name" => 'required|string|max:255',
+            "capacity" => 'required|integer'
+        ]);
+
+        $course->update($validatedData);
+
+        return response()->json(["message" => "course updated successfully", "course" => $course]);
+    }
 }

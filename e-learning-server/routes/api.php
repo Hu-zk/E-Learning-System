@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\Student\TestController;
 use App\Http\Controllers\UserController;
 
@@ -22,11 +23,12 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
 
     Route::group(['prefix' => 'admin', 'middlreware' => 'auth.admin'], function(){
         Route::post('/create-user', [UserController::class, 'createUser']);
-        Route::post('/update-user/{userId}', [UserController::class, 'updateUser']);
+        Route::put('/update-user/{userId}', [UserController::class, 'updateUser']);
         Route::delete('/delete-user/{userId}', [UserController::class, 'deleteUser']);
         Route::get('/get-users', [UserController::class, 'getUsers']);
 
-        Route::post('/create-course', [UserController::class, 'createCourse']);
+        Route::post('/create-course', [CourseController::class, 'createCourse']);
+        Route::put('/update-course/{courseId}', [CourseController::class, 'updateCourse']);
     });
 
     Route::get("profile", [AuthController::class, "profile"]);
