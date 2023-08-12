@@ -32,6 +32,9 @@ Function getChild(){
     $auth_user_id = Auth::user()->id;
     $child=User::Child($auth_user_id)->get();
 
+    
+
+
      return response()->json([
         "status" => "success", 
         "data" => $child

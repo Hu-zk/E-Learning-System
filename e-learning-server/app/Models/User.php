@@ -19,16 +19,7 @@ class User extends Authenticatable implements JWTSubject
         'password',
     ];
 
-    function UserSendMeet() {
-        return $this->HasMany(Meeting::class , "sender_id");
-    }
-    function UserReceiveMeet() {
-        return $this->HasMany(Meeting::class , "reciever_id");
-    }
 
-    function scopeChild($query,$id){
-        return $query->where("parent_id",$id);
-    }
 
     protected $hidden = [
         'password',
@@ -59,12 +50,14 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Course::class, 'teacher_id');
     }
 
-    function UserSendMeet()
-    {
-        return $this->HasMany(Meeting::class, "sender_id");
+    function UserSendMeet() {
+        return $this->HasMany(Meeting::class , "sender_id");
     }
-    function UserReceiveMeet()
-    {
-        return $this->HasMany(Meeting::class, "reciever_id");
+    function UserReceiveMeet() {
+        return $this->HasMany(Meeting::class , "reciever_id");
+    }
+
+    function scopeChild($query,$id){
+        return $query->where("parent_id",$id);
     }
 }
