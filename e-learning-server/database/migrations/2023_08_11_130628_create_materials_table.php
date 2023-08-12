@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('description');
             $table->integer('grade');
             $table->datetime('deadline');
-            $table->string('file_url');
+            $table->string('file_url')->nullable();
             $table->boolean('is_quiz');
             $table->timestamps();
 
