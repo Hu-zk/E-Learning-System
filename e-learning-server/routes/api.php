@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Student\TestController;
-
+use App\Http\Controllers\UserController;
 
 Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
 
@@ -21,7 +21,7 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
     });
 
     Route::group(['prefix' => 'admin', 'middlreware' => 'auth.admin'], function(){
-        
+        Route::post('/create-user', [UserController::class, 'createUser']);
     });
 
     Route::get("profile", [AuthController::class, "profile"]);
