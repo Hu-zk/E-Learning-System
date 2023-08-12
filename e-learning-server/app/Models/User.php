@@ -57,6 +57,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->HasMany(Meeting::class , "reciever_id");
     }
 
+    function StudentEnroll(){
+        return $this->hasMany(Enrollement::class, 'student_id');
+    }
+
     function scopeChild($query,$id){
         return $query->where("parent_id",$id);
     }

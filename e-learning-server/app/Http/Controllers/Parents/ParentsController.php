@@ -14,7 +14,7 @@ function getParent() {
     $parent = User::find($auth_user->id);
 
     if ($parent->UserSendMeet()->exists()) {
-        $parent_meet = $parent->UserSendMeet()->with("receiverMeet")->with("sendMeet")->get();
+        $data = $parent->UserSendMeet()->with("receiverMeet")->with("sendMeet")->get();
     } else {
         return response()->json([
         "status" => "success", 
@@ -24,21 +24,28 @@ function getParent() {
 
     return response()->json([
         "status" => "success", 
-        "data" => $parent_meet
+        "data" => $data
     ]);
 }
 
-Function getChild(){
+function getChild() {
     $auth_user_id = Auth::user()->id;
-    $child=User::Child($auth_user_id)->get();
+    $child_course = User::child($auth_user_id)->with('StudentEnroll.course');
 
-    
+    if ($child_course->exists()) {
+        $data = $child_course->get();
+    } else {
+        return response()->json([
+            "status" => "success", 
+            "message" => "Not enrolled in courses"
+        ]);
+    }
 
-
-     return response()->json([
+    return response()->json([
         "status" => "success", 
-        "data" => $child
+        "data" => $data
     ]);
 }
+
 
 }
