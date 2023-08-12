@@ -34,4 +34,18 @@ class CourseController extends Controller
 
         return response()->json(["message" => "course updated successfully", "course" => $course]);
     }
+
+    function courseReport($courseReport) {
+
+        $course = Course::find($courseReport);
+
+        $totalEnrollments = $course->enrollments->count();
+        $completedEnrollments = $course->enrollments->where("is_completed", true)->count();
+
+        return response()->json([
+            "course" => $course,
+            "total_enrollments" => $totalEnrollments,
+            "completed_enrollments" => $completedEnrollments,
+        ]);
+    }
 }
