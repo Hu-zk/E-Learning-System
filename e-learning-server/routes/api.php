@@ -14,7 +14,7 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
 
     Route::group(['prefix' => 'teacher'], function(){
 
-    });
+    });  
 
     Route::group(['prefix' => 'parent'], function(){
 
@@ -22,6 +22,7 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
 
     Route::group(['prefix' => 'admin', 'middlreware' => 'auth.admin'], function(){
         Route::post('/create-user', [UserController::class, 'createUser']);
+        Route::post('/update-user/{userId}', [UserController::class, 'updateUser']);
     });
 
     Route::get("profile", [AuthController::class, "profile"]);
