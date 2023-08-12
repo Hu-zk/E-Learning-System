@@ -24,6 +24,9 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
         Route::post('/create-user', [UserController::class, 'createUser']);
         Route::post('/update-user/{userId}', [UserController::class, 'updateUser']);
         Route::delete('/delete-user/{userId}', [UserController::class, 'deleteUser']);
+        Route::get('/get-users', [UserController::class, 'getUsers']);
+
+        
     });
 
     Route::get("profile", [AuthController::class, "profile"]);

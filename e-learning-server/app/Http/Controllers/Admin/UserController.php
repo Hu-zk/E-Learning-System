@@ -45,6 +45,12 @@ class UserController extends Controller
         $user->delete();
 
         return response()->json(['message' => 'User deleted successfully']);
+    }
 
+    function getUsres() {
+
+        $users = User::all();
+
+        return response()->json(['message' => 'User deleted successfully']);
     }
 }
