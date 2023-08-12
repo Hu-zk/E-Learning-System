@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Teacher\CourseController;
 use App\Http\Controllers\Teacher\TeacherController;
 
 
@@ -32,4 +33,8 @@ Route::group(['prefix' => 'guest'], function () {
 
 Route::group(['prefix' => 'teacher'], function () {
     Route::get('{teacherId}/courses', [TeacherController::class, 'getCourses']);
+});
+
+Route::group(['prefix' => 'course'], function () {
+    Route::get('{courseId}/content', [CourseController::class, 'getCourseContent']);
 });

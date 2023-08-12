@@ -9,6 +9,8 @@ class AssignmentQuiz extends Model
 {
     use HasFactory;
 
+    protected $table = 'assignments_quizzes';
+
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_id');
