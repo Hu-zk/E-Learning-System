@@ -20,8 +20,8 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
 
     });
 
-    Route::group(['prefix' => 'admin'], function(){
-
+    Route::group(['prefix' => 'admin', 'middlreware' => 'auth.admin'], function(){
+        
     });
 
     Route::get("profile", [AuthController::class, "profile"]);
