@@ -6,22 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
-            $table->integer('course_id');
+            $table->unsignedBigInteger('course_id');
             $table->string('description');
             $table->string('file_url');
             $table->timestamps();
+
+            $table->foreign('course_id')->references('id')->on('courses');
         });
 
         Schema::create('assignments_quizes', function (Blueprint $table) {
             $table->id();
-            $table->integer('course_id');
+            $table->unsignedBigInteger('course_id');
             $table->boolean('is_quiz');
             $table->string('title');
             $table->string('description');
@@ -29,15 +29,20 @@ return new class extends Migration
             $table->datetime('deadline');
             $table->string('file_url');
             $table->timestamps();
+
+            $table->foreign('course_id')->references('id')->on('courses');
         });
 
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
-            $table->integer('student_id');
-            $table->integer('assignment_id');
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('assignment_id');
             $table->integer('grade');
             $table->string('file_url');
             $table->timestamps();
+
+            $table->foreign('student_id')->references('id')->on('users');
+            $table->foreign('assignment_id')->references('id')->on('assignments_quizes');
         });
     }
 
