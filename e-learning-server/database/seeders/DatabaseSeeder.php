@@ -49,5 +49,39 @@ class DatabaseSeeder extends Seeder
             'email' => 'hsn@gmail.com',
             'password' => Hash::make('123456')
         ]);
+
+        DB::table('materials')->insert([
+            'course_id' => 1,
+            'title' => 'Lecture 1',
+            'description' => 'First Computer Science Lecture',
+            'file_url' => "file",
+            'is_announcement' => false,
+        ]);
+
+        DB::table('materials')->insert([
+            'course_id' => 1,
+            'title' => 'Announcement 1',
+            'description' => 'First Computer Science Announcement',
+            'file_url' => "file",
+            'is_announcement' => true,
+        ]);
+        DB::table('assignments_quizzes')->insert([
+            'course_id' => 1,
+            'title' => 'Quiz 1',
+            'grade' => 100,
+            'deadline' => '2023-08-12',
+            'description' => 'First Computer Science Quiz',
+            'file_url' => "file",
+            'is_quiz' => true,
+        ]);
+        DB::table('assignments_quizzes')->insert([
+            'course_id' => 1,
+            'title' => 'Assignment 1',
+            'grade' => 100,
+            'deadline' => '2023-08-12',
+            'description' => 'First Computer Science Assignment',
+            'file_url' => "file",
+            'is_quiz' => false,
+        ]);
     }
 }
