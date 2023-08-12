@@ -14,40 +14,61 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('user_types')->insert([
-			'name' => "admin",
-            '_rules' => "",
-            'created_at' => date('Y-m-d'),
-            'updated_at' => date('Y-m-d')
-        ]);
+        // DB::table('user_types')->insert([
+		// 	'name' => "admin",
+        //     '_rules' => "",
+        //     'created_at' => date('Y-m-d'),
+        //     'updated_at' => date('Y-m-d')
+        // ]);
 
-        DB::table('user_types')->insert([
-			'name' => "teacher",
-            '_rules' => "",
-            'created_at' => date('Y-m-d'),
-            'updated_at' => date('Y-m-d')
-        ]);
+        // DB::table('user_types')->insert([
+		// 	'name' => "teacher",
+        //     '_rules' => "",
+        //     'created_at' => date('Y-m-d'),
+        //     'updated_at' => date('Y-m-d')
+        // ]);
 
-        DB::table('user_types')->insert([
-			'name' => "parent",
-            '_rules' => "",
-            'created_at' => date('Y-m-d'),
-            'updated_at' => date('Y-m-d')
-        ]);
+        // DB::table('user_types')->insert([
+		// 	'name' => "parent",
+        //     '_rules' => "",
+        //     'created_at' => date('Y-m-d'),
+        //     'updated_at' => date('Y-m-d')
+        // ]);
 
-        DB::table('user_types')->insert([
-			'name' => "student",
-            '_rules' => "",
-            'created_at' => date('Y-m-d'),
-            'updated_at' => date('Y-m-d')
-        ]);
+        // DB::table('user_types')->insert([
+		// 	'name' => "student",
+        //     '_rules' => "",
+        //     'created_at' => date('Y-m-d'),
+        //     'updated_at' => date('Y-m-d')
+        // ]);
 
-        DB::table('users')->insert([
-            'user_type_id' => 1,
-            'parent_id' => 0,
-            'name' => 'Hussien',
-            'email' => 'hsn@gmail.com',
-            'password' =>Hash::make('123456')
-        ]);
+        // DB::table('users')->insert([
+        //     'user_type_id' => 1,
+        //     'parent_id' => 0,
+        //     'name' => 'Hussien',
+        //     'email' => 'hsn@gmail.com',
+        //     'password' =>Hash::make('123456')
+        // ]);
+        // DB::table('users')->insert([
+        //     'user_type_id' => 2,
+        //     'parent_id' => 0,
+        //     'name' => 'hsain',
+        //     'email' => 'hsain@gmail.com',
+        //     'password' =>Hash::make('123456')
+        // ]);
+        // DB::table('users')->insert([
+        //     'user_type_id' => 3,
+        //     'parent_id' => 0,
+        //     'name' => 'lara',
+        //     'email' => 'lara@gmail.com',
+        //     'password' =>Hash::make('123456')
+        // ]);
+        // DB::table('users')->insert([
+        //     'user_type_id' => 4,
+        //     'parent_id' => 0,
+        //     'name' => 'joe',
+        //     'email' => 'joe@gmail.com',
+        //     'password' =>Hash::make('123456')
+        // ]);
     }
 }

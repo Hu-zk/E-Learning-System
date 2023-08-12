@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Parents\ParentsController;
 use App\Http\Controllers\Student\TestController;
 
 
@@ -17,6 +18,8 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
     });
 
     Route::group(['prefix' => 'parent'], function(){
+        Route::get("get_parent",[ParentsController::class,"getParent"]);
+        Route::get("get_child",[ParentsController::class,"getChild"]);
 
     });
 
