@@ -49,8 +49,12 @@ class UserController extends Controller
 
     function getUsres() {
 
-        $users = User::all();
+        $content = [
+            "students" => User::where('user_type_id', 4),
+            "parents" => User::whre('user_type_id', 3),
+            "teachers" => User::whre('user_type_id', 2),
+        ];
 
-        return response()->json(['message' => 'User deleted successfully']);
+        return response()->json(['data' => $content]);
     }
 }
