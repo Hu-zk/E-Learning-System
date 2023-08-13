@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Teacher;
 use App\Http\Controllers\Controller;
 use App\Models\AssignmentQuiz;
 use App\Models\Course;
+use App\Models\Material;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -48,5 +49,28 @@ class CourseController extends Controller
         $course->assignmentsQuizzes()->save($assignmentQuiz);
 
         return response()->json(['message' => 'Assignment or quiz created successfully', 'content' => $assignmentQuiz], 201);
+    }
+
+    public function createMaterial(Request $request, $courseId)
+    {
+        $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'file_url' => 'nullable|string',
+            'is_announcement' => 'required|boolean',
+        ]);
+
+        $course = Course::findOrFail($courseId);
+
+        $material = new Material([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'file_url' => $request->input('file_url'),
+            'is_announcement' => $request->input('is_announcement'),
+        ]);
+
+        $course->materials()->save($material);
+
+        return response()->json(['message' => 'Assignment or quiz created successfully', 'content' => $material], 201);
     }
 }
