@@ -7,6 +7,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\Student\TestController;
 use App\Http\Controllers\UserController;
 
+Route::get('/test', [UserController::class, 'create']);
+
 Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
 
     Route::group(['prefix' => 'student',  'middleware' => 'auth.student'], function(){

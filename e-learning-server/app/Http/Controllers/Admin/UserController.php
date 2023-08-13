@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Artisan;
 
 class UserController extends Controller
 {
+
+    function create() {
+        return "ues";
+    }
+
     function createUser(Request $request) {
 
         $validatedDate = $request->validate([
