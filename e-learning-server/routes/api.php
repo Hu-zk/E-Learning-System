@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Teacher\AssignmentController;
 use App\Http\Controllers\Teacher\CourseController;
 use App\Http\Controllers\Teacher\TeacherController;
 
@@ -41,4 +42,8 @@ Route::group(['prefix' => 'course'], function () {
     Route::post('{courseId}/create-assignment-quiz', [CourseController::class, 'createAssignmentQuiz']);
     Route::post('{courseId}/create-material', [CourseController::class, 'createMaterial']);
     Route::get('{courseId}/students', [CourseController::class, 'getEnrolledStudents']);
+});
+
+Route::group(['prefix' => 'assignment'], function () {
+    Route::get('{assignmentId}', [AssignmentController::class, 'getAssignmentDetails']);
 });
