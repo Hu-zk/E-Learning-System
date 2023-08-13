@@ -37,4 +37,5 @@ Route::group(['prefix' => 'teacher'], function () {
 
 Route::group(['prefix' => 'course'], function () {
     Route::get('{courseId}/content', [CourseController::class, 'getCourseContent']);
+    Route::post('{courseId}/create-assignment-quiz', [CourseController::class, 'createAssignmentQuiz']);
 });
