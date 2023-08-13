@@ -18,6 +18,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get("completed_courses", [StudentCourseController::class, "completedCourses"]);
         Route::post("enroll", [StudentCourseController::class, "enroll"]);
         Route::post("send_meet", [MeetController::class, "createMeet"]);
+        Route::get("check_meet", [MeetController::class, "checkMeet"]);
     });
 
 

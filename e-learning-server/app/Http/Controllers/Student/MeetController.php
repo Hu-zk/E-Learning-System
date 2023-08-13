@@ -23,4 +23,15 @@ class MeetController extends Controller
             'data' => $meet
         ]);
     }
+
+    //get meets if any exist
+    function checkMeet(){
+        $user = Auth::user();
+        $meet = Meeting::all()->where('receiver_id', $user->id);
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $meet
+        ]);
+    }
 }
