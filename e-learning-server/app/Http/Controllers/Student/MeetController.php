@@ -12,7 +12,6 @@ class MeetController extends Controller
     //create Meet;
     function createMeet(Request $request){
         $meet = new Meeting;
-        // $user =;
         $meet->sender_id =  Auth::id();
         $meet->receiver_id = $request->receiver_id;
         $meet->link_url = $request->link_url;
@@ -33,5 +32,15 @@ class MeetController extends Controller
             'status' => 'success',
             'data' => $meet
         ]);
+    }
+
+    //delete meet
+    function removeMeet(){
+        $user = Auth::user();
+        if($user->user_type_id == 2){
+            $meet = Meeting::where('receiver_id', $user->id)->delete();
+        }else if ($user->user_type_id == 3){
+            $meet = Meeting::where('sender_id', $user->id)->delete();
+        }
     }
 }
