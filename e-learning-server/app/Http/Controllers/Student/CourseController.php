@@ -68,7 +68,7 @@ class CourseController extends Controller
         ]);
     }
 
-    //not complete yet
+    //get completed courses with final grade
     function completedCourses(){
         $user = Auth::user();
         $user_id = $user->id;
