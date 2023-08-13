@@ -21,13 +21,18 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
 
     });
 
+    // public function EnrolledCourses(){
+    //     return $this->belongsToMany(Course::class, 'enrollements', 'student_id', 'course_id');
+    // }
+
     Route::group(['prefix' => 'parent'], function(){
         Route::get("get_parent",[ParentsController::class,"getParent"]);
         Route::get("get_child",[ParentsController::class,"getChild"]);
-        Route::get("get_is_submited",[StudentsContoller::class,"IsSubmited"]);
+        Route::get("get_is_submited",[StudentsContoller::class,"IsSubmitted"]);
         Route::get("get_is_completed",[StudentsContoller::class,"IsCompleted"]);
         Route::get("attendance_course",[CoursesContoller::class,"courseAttandance"]);
         Route::get("teacher_announcement",[MaterialsContoller::class,"TeacherAnnouncementWithParents"]);
+        Route::get("teachers_courses",[CoursesContoller::class,"getCoursesTeacher"]);
 
     });
 

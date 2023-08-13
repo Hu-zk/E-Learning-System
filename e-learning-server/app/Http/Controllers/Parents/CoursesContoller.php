@@ -27,4 +27,17 @@ class CoursesContoller extends Controller
                 "data" => $course_attend
             ]);
     }
+
+    function getCoursesTeacher(){
+        $auth_user_id = Auth::user()->id;
+        $child_course = User::child($auth_user_id)->first();
+        $all_data=$child_course->StudentEnroll()->with('course.teacher')->get();
+        $courseTeachers = $all_data->pluck('course.teacher.name')->toArray();
+
+
+            return response()->json([
+        "status" => "success", 
+        "data" => $courseTeachers
+    ]);
+    }
 }

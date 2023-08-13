@@ -20,9 +20,9 @@ class StudentsContoller extends Controller
         $student = $auth_user;
     }
 
-    $assignments = Submission::where("user_id", $student->id);
+    $assignments = Submission::where("student_id", $student->id);
 
-    if ($assignments->isNotEmpty()) {
+    if ($assignments->exists()) {
         $data = $assignments->get();
     } else {
         return response()->json([
@@ -69,6 +69,8 @@ class StudentsContoller extends Controller
         ]);
     }
 }
+
+
 
 
 
