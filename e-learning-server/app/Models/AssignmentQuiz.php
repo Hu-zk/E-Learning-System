@@ -9,6 +9,15 @@ class AssignmentQuiz extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'is_quiz',
+        'title',
+        'description',
+        'grade',
+        'deadline',
+        'file_url',
+    ];
+
     protected $table = 'assignments_quizzes';
 
     public function course()
