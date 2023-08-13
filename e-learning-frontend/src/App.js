@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 import TeacherLayout from "./utils/TeacherLayout/TeacherLayout";
 import TeacherHome from "./pages/Teacher/Home/TeacherHome";
+import Course from "./pages/Teacher/Course/Course";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       </Route>
       <Route path="/teacher" element={<TeacherLayout />}>
         <Route index element={<TeacherHome />} />
+        <Route path="/teacher/course/:id" element={<Course />} />
       </Route>
       <Route path="/parent">
         <Route index element={<h1>Parent</h1>} />

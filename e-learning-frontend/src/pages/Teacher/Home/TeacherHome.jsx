@@ -4,7 +4,7 @@ import Courses from "../../../components/Teacher/Courses/Courses";
 const TeacherHome = () => {
   return (
     <React.Fragment>
-      <Courses></Courses>
+      <Courses />
     </React.Fragment>
   );
 };
