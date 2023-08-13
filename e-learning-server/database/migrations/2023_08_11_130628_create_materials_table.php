@@ -39,8 +39,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('assignment_id');
-            $table->integer('grade');
-            $table->string('file_url');
+            $table->integer('grade')->nullable();
+            $table->string('feedback')->nullable();
+            $table->string('file_url')->nullable();
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('users');

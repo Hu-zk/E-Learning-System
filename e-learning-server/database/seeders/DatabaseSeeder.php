@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123456')
         ]);
 
-        DB::table('users')->insert([
+        DB::table('courses')->insert([
             'teacher_id' => 2,
             'name' => 'Computer Science',
             'capacity' => 50,
@@ -107,6 +107,12 @@ class DatabaseSeeder extends Seeder
             'description' => 'First Computer Science Assignment',
             'file_url' => "file",
             'is_quiz' => false,
+        ]);
+
+        DB::table('enrollements')->insert([
+            'course_id' => 1,
+            'student_id' => 4,
+            'is_completed' => false,
         ]);
     }
 }

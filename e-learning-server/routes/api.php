@@ -33,10 +33,12 @@ Route::group(['prefix' => 'guest'], function () {
 
 Route::group(['prefix' => 'teacher'], function () {
     Route::get('{teacherId}/courses', [TeacherController::class, 'getCourses']);
+    Route::post('record-attendance', [TeacherController::class, 'recordAttendance']);
 });
 
 Route::group(['prefix' => 'course'], function () {
     Route::get('{courseId}/content', [CourseController::class, 'getCourseContent']);
     Route::post('{courseId}/create-assignment-quiz', [CourseController::class, 'createAssignmentQuiz']);
     Route::post('{courseId}/create-material', [CourseController::class, 'createMaterial']);
+    Route::get('{courseId}/students', [CourseController::class, 'getEnrolledStudents']);
 });

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\AssignmentQuiz;
 use App\Models\Course;
 use App\Models\Material;
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
+
 
 class CourseController extends Controller
 {
@@ -22,6 +24,13 @@ class CourseController extends Controller
         ];
 
         return response()->json(['content' => $content], 200);
+    }
+
+    public function getEnrolledStudents($courseId)
+    {
+        $enrollments = Enrollment::where('course_id', $courseId)->with('student')->get();
+
+        return response()->json(['students' => $enrollments], 200);
     }
 
     public function createAssignmentQuiz(Request $request, $courseId)
@@ -57,6 +66,7 @@ class CourseController extends Controller
 
         return response()->json(['message' => 'Assignment or quiz created successfully', 'content' => $assignmentQuiz], 201);
     }
+
 
     public function createMaterial(Request $request, $courseId)
     {

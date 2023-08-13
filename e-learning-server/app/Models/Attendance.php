@@ -9,6 +9,12 @@ class Attendance extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'status',
+        'course_id',
+        'student_id',
+    ];
+
     public function enrollment()
     {
         return $this->belongsTo(Enrollment::class, 'enrollment_id');
