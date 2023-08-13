@@ -1,3 +1,4 @@
+import StudentAttendance from "../StudentAttendance/StudentAttendance";
 import "./Attendance.css"
 
 const Attendance = () => {
@@ -5,70 +6,25 @@ const Attendance = () => {
         <div className="attendance">
             <h2>Attendance</h2>
             <div className="students-list">
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
-                <label className="student" htmlFor="student1">
-                    <div className="name">Mohammad Hussein</div>
-                    <input type="checkbox" id="student1"/>
-                </label>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
+                <StudentAttendance/>
             </div>
             <div className="save-changes">
                 <button>Save Changes</button>
