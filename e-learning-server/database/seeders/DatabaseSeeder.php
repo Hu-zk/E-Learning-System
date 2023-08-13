@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
+
     public function run(): void
     {
         DB::table('user_types')->insert([
@@ -44,10 +42,37 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
             'user_type_id' => 1,
-            'parent_id' => 0,
+            'parent_id' => null,
             'name' => 'Hussien',
             'email' => 'hsn@gmail.com',
             'password' => Hash::make('123456')
+        ]);
+        DB::table('users')->insert([
+            'user_type_id' => 2,
+            'parent_id' => null,
+            'name' => 'Teacher',
+            'email' => 'teacher@gmail.com',
+            'password' => Hash::make('123456')
+        ]);
+        DB::table('users')->insert([
+            'user_type_id' => 3,
+            'parent_id' => null,
+            'name' => 'Parent',
+            'email' => 'parent@gmail.com',
+            'password' => Hash::make('123456')
+        ]);
+        DB::table('users')->insert([
+            'user_type_id' => 4,
+            'parent_id' => 3,
+            'name' => 'student',
+            'email' => 'student@gmail.com',
+            'password' => Hash::make('123456')
+        ]);
+
+        DB::table('users')->insert([
+            'teacher_id' => 2,
+            'name' => 'Computer Science',
+            'capacity' => 50,
         ]);
 
         DB::table('materials')->insert([
