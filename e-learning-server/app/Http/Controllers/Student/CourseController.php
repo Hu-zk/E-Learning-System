@@ -62,8 +62,8 @@ class CourseController extends Controller
     //not complete yet
     function completedCourses(){
         $user = Auth::user();
-        // $courses = $user->CompletedCourses()->get();
-        $courses = $user->CompletedCourses()->where('StudentAssignment')->get();
+        $courses = $user->CompletedCourses()->get();
+        // $courses = $user->CompletedCourses()->where('StudentAssignment')->get();
         // $courses = $user->CompletedCourses()->with('StudentAssignment')->get();
 
         return response()->json([

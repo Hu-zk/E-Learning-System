@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Teacher\CourseController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
+use App\Http\Controllers\Student\MeetController;
 
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
@@ -16,6 +17,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get("course_stats", [StudentCourseController::class, "courseStats"]);
         Route::get("completed_courses", [StudentCourseController::class, "completedCourses"]);
         Route::post("enroll", [StudentCourseController::class, "enroll"]);
+        Route::post("send_meet", [MeetController::class, "createMeet"]);
     });
 
 
