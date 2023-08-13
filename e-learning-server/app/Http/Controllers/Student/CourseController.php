@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\Enrollement;
 use Auth;
 
 class CourseController extends Controller
@@ -20,7 +21,21 @@ class CourseController extends Controller
         ]);
     }
 
-    //get all courses(name, count and capacity)
+    //enroll student in course -done
+    function enroll(Request $request){
+        $enroll = new Enrollement;
+        $enroll->student_id = Auth::id();
+        $enroll->course_id = $request->course_id;
+        $enroll->is_completed = false;
+        $enroll->save();
+        return response()->json([
+            'status' => 'success',
+            'data' => $enroll
+        ]);
+        
+    }
+
+    //get all courses(name, count and capacity) -done
     function allCourses(){
         $courses = Course::withCount("enrollments")->get();
 
@@ -44,9 +59,12 @@ class CourseController extends Controller
         ]);
     }
 
+    //not complete yet
     function completedCourses(){
         $user = Auth::user();
-        $courses = $user->CompletedCourses()->get();
+        // $courses = $user->CompletedCourses()->get();
+        $courses = $user->CompletedCourses()->where('StudentAssignment')->get();
+        // $courses = $user->CompletedCourses()->with('StudentAssignment')->get();
 
         return response()->json([
             'status' => 'success',
