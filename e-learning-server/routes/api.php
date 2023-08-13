@@ -35,7 +35,7 @@ Route::group(['prefix' => 'guest'], function () {
 Route::group(['prefix' => 'teacher'], function () {
     Route::get('{teacherId}/courses', [TeacherController::class, 'getCourses']);
     Route::post('record-attendance', [TeacherController::class, 'recordAttendance']);
-    Route::post('update-submission/{assignmentId}/{studentId}', [TeacherController::class, 'updateSubmission']);
+    Route::post('update-submission', [TeacherController::class, 'updateSubmission']);
 });
 
 Route::group(['prefix' => 'course'], function () {
