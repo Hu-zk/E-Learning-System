@@ -15,21 +15,22 @@ class AssignmentController extends Controller
         $assignment = AssignmentQuiz::findOrFail($assignmentId);
         $submissions = Submission::where('assignment_id', $assignmentId)->with('student')->get();
 
-        $submittedStudents = $submissions->pluck('student');
 
         $courseId = $assignment->course_id;
         $enrolledStudentIds = Enrollment::where('course_id', $courseId)->pluck('student_id');
-
         $totalStudents = $enrolledStudentIds->count();
+
+        $submittedStudents = $submissions->pluck('student');
         $submittedStudentsCount = $submittedStudents->count();
+
         $notSubmittedStudentsCount = $totalStudents - $submittedStudentsCount;
 
-        $assignment->submitted_students = $submittedStudents;
         $assignment->count_student = [
             'students_count' => $totalStudents,
             'submitted_students_count' => $submittedStudentsCount,
             'not_submitted_students_count' => $notSubmittedStudentsCount,
         ];
+        $assignment->submitted_students = $submissions;
 
         return response()->json([
             'assignment' => $assignment,
