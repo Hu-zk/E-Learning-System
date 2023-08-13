@@ -57,8 +57,8 @@
     padding: 15px 20px;
     border-radius: 10px;
     -webkit-box-shadow: 10px -1px 36px -12px rgba(0,0,0,0.75);
--moz-box-shadow: 10px -1px 36px -12px rgba(0,0,0,0.75);
-box-shadow: 10px -1px 36px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px -1px 36px -12px rgba(0,0,0,0.75);
+    box-shadow: 10px -1px 36px -12px rgba(0,0,0,0.75);
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
@@ -80,4 +80,100 @@ box-shadow: 10px -1px 36px -12px rgba(0,0,0,0.75);
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     background-color: #ccccccc0;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.menu {
+    position: absolute;
+    list-style-type: none;
+    margin: 5px 0;
+    padding: 0;
+    border: 1px solid grey;
+    width: 175px;
+}
+
+.menu > li {
+    margin: 0;
+    border-bottom: 1px solid #737373;
+    background-color: white;
+}
+.menu > li:hover {
+    background-color: lightgray;
+}
+
+.menu > li > button {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    border: none;
+    padding: 5px;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+    background-color: white !important;
+    border-bottom: 1px solid #ccc;
+}
+
+
+/* MODAL */
+
+.modal {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.356);
+    padding: 20px;
+}
+
+.modal .box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: black;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.modal .box textarea {
+    height: 100px;
+}
+
+.modal .box input, .modal .box textarea, .modal .box .upload-file {
+    padding: 10px 15px;
+    width: 100%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+}
+
+.modal .box .row {
+    display: flex;
+    gap: 10px;
+}
+
+.modal .box .row > * {
+    width: 50%;
+}
+
+.modal .box .upload-file {
+    width: 50%;
 }
