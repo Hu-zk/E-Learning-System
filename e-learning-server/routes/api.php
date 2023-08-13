@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChildController;
+use App\Http\Controllers\Parents\CoursesContoller;
 use App\Http\Controllers\Parents\ParentsController;
 use App\Http\Controllers\Parents\StudentsContoller;
 use App\Http\Controllers\Student\TestController;
@@ -24,6 +25,7 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
         Route::get("get_child",[ParentsController::class,"getChild"]);
         Route::get("get_is_submited",[StudentsContoller::class,"IsSubmited"]);
         Route::get("get_is_completed",[StudentsContoller::class,"IsCompleted"]);
+        Route::get("attendance_course",[CoursesContoller::class,"courseAttandance"]);
 
     });
 
