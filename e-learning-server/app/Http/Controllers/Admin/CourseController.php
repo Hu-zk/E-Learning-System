@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -46,6 +47,28 @@ class CourseController extends Controller
             "course" => $course,
             "total_enrollments" => $totalEnrollments,
             "completed_enrollments" => $completedEnrollments,
+        ]);
+    }
+
+    function studentReport($studentId) {
+
+        $student = User::find($studentId);
+        $enrolled_courses = $student->studentCourses->enrollments;
+
+        $content = [];
+
+        foreach($enrolled_courses as $enrolledCourse) {
+            $avg_grade = $enrolledCourse->submissions->avg("grade");
+
+            $content[] = [
+                "course" => $enrolledCourse,
+                "grade" => $avg_grade
+            ];
+        }
+
+        return response()->json([
+            'message' => 'success',
+            'data' => $content
         ]);
     }
 }

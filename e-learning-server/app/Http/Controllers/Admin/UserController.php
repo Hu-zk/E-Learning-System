@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
@@ -83,5 +84,20 @@ class UserController extends Controller
         Artisan::call('backup:run');
 
         return response()->json(['message' => 'Backup created successfully']);
+    }
+
+    function updateAppearance(Request $request) {
+
+        $user_type = UserType::find(1);
+
+        if($request->mode) {
+            $user_type->rules->mode = $request->mode;
+        }
+
+        if($request->email) {
+            $user_type->rules->email = $request->email;
+        }
+
+        return response()->json(['status' => 'success', 'message' => 'appearance updated successfully']);
     }
 }
