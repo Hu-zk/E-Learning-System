@@ -30,6 +30,7 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
         Route::post('/create-course', [CourseController::class, 'createCourse']);
         Route::put('/update-course/{courseId}', [CourseController::class, 'updateCourse']);
         Route::get('/course-report/{courseId}', [CourseController::class, 'courseReport']);
+        Route::get('/teacher-report/{teacherId}', [CourseController::class, 'teacherReport']);
     });
 
     Route::get("profile", [AuthController::class, "profile"]);

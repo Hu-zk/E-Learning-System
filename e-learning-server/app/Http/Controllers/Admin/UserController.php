@@ -47,13 +47,32 @@ class UserController extends Controller
         return response()->json(['message' => 'User deleted successfully']);
     }
 
-    function getUsres() {
+    function getUsers() {
 
         $content = [
-            "students" => User::where('user_type_id', 4),
-            "parents" => User::whre('user_type_id', 3),
-            "teachers" => User::whre('user_type_id', 2),
+            "students" => User::where('user_type_id', 4)->get(),
+            "parents" => User::whre('user_type_id', 3)->get(),
+            "teachers" => User::whre('user_type_id', 2)->get(),
         ];
+
+        return response()->json(['data' => $content]);
+    }
+
+    function teacherReports($teacherId) {
+
+        $teacher = User::find($teacherId);
+        $teacher_courses = $teacher->courses()->get();
+
+        $content = [];
+
+        foreach($teacher_courses as $course) {
+            $averageGrade = $course->assignmentsQuizzes->submissions()->avg("grade");
+
+            $content[] = [
+                "course" => $course, 
+                "average_grade" => $averageGrade
+            ];
+        }
 
         return response()->json(['data' => $content]);
     }
