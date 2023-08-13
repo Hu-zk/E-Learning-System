@@ -9,6 +9,7 @@ use App\Models\Course;
 use App\Models\Submission;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TeacherController extends Controller
 {
@@ -17,11 +18,40 @@ class TeacherController extends Controller
         $teacher = User::findOrFail($teacherId);
         $courses = $teacher->courses;
 
-        return response()->json(['courses' => $courses], 200);
+        return response()->json([
+            'courses' => $courses
+        ], 200);
     }
 
     public function recordAttendance(Request $request)
     {
+        // $studentIds0 = $request->input('student_ids-0', []);
+        // $studentIds1 = $request->input('student_ids-1', []);
+        // $courseId = $request->input('course_id');
+
+
+        // foreach ($studentIds0 as $studentId) {
+        //     $attendance0[] = Attendance::create([
+        //         'student_id' => $studentId,
+        //         'course_id' => $courseId,
+        //         'status' => 0,
+        //     ]);
+        // }
+
+        // foreach ($studentIds1 as $studentId) {
+        //     $attendance1[] = Attendance::create([
+        //         'student_id' => $studentId,
+        //         'course_id' => $courseId,
+        //         'status' => 1,
+        //     ]);
+        // }
+        // return response()->json([
+        //     'message' => 'Attendance saved for selected students in course ' . $courseId . '.',
+        //     'attendance0' => $attendance0,
+        //     'attendance1' => $attendance1,
+        // ]);
+
+
         $request->validate([
             'course_id' => 'required|exists:courses,id',
             'student_id' => 'required|exists:users,id',
@@ -51,11 +81,18 @@ class TeacherController extends Controller
         $assignment = AssignmentQuiz::findOrFail($submission->assignment_id);
         $assignmentGrade = $assignment->value('grade');
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'submission_id' => 'required|exists:submissions,id',
             'grade' => "integer|min:0|nullable|lte:{$assignmentGrade}",
             'feedback' => 'string|nullable',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
 
         $submission->grade = $request->grade;
         $submission->feedback = $request->feedback;
