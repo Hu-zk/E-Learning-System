@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request; 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class UserController extends Controller
 {
@@ -75,5 +76,12 @@ class UserController extends Controller
         }
 
         return response()->json(['data' => $content]);
+    }
+
+    function createBackup() {
+
+        Artisan::call('backup:run');
+
+        return response()->json(['message' => 'Backup created successfully']);
     }
 }

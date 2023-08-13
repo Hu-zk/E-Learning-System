@@ -26,6 +26,7 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
         Route::put('/update-user/{userId}', [UserController::class, 'updateUser']);
         Route::delete('/delete-user/{userId}', [UserController::class, 'deleteUser']);
         Route::get('/get-users', [UserController::class, 'getUsers']);
+        Route::post("/backup", [UserController::class, 'createBackup']);
 
         Route::post('/create-course', [CourseController::class, 'createCourse']);
         Route::put('/update-course/{courseId}', [CourseController::class, 'updateCourse']);
