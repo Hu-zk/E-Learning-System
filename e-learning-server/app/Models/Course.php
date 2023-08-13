@@ -16,7 +16,11 @@ class Course extends Model
 
     public function enrollments()
     {
-        return $this->hasMany(Enrollment::class, 'course_id');
+        return $this->hasMany(Enrollement::class, 'course_id');
+    }
+
+    public function AttendanceByStudent(){
+        return $this->hasMany(Attendance::class, 'course_id');//->where('student_id',$student_id);
     }
 
     public function materials()
