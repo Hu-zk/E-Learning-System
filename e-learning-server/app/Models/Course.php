@@ -28,4 +28,8 @@ class Course extends Model
     {
         return $this->hasMany(AssignmentQuiz::class, 'course_id');
     }
+
+    public function scopeMaterialsIsAnnouncement($query){
+        return $query->where("is_announcement", 1);
+    } 
 }

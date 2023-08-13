@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('file_url')->nullable();
             $table->boolean('is_announcement');
             $table->timestamps();
-
+            
             $table->foreign('course_id')->references('id')->on('courses');
         });
 
