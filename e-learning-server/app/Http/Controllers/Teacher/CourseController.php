@@ -32,8 +32,15 @@ class CourseController extends Controller
             'description' => 'required|string',
             'grade' => 'required|integer',
             'deadline' => 'required|date',
-            'file_url' => 'nullable|string',
+            // 'file_url' => 'nullable|string',
         ]);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileUrl = $file->store('uploads', 'public');
+        } else {
+            $fileUrl = null;
+        }
 
         $course = Course::findOrFail($courseId);
 
@@ -43,7 +50,7 @@ class CourseController extends Controller
             'description' => $request->input('description'),
             'grade' => $request->input('grade'),
             'deadline' => $request->input('deadline'),
-            'file_url' => $request->input('file_url'),
+            'file_url' => $fileUrl,
         ]);
 
         $course->assignmentsQuizzes()->save($assignmentQuiz);
@@ -56,16 +63,23 @@ class CourseController extends Controller
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
-            'file_url' => 'nullable|string',
+            // 'file_url' => 'nullable|string',
             'is_announcement' => 'required|boolean',
         ]);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileUrl = $file->store('uploads', 'public');
+        } else {
+            $fileUrl = null;
+        }
 
         $course = Course::findOrFail($courseId);
 
         $material = new Material([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'file_url' => $request->input('file_url'),
+            'file_url' => $fileUrl,
             'is_announcement' => $request->input('is_announcement'),
         ]);
 
