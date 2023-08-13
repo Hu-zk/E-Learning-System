@@ -33,7 +33,7 @@ class Course extends Model
         return $this->hasMany(AssignmentQuiz::class, 'course_id');
     }
     
-    public function StudentAssignment(){
-        return $this->hasMany(assignmentsQuizzes::class, 'submissions', 'student_id', 'course_id');//->where('grade', '=', 80);
-    }
+    // public function StudentAssignment(){
+    //     return $this->hasMany(assignmentsQuizzes::class, 'submissions', 'student_id', 'course_id');//->where('grade', '=', 80);
+    // }
 }
