@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -135,6 +134,12 @@ class DatabaseSeeder extends Seeder
             'description' => 'First Computer Science Assignment',
             'file_url' => "file",
             'is_quiz' => false,
+        ]);
+
+        DB::table('enrollements')->insert([
+            'course_id' => 1,
+            'student_id' => 4,
+            'is_completed' => false,
         ]);
     }
 }

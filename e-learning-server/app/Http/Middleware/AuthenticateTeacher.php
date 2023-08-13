@@ -4,17 +4,17 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
-class AuthenticateStudent
+class AuthenticateTeacher
 {
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
         $type =  $user->user_type_id;
 
-        if ($type == 4) {
+        if ($type == 2) {
             return $next($request);
         }
 
