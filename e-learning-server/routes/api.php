@@ -33,6 +33,7 @@ Route::group(['prefix' => 'guest'], function () {
 
 Route::group(['prefix' => 'teacher'], function () {
     Route::get('{teacherId}/courses', [TeacherController::class, 'getCourses']);
+    Route::post('record-attendance', [TeacherController::class, 'recordAttendance']);
 });
 
 Route::group(['prefix' => 'course'], function () {
