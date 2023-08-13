@@ -30,11 +30,11 @@
     width: 100%;
     display: flex;
     gap: 30px;
+    margin-top: 2.5rem;
 }
 
 .teacher-course-page .stream .left-stream {
     flex: 9;
-    background-color: aqua;
 }
 
 .teacher-course-page .stream .right-stream {
