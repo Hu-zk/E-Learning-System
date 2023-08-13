@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Teacher\AssignmentController;
 use App\Http\Controllers\Teacher\CourseController;
 use App\Http\Controllers\Teacher\TeacherController;
+use App\Http\Middleware\AuthenticateTeacher;
 
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
@@ -48,5 +49,5 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
 Route::group(['prefix' => 'guest'], function () {
     Route::get("unauthorized", [AuthController::class, "unauthorized"])->name("unauthorized");
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('login', [AuthController::class, 'login']);
 });
