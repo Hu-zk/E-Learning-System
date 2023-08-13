@@ -7,6 +7,7 @@ import Grades from "./pages/Teacher/Grades/Grades";
 
 function App() {
   return (
+    <div className="routes dark">
     <Routes>
       <Route path="/" element={<h1>Login</h1>} />
       <Route path="/register" element={<h1>Register</h1>} />
@@ -26,6 +27,7 @@ function App() {
         <Route index element={<h1>Parent</h1>} />
       </Route>
     </Routes>
+    </div>
   );
 }
 

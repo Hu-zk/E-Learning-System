@@ -4,9 +4,11 @@ import "./style.css"
 
 const TeacherLayout = () => {
     return (
-        <div className="teacher-layout">
+        <div className="teacher-layout app dark">
             <Sidebar/>
-            <Outlet/>
+            <div className="outlet">
+                <Outlet/>
+            </div>
         </div>
     )
 }
