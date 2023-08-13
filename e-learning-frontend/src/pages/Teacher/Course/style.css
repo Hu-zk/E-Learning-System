@@ -35,6 +35,15 @@
 
 .teacher-course-page .stream .left-stream {
     flex: 9;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.teacher-course-page .stream .left-stream .content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .teacher-course-page .stream .right-stream {

@@ -1,4 +1,5 @@
 import Announcement from "../../../components/Teacher/Announcement/Announcement";
+import Material from "../../../components/Teacher/Material/Material";
 import "./style.css"
 
 const Course = () => {
@@ -15,9 +16,12 @@ const Course = () => {
             <div className="course-name">Course One</div>
             <div className="stream">
                 <div className="left-stream">
-                    <Announcement />
+                    <Announcement/>
                     <div className="content">
-
+                        <Material/>
+                        <Material/>
+                        <Material/>
+                        <Material/>
                     </div>
                 </div>
                 <div className="right-stream">
