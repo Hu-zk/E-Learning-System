@@ -29,7 +29,7 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
         Route::get("attendance_course",[CoursesContoller::class,"courseAttandance"]);
         Route::get("teacher_announcement",[MaterialsContoller::class,"TeacherAnnouncementWithParents"]);
         Route::get("teachers_courses",[CoursesContoller::class,"getCoursesTeacher"]);
-
+    });
     Route::group(['prefix' => 'teacher',  'middleware' => 'auth.teacher'], function () {
 
         Route::group(['prefix' => 'teacher'], function () {
@@ -50,7 +50,7 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
         });
     });
 
-    });
+    
 
     Route::group(['prefix' => 'admin'], function(){
 
