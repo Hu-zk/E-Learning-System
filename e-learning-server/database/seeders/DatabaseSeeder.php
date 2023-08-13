@@ -108,5 +108,11 @@ class DatabaseSeeder extends Seeder
             'file_url' => "file",
             'is_quiz' => false,
         ]);
+
+        DB::table('enrollements')->insert([
+            'course_id' => 1,
+            'student_id' => 4,
+            'is_completed' => false,
+        ]);
     }
 }
