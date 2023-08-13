@@ -44,10 +44,46 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
             'user_type_id' => 1,
-            'parent_id' => 0,
+            'parent_id' => null,
             'name' => 'Hussien',
             'email' => 'hsn@gmail.com',
             'password' => Hash::make('123456')
+        ]);
+
+        DB::table('users')->insert([
+            'user_type_id' => 3,
+            'parent_id' => null,
+            'name' => 'parent1',
+            'email' => 'parent1@gmail.com',
+            'password' => Hash::make('123456')
+        ]);
+
+        DB::table('users')->insert([
+            'user_type_id' => 4,
+            'parent_id' => 2,
+            'name' => 'mj',
+            'email' => 'mj@gmail.com',
+            'password' => Hash::make('123456')
+        ]);
+
+        DB::table('users')->insert([
+            'user_type_id' => 2,
+            'parent_id' => null,
+            'name' => 'teacher',
+            'email' => 'teacher@gmail.com',
+            'password' => Hash::make('123456')
+        ]);
+
+        DB::table('courses')->insert([
+            'teacher_id' => 4,
+            'name' => 'Intro to computer science',
+            'capacity' => "20",
+        ]);
+
+        DB::table('enrollements')->insert([
+            'course_id' => 1,
+            'student_id' => 3,
+            'is_completed' => false,
         ]);
 
         DB::table('materials')->insert([

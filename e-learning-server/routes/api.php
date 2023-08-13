@@ -5,11 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Teacher\CourseController;
 use App\Http\Controllers\Teacher\TeacherController;
+use App\Http\Controllers\Student\StudentController;
 
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'student',  'middleware' => 'auth.student'], function () {
+        Route::get("test", [StudentController::class, "test"]);
     });
 
 
