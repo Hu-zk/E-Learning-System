@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123456')
         ]);
 
-        DB::table('users')->insert([
+        DB::table('courses')->insert([
             'teacher_id' => 2,
             'name' => 'Computer Science',
             'capacity' => 50,
