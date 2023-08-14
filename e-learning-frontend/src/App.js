@@ -5,12 +5,13 @@ import Course from "./pages/Teacher/Course/Course";
 import Attendance from "./pages/Teacher/Attendance/Attendance";
 import Grades from "./pages/Teacher/Grades/Grades";
 import Landing from "./pages/Student/landing/landing";
+import Login from "./pages/login/login";
 
 function App() {
   return (
     <div className="routes dark">
       <Routes>
-        <Route path="/" element={<h1>Login</h1>} />
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<h1>Register</h1>} />
 
         <Route path="/admin">

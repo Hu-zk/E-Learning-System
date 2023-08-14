@@ -1,14 +1,9 @@
-import {SiRedux} from "react-icons/si"
-import {AiFillHome} from "react-icons/ai"
-import {BsFillChatLeftTextFill} from "react-icons/bs"
-import {MdGrade} from "react-icons/md"
-import { FiLogOut } from "react-icons/fi"
-import "./style.css"
+import { FiLogOut } from "react-icons/fi";
+import "./style.css";
 import { useState } from "react";
 
 const Sidebar = ({ sidebarContent }) => {
-  const [content, useContent] = useState(sidebarContent);
-
+  const [content, useContent] = useState(sidebarContent ? sidebarContent : []);
   return (
     <div className="sidebar">
       <div className="logo">
@@ -38,4 +33,4 @@ const Sidebar = ({ sidebarContent }) => {
   );
 };
 
-export default Sidebar
+export default Sidebar;
