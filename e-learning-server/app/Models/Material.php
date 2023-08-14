@@ -20,7 +20,9 @@ class Material extends Model
     {
         return $this->belongsTo(Course::class, 'course_id');
     }
-        public function scopeIsAnnouncement($query){
+
+    public function scopeIsAnnouncement($query)
+    {
         return $query->where("is_announcement", 1);
-    } 
+    }
 }

@@ -1,11 +1,21 @@
 <?php
 
+// use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\AuthController;
+// use App\Http\Controllers\Teacher\CourseController;
+// use App\Http\Controllers\Teacher\TeacherController;
+// use App\Http\Middleware\AuthenticateTeacher;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Teacher\CourseController;
 use App\Http\Controllers\Teacher\TeacherController;
+use App\Http\Controllers\Teacher\AssignmentController;
 use App\Http\Middleware\AuthenticateTeacher;
+use App\Http\Controllers\Student\MeetController;
+use App\Http\Controllers\Student\CourseController as StudentCourseController;
 
 
 
