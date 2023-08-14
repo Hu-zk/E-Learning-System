@@ -1,0 +1,21 @@
+import React from "react";
+import styles from './profile.module.css';
+
+export const Profile = () =>{
+    return(
+        <div className={styles.contaier}>
+            <div className={styles.container_header}>
+                <div className={styles.header}>
+                    <div className={styles.image_container}>
+                        <img src="/image.jpg" alt="user profile image"/>
+                    </div>
+                    <div className={styles.user_name}>name</div>
+                </div>
+                <div className={styles.user_details}>
+                    <div className={styles.details}>email</div>
+                    <div className={styles.details}>regitered type</div>
+                </div>
+            </div>
+        </div>
+    )
+}

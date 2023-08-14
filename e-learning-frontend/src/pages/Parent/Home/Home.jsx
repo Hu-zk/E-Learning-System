@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
 import { MdGrade } from "react-icons/md";
+import { Profile } from "../../../components/profile/profile";
 import styles from './style.module.css';
 
 const Home = () => {
@@ -29,7 +30,9 @@ const Home = () => {
             </div>
             <div className={styles.page_body}>
                 <div className={styles.body_left}>left</div>
-                <div className={styles.body_right}>rigth</div>
+                <div className={styles.body_right}>
+                    <Profile/>
+                </div>
             </div>
         </div>
         
