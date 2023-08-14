@@ -17,14 +17,14 @@ class CourseController extends Controller
     {
         $user = Auth::user();
 
-        $courses = $user->EnrolledCourses->get();
+        $courses = $user->EnrolledCourses()->get();
         return response()->json([
             'status' => 'success',
             'data' => $courses
         ]);
     }
 
-    //enroll student in course -done
+    //enroll student in course
     function enroll(Request $request)
     {
         $enroll = new Enrollment();
@@ -38,10 +38,10 @@ class CourseController extends Controller
         ]);
     }
 
-    //get all courses(name, count and capacity) -done
+    //get all courses(name, count and capacity)
     function allCourses()
     {
-        $courses = Course::withCount("enrollments")->get();
+        $courses = Course::withCount('enrollments')->get();
 
         return response()->json([
             'status' => 'success',
@@ -50,14 +50,12 @@ class CourseController extends Controller
     }
 
     //get class name where student is enrolled + attendance in this class from table attendance +submissions count
-    //user id auth, get class where enrolled,
-    // get back to this one.
     function courseStats()
     {
         $user = Auth::user();
         $user_id = $user->id;
         // $courses = $user->EnrolledCourses()->with('AttendanceByStudent')->where('student_id', $user->id)->get();
-        $courses = $user->EnrolledCourses->with(['AttendanceByStudent' => function ($query) use ($user_id) {
+        $courses = $user->EnrolledCourses()->with(['AttendanceByStudent' => function ($query) use ($user_id) {
             $query->where('student_id',  $user_id);
         }])->with(['assignmentsQuizzes' => function ($query) use ($user_id) {
             $query->withCount(['submissions' => function ($query) use ($user_id) {
@@ -78,7 +76,7 @@ class CourseController extends Controller
         $user = Auth::user();
         $user_id = $user->id;
         // $courses = $user->CompletedCourses()->with('assignmentsQuizzes', 'assignmentsQuizzes.submissions')->get();
-        $courses = $user->CompletedCourses->with(['assignmentsQuizzes' => function ($query) use ($user_id) {
+        $courses = $user->CompletedCourses()->with(['assignmentsQuizzes' => function ($query) use ($user_id) {
             $query->with(['submissions' => function ($query) use ($user_id) {
                 $query->where('student_id',  $user_id);
             }]);
