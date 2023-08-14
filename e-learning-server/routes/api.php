@@ -6,6 +6,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Teacher\CourseController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Middleware\AuthenticateTeacher;
+use App\Http\Controllers\Parents\ParentsController;
+use App\Http\Controllers\Parents\StudentsContoller;
+use App\Http\Controllers\Parents\MaterialsContoller;
+use App\Http\Controllers\Parents\CoursesContoller;
+
+
 
 
 
