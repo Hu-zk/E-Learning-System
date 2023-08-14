@@ -7,7 +7,7 @@ const Course = ({ course }) => {
   let { name, capacity, enrollments_count, created_at } = course;
   const navigate = useNavigate();
   return (
-    <div className="class" onClick={() => navigate("")}>
+    <div className="class">
       <div className="top-class">
         <div className="class-title">
           <p>{name}</p>
