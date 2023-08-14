@@ -1,12 +1,14 @@
 import {Outlet} from "react-router-dom"
-import Sidebar from "../../components/Sidebar/Sidebar"
 import "./style.css"
+import Sidebar from "../../components/Teacher/Sidebar/Sidebar"
 
 const TeacherLayout = () => {
     return (
-        <div className="teacher-layout">
+        <div className="teacher-layout app dark">
             <Sidebar/>
-            <Outlet/>
+            <div className="outlet">
+                <Outlet/>
+            </div>
         </div>
     )
 }

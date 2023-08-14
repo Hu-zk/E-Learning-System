@@ -1,0 +1,21 @@
+.student-attendance {
+    background-color: #ccccccad;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.student-attendance .name {
+    flex: 1;
+}
+
+.student-attendance input {
+    width: 20px;
+    height: 20px;
+}

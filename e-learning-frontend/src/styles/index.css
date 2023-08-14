@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
+:root {
+  --black: rgb(30, 27, 27);
+  --white: white;
+  --gray: #ccc;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -17,3 +23,21 @@ a {
 li {
   list-style: none;
 }
+
+button {
+  cursor: pointer;
+}
+
+/* .routes.dark {
+  background-color: black;
+  color: white;
+}
+
+.routes.dark input {
+  color: white;
+}
+
+.routes {
+  background-color: white;
+  color: black;
+} */

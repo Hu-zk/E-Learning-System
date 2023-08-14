@@ -1,0 +1,13 @@
+.courses {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px 60px;
+    width: 100%;
+}
+
+.courses .content {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
