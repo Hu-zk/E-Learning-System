@@ -15,6 +15,7 @@ Route::group(['prefix' => 'guest'], function () {
 
     Route::get("unauthorized", [AuthController::class, "unauthorized"])->name("unauthorized");
     Route::post('login', [AuthController::class, 'login']);
+
 });
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
@@ -28,6 +29,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get("attendance_course", [CourseController::class, "courseAttandance"]);
         Route::get("teachers_courses", [CourseController::class, "getCoursesTeacher"]);
         Route::get("teacher_announcement", [MaterialContoller::class, "TeacherAnnouncementWithParents"]);
+
     });
 
 
@@ -35,12 +37,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
         Route::get("enrolled_courses", [CourseController::class, "getCourses"]);
         Route::get("courses", [CourseController::class, "allCourses"]);
-        Route::get("course_stats", [CourseController::class, "courseStats"]);
-        Route::get("completed_courses", [CourseController::class, "completedCourses"]);
         Route::post("enroll", [CourseController::class, "enroll"]);
-        Route::post("send_meet", [MeetController::class, "createMeet"]);
-        Route::get("check_meet", [MeetController::class, "checkMeet"]);
-        Route::post("remove_meet", [MeetController::class, "removeMeet"]);
+        
     });
 
     Route::group(['prefix' => 'teacher',  'middleware' => 'auth.teacher'], function () {
@@ -48,11 +46,22 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get('{teacherId}/courses', [TeacherController::class, 'getCourses']);
         Route::post('record-attendance', [TeacherController::class, 'recordAttendance']);
         Route::post('update-submission', [TeacherController::class, 'updateSubmission']);
-        Route::get('{courseId}/content', [CourseController::class, 'getCourseContent']);
         Route::post('{courseId}/create-assignment-quiz', [CourseController::class, 'createAssignmentQuiz']);
         Route::post('{courseId}/create-material', [CourseController::class, 'createMaterial']);
         Route::get('{courseId}/students', [CourseController::class, 'getEnrolledStudents']);
         Route::get('{assignmentId}', [AssignmentController::class, 'getAssignmentDetails']);
+
+    });
+
+    Route::group(['prefix' => 'shared', 'middleware' => 'auth.user'], function(){
+
+        Route::get("course_stats", [CourseController::class, "courseStats"]);
+        Route::get("completed_courses", [CourseController::class, "completedCourses"]);
+        Route::post("send_meet", [MeetController::class, "createMeet"]);
+        Route::get("check_meet", [MeetController::class, "checkMeet"]);
+        Route::post("remove_meet", [MeetController::class, "removeMeet"]);
+        Route::get('{courseId}/content', [CourseController::class, 'getCourseContent']);
+        
     });
 
 
