@@ -155,4 +155,4 @@ const Grades = () => {
     );
 }
 
-export default Grades
+export default Grades;

@@ -1,3 +1,4 @@
+import React from "react"
 import {SiRedux} from "react-icons/si"
 import {AiFillHome} from "react-icons/ai"
 import {BsFillChatLeftTextFill} from "react-icons/bs"
@@ -7,7 +8,8 @@ import "./style.css"
 import { useState } from "react";
 
 const Sidebar = ({ sidebarContent }) => {
-  const [content, useContent] = useState(sidebarContent);
+  // const [content, useContent] = useState(sidebarContent);
+  const [content, useContent] = useState(sidebarContent ? sidebarContent : []);
 
   return (
     <div className="sidebar">

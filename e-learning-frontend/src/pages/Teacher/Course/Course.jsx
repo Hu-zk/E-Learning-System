@@ -104,12 +104,12 @@ const Course = () => {
                         open={open}
                         trigger={< button onClick = {
                         handleOpen
-                    } > Upload Material < /button>}
+                    } > Upload Material </button>}
                         menu={[ < button onClick = {
                             handleMenuOne
-                        } > Lecture < /button>, <button onClick={handleMenuTwo}>Quiz</button >, < button onClick = {
+                        } > Lecture </button>, <button onClick={handleMenuTwo}>Quiz</button >, < button onClick = {
                             handleMenuThree
-                        } > Assignment < /button>, ]}/>
+                        } > Assignment </button>, ]}/>
                 </div>
             </div>
             <div className="course-name">Course One</div>

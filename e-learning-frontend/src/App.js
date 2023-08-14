@@ -5,6 +5,7 @@ import Course from "./pages/Teacher/Course/Course";
 import Attendance from "./pages/Teacher/Attendance/Attendance";
 import Grades from "./pages/Teacher/Grades/Grades";
 import Landing from "./pages/Student/landing/landing";
+import Home from "./pages/Parent/Home/Home";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
 
         <Route path="/parent">
           <Route index element={<h1>Parent</h1>} />
+          <Route path="/parent/Home" element={<Home />} />
         </Route>
       </Routes>
     </div>
