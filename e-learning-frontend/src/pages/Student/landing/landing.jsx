@@ -6,7 +6,6 @@ import Sidebar from "../../../components/Sidebar/Sidebar";
 import { AiFillHome } from "react-icons/ai";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
 import { MdGrade } from "react-icons/md";
-import { FiLogOut } from "react-icons/fi";
 
 function Landing() {
   const navigate = useNavigate();

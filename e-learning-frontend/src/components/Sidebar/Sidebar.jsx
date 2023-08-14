@@ -1,13 +1,10 @@
-import {SiRedux} from "react-icons/si"
-import {AiFillHome} from "react-icons/ai"
-import {BsFillChatLeftTextFill} from "react-icons/bs"
-import {MdGrade} from "react-icons/md"
 import { FiLogOut } from "react-icons/fi"
 import "./style.css"
-import { useState } from "react";
+// import { useState } from "react";
 
 const Sidebar = ({ sidebarContent }) => {
-  const [content, useContent] = useState(sidebarContent ? sidebarContent : []);
+  // const [content, useContent] = useState(sidebarContent ? sidebarContent : []);
+  // console.log(useContent)
 
   return (
     <div className="sidebar">
@@ -23,7 +20,7 @@ const Sidebar = ({ sidebarContent }) => {
       </div>
 
       <div className="mid">
-        {content.map((nav, index) => {
+        {sidebarContent.map((nav, index) => {
           return (
             <div className="one-navigate" key={index} onClick={nav.onclick}>
               {nav.svg}

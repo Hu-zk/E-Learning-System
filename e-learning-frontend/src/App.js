@@ -7,6 +7,9 @@ import Grades from "./pages/Teacher/Grades/Grades";
 import Landing from "./pages/Student/landing/landing";
 import AdminLayout from "./utils/AdminLayout";
 import AdminHome from "./pages/Admin/Home";
+import Create from "./pages/Admin/Create";
+import Display from "./pages/Admin/Display";
+import Settings from "./pages/Admin/Settings";
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
 
         <Route path="/admin" element={<AdminLayout/>}>
           <Route index element={<AdminHome/>} />
+          <Route path="/admin/create" element={<Create/>}/>
+          <Route path="/admin/display" element={<Display/>}/>
+          <Route path="/admin/settings" element={<Settings/>}/>
         </Route>
 
         <Route path="/student">
