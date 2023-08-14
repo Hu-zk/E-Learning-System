@@ -12,7 +12,6 @@ use App\Http\Middleware\AuthenticateTeacher;
 Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'parent',  'middleware' => 'auth.parent'], function () {
-
         Route::get("get_parent", [ParentsController::class, "getParent"]);
         Route::get("get_child", [ParentsController::class, "getChild"]);
         Route::get("get_is_submited", [StudentsContoller::class, "IsSubmitted"]);
@@ -24,6 +23,14 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
 
     Route::group(['prefix' => 'student',  'middleware' => 'auth.student'], function () {
+        Route::get("enrolled_courses", [StudentCourseController::class, "getCourses"]);
+        Route::get("courses", [StudentCourseController::class, "allCourses"]);
+        Route::get("course_stats", [StudentCourseController::class, "courseStats"]);
+        Route::get("completed_courses", [StudentCourseController::class, "completedCourses"]);
+        Route::post("enroll", [StudentCourseController::class, "enroll"]);
+        Route::post("send_meet", [MeetController::class, "createMeet"]);
+        Route::get("check_meet", [MeetController::class, "checkMeet"]);
+        Route::post("remove_meet", [MeetController::class, "removeMeet"]);
     });
 
     Route::group(['prefix' => 'teacher',  'middleware' => 'auth.teacher'], function () {

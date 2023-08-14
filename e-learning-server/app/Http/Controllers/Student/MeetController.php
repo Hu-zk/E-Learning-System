@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Meeting;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class MeetController extends Controller
 {
     //create Meet;
-    function createMeet(Request $request){
+    function createMeet(Request $request)
+    {
         $meet = new Meeting;
         $meet->sender_id =  Auth::id();
         $meet->receiver_id = $request->receiver_id;
@@ -24,7 +25,8 @@ class MeetController extends Controller
     }
 
     //get meets if any exist
-    function checkMeet(){
+    function checkMeet()
+    {
         $user = Auth::user();
         $meet = Meeting::all()->where('receiver_id', $user->id);
 
@@ -35,11 +37,12 @@ class MeetController extends Controller
     }
 
     //delete meet
-    function removeMeet(){
+    function removeMeet()
+    {
         $user = Auth::user();
-        if($user->user_type_id == 2){
+        if ($user->user_type_id == 2) {
             $meet = Meeting::where('receiver_id', $user->id)->delete();
-        }else if ($user->user_type_id == 3){
+        } else if ($user->user_type_id == 3) {
             $meet = Meeting::where('sender_id', $user->id)->delete();
         }
     }
