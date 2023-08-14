@@ -9,6 +9,7 @@ use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Middleware\AuthenticateTeacher;
 
 
+
 Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'student',  'middleware' => 'auth.student'], function () {
