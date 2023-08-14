@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\AssignmentQuiz;
 use App\Models\Enrollment;
 use App\Models\Submission;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class StudentContoller extends Controller
 {
@@ -70,5 +72,32 @@ class StudentContoller extends Controller
                 "message" => "User not found"
             ]);
         }
+    }
+
+    public function uploadSubmission(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file',
+        ]);
+
+        $auth_user = Auth::user();
+        $assignment = AssignmentQuiz::findOrFail($request->assignment_id);
+
+        $fileUrl = $request->file('file')->store('submissions', 'public');
+
+        $submission = new Submission([
+            'student_id' => $auth_user->id,
+            'assignment_id' => $assignment->id,
+            'grade' => null,
+            'feedback' => null,
+            'file_url' => $fileUrl,
+        ]);
+
+        $submission->save();
+
+        return response()->json([
+            'message' => 'Submission created successfully',
+            'submission' => $submission,
+        ], 201);
     }
 }
