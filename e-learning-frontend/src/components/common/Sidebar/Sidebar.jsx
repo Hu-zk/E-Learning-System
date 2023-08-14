@@ -1,19 +1,11 @@
-import React from "react"
-import {SiRedux} from "react-icons/si"
-import {AiFillHome} from "react-icons/ai"
-import {BsFillChatLeftTextFill} from "react-icons/bs"
-import {MdGrade} from "react-icons/md"
-import { FiLogOut } from "react-icons/fi"
-import "./style.css"
-import { useNavigate } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
+import "./style.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ sidebarContent }) => {
-  const [content, useContent] = useState(sidebarContent ? sidebarContent : []);
-  // console.log(useContent)
   const navigate = useNavigate();
-
-
+  const [content, useContent] = useState(sidebarContent ? sidebarContent : []);
   return (
     <div className="sidebar">
       <div className="logo">
@@ -36,11 +28,13 @@ const Sidebar = ({ sidebarContent }) => {
           );
         })}
       </div>
-      <div className="bottom one-navigate" onClick= { () => navigate("/admin/settings")}>
-        <FiLogOut size={35}/>
+      <div
+        className="bottom one-navigate"
+        onClick={() => navigate("/admin/settings")}>
+        <FiLogOut size={35} />
       </div>
     </div>
   );
 };
 
-export default Sidebar
+export default Sidebar;

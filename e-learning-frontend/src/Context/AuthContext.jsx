@@ -14,8 +14,8 @@ export const AuthContextProvider = ({ children }) => {
       data
     );
     const userdata = await response.data;
-    setUserData(userdata.data);
-    localStorage.setItem("user", JSON.stringify(userData));
+    setUserData(userdata.user);
+    localStorage.setItem("user", JSON.stringify(userdata));
   };
   const logout = async () => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${userData.token}`;
