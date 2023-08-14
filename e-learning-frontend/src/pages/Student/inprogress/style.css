@@ -1,5 +1,33 @@
+.progress {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+    width: 70%;
+
+}
 .chart {
-    height: 300px;
-    width: 500px;
+    display: flex;
+    justify-content: space-between;
     margin-left: 100px;
+    padding: 20px;
+    border: 1px solid rgba(42, 41, 41, 0.466);
+    border-radius: 10px;
+
+}
+.right-side{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.courseBtn{
+    background-color: rgb(88, 88, 233);
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+.responsivePie{
+    height: 250px;
+    width: 350px;
 }
