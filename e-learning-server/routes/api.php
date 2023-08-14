@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\Parent\ParentController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\Student\StudentContoller;
