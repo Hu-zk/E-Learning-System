@@ -71,32 +71,10 @@ class CourseController extends Controller
 
     function studentReport($studentId) {
 
-        $student = User::find($studentId);
-        $enrolled_courses = $student->enrolledCourses;
+        $user = User::find($studentId);
+        $enrolledCoursesWithAvgGrade = $user->EnrolledCoursesWithAvgGrade()->get();
 
-        // return response()->json($enrolled_courses);
-
-        $content = [];
-
-        foreach($enrolled_courses as $enrolledCourse) {
-            $enrollments = $enrolledCourse->enrollments;
-
-            foreach($enrollments as $enrollment) {
-                $avg_grade = $enrollment->submission->avg("grade");
-                return response()->json($avg_grade);
-            }
-
-
-            $content[] = [
-                "course" => $enrolledCourse,
-                // "grade" => $avg_grade
-            ];
-        }
-
-        return response()->json([
-            'message' => 'success',
-            'data' => $content
-        ]);
+        return response()->json(["courses" => $enrolledCoursesWithAvgGrade]);
     }
     
     public function getCourseContent($courseId)

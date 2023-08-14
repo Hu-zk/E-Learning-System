@@ -59,7 +59,7 @@ class UserController extends Controller
         return response()->json(['data' => $content]);
     }
 
-    function teacherReports($teacherId) {
+    function teacherReport($teacherId) {
 
         $teacher = User::find($teacherId);
         $teacher_courses = $teacher->courses()->get();

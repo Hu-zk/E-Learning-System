@@ -29,6 +29,13 @@ class Course extends Model
         return $this->hasMany(Enrollment::class, 'course_id');
     }
 
+    public function enrollmentsAvgGrade()
+{
+    return $this->enrollments()
+        ->selectRaw('course_id, AVG(grade) as avg_grade')
+        ->groupBy('course_id');
+}
+
     public function AttendanceByStudent()
     {
         return $this->hasMany(Attendance::class, 'course_id'); //->where('student_id',$student_id);
