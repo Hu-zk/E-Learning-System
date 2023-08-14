@@ -1,3 +1,4 @@
+import React from "react"
 import {SiRedux} from "react-icons/si"
 import {AiFillHome} from "react-icons/ai"
 import {BsFillChatLeftTextFill} from "react-icons/bs"
@@ -5,10 +6,10 @@ import {MdGrade} from "react-icons/md"
 import { FiLogOut } from "react-icons/fi"
 import "./style.css"
 import { useNavigate } from "react-router-dom";
-// import { useState } from "react";
+import { useState } from "react";
 
 const Sidebar = ({ sidebarContent }) => {
-  // const [content, useContent] = useState(sidebarContent ? sidebarContent : [] ? sidebarContent : []);
+  const [content, useContent] = useState(sidebarContent ? sidebarContent : []);
   // console.log(useContent)
   const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ const Sidebar = ({ sidebarContent }) => {
       </div>
 
       <div className="mid">
-        {sidebarContent.map((nav, index) => {
+        {content.map((nav, index) => {
           return (
             <div className="one-navigate" key={index} onClick={nav.onclick}>
               {nav.svg}
