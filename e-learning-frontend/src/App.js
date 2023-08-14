@@ -16,7 +16,6 @@ function App() {
     <div className="routes dark">
       <Routes>
         <Route path="/" element={<h1>Login</h1>} />
-        <Route path="/register" element={<h1>Register</h1>} />
 
         <Route path="/admin" element={<AdminLayout/>}>
           <Route index element={<AdminHome/>} />
