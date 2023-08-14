@@ -1,4 +1,5 @@
 import React from 'react'
+import "./style.css"
 import Sidebar from '../../components/Sidebar/Sidebar'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { AiFillHome, AiFillPlusCircle, AiFillSetting, AiOutlineFundProjectionScreen } from 'react-icons/ai';
@@ -29,9 +30,9 @@ function AdminLayout() {
     },
     ];
     return (
-        <div className="teacher-layout app dark">
+        <div className="admin-layout app dark">
             <Sidebar sidebarContent={sidebar}/>
-            <div className="outlet">
+            <div className="admin-outlet">
                 <Outlet/>
             </div>
         </div>
