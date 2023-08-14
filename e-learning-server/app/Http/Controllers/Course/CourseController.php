@@ -61,6 +61,7 @@ class CourseController extends Controller
         ]);
     }
 
+    // needs to be updated
     function teacherReport($teacherId) {
 
         $teacher = User::find($teacherId);
