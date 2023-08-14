@@ -3,7 +3,6 @@ import "./Sidebar.css";
 
 function Sidebar({ sidebarContent }) {
   const [content, useContent] = useState(sidebarContent);
-  console.log(sidebarContent);
   return (
     <div className="sidebar-container">
       <div className="logo">
