@@ -1,4 +1,4 @@
-import Sidebar from "../../../components/Sidebar/Sidebar";
+// import Sidebar from "../../../components/Sidebar/Sidebar";
 import styles from './style.module.css';
 import { Accordion } from "../../../components/accordion/accordion";
 

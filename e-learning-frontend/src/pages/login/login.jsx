@@ -17,7 +17,7 @@ function Login() {
   const handlesubmit = async () => {
     try {
       await login(data);
-      //   navigate("/student");
+        navigate("/parent/Home");
     } catch (err) {
       console.log(err);
       //   setError(true);

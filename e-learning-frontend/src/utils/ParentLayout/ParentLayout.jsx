@@ -1,7 +1,8 @@
 import React from "react";
 import {Outlet} from "react-router-dom";
 import './ParentLayout.css';
-import Sidebar from "../../components/Sidebar/Sidebar";
+// import Sidebar from "../../components/Sidebar/Sidebar";
+import Sidebar from "../../components/common/Sidebar/Sidebar";
 import { useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
