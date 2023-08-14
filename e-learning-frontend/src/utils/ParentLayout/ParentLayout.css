@@ -1,0 +1,12 @@
+.Parent_layout {
+    display: flex;
+}
+
+.outlet_parent {
+    width: 100%;
+}
+
+.body_right{
+    width: 400px;
+    height: 100%;
+}
