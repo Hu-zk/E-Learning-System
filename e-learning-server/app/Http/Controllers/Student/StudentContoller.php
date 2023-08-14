@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Parents;
+namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Enrollment;
@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class StudentsContoller extends Controller
+class StudentContoller extends Controller
 {
     function IsSubmitted()
     {
