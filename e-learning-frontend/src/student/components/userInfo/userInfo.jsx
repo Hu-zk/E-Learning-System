@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./userInfo.css";
+import { AuthContext } from "../../../Context/AuthContext";
 function UserInfo() {
+  // const { userData } = useContext(AuthContext);
   return (
     <div className="top-side">
       <div className="user-info">
