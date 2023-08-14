@@ -4,6 +4,7 @@ import TeacherHome from "./pages/Teacher/Home/TeacherHome";
 import Course from "./pages/Teacher/Course/Course";
 import Attendance from "./pages/Teacher/Attendance/Attendance";
 import Grades from "./pages/Teacher/Grades/Grades";
+import Landing from "./pages/Student/landing/landing";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         </Route>
 
         <Route path="/student">
-          <Route index element={<h1>Student</h1>} />
+          <Route index element={<Landing />} />
         </Route>
 
         <Route path="/teacher" element={<TeacherLayout />}>
