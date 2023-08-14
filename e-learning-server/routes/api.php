@@ -9,20 +9,17 @@ use App\Http\Middleware\AuthenticateTeacher;
 
 
 
-Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
+Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
-    Route::group(['prefix' => 'student',  'middleware' => 'auth.student'], function(){
-        Route::get('/test', [TestController::class, 'test']);
-    });
-    Route::group(['prefix' => 'parent',  'middleware' => 'auth.parent'], function(){
-        
-        Route::get("get_parent",[ParentsController::class,"getParent"]);
-        Route::get("get_child",[ParentsController::class,"getChild"]);
-        Route::get("get_is_submited",[StudentsContoller::class,"IsSubmitted"]);
-        Route::get("get_is_completed",[StudentsContoller::class,"IsCompleted"]);
-        Route::get("attendance_course",[CoursesContoller::class,"courseAttandance"]);
-        Route::get("teacher_announcement",[MaterialsContoller::class,"TeacherAnnouncementWithParents"]);
-        Route::get("teachers_courses",[CoursesContoller::class,"getCoursesTeacher"]);
+    Route::group(['prefix' => 'parent',  'middleware' => 'auth.parent'], function () {
+
+        Route::get("get_parent", [ParentsController::class, "getParent"]);
+        Route::get("get_child", [ParentsController::class, "getChild"]);
+        Route::get("get_is_submited", [StudentsContoller::class, "IsSubmitted"]);
+        Route::get("get_is_completed", [StudentsContoller::class, "IsCompleted"]);
+        Route::get("attendance_course", [CoursesContoller::class, "courseAttandance"]);
+        Route::get("teacher_announcement", [MaterialsContoller::class, "TeacherAnnouncementWithParents"]);
+        Route::get("teachers_courses", [CoursesContoller::class, "getCoursesTeacher"]);
     });
 
 
@@ -50,15 +47,16 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
     });
 });
 
-    Route::group(['prefix' => 'admin'], function(){});
-
-    Route::get("profile", [AuthController::class, "profile"]);
-    Route::post("logout", [AuthController::class, "logout"]);
-    Route::post("refresh", [AuthController::class, "refresh"]);
+Route::group(['prefix' => 'admin'], function () {
 });
 
+Route::get("profile", [AuthController::class, "profile"]);
+Route::post("logout", [AuthController::class, "logout"]);
+Route::post("refresh", [AuthController::class, "refresh"]);
 
-Route::group(['prefix' => 'guest'], function(){
+
+
+Route::group(['prefix' => 'guest'], function () {
     Route::get("unauthorized", [AuthController::class, "unauthorized"])->name("unauthorized");
     Route::post('/login', [AuthController::class, 'login']);
 });
