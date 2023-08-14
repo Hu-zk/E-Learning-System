@@ -61,7 +61,7 @@ class StudentContoller extends Controller
             } else {
                 return response()->json([
                     "status" => "success",
-                    "message" => "Not enrolled in courses"
+                    "message" => "Not compeleted courses"
                 ]);
             }
         } else {
