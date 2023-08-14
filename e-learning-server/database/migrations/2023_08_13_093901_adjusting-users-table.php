@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::table('user_types', function (Blueprint $table) {
             $table->dropColumn('_rules');
-            $table->json('rules')->after('name');
+            $table->json('rules')->nullable()->after('name');
         });
     }
 

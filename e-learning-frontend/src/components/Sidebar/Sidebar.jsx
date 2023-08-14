@@ -1,10 +1,13 @@
 import { FiLogOut } from "react-icons/fi"
 import "./style.css"
+import { useNavigate } from "react-router-dom";
 // import { useState } from "react";
 
 const Sidebar = ({ sidebarContent }) => {
   // const [content, useContent] = useState(sidebarContent ? sidebarContent : []);
   // console.log(useContent)
+  const navigate = useNavigate();
+
 
   return (
     <div className="sidebar">
@@ -28,8 +31,8 @@ const Sidebar = ({ sidebarContent }) => {
           );
         })}
       </div>
-      <div className="bottom">
-        <FiLogOut size={35} />
+      <div className="bottom one-navigate" onClick= { () => navigate("/admin/settings")}>
+        <FiLogOut size={35}/>
       </div>
     </div>
   );
