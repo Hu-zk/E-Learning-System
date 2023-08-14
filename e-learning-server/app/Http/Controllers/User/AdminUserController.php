@@ -8,12 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 
-class AdminUserController extends Controller
+class UserController extends Controller
 {
-
-    function create() {
-        return "ues";
-    }
 
     function createUser(Request $request) {
 
