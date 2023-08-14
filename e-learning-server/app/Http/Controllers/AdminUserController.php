@@ -7,7 +7,7 @@ use App\Models\UserType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
-class UserController extends Controller
+class AdminUserController extends Controller
 {
 
     function create() {
