@@ -13,28 +13,28 @@ class DatabaseSeeder extends Seeder
     {
         // DB::table('user_types')->insert([
         //     'name' => "admin",
-        //     '_rules' => "",
+        //     'rules' => "",
         //     'created_at' => date('Y-m-d'),
         //     'updated_at' => date('Y-m-d')
         // ]);
 
         // DB::table('user_types')->insert([
         //     'name' => "teacher",
-        //     '_rules' => "",
+        //     'rules' => "",
         //     'created_at' => date('Y-m-d'),
         //     'updated_at' => date('Y-m-d')
         // ]);
 
         // DB::table('user_types')->insert([
         //     'name' => "parent",
-        //     '_rules' => "",
+        //     'rules' => "",
         //     'created_at' => date('Y-m-d'),
         //     'updated_at' => date('Y-m-d')
         // ]);
 
         // DB::table('user_types')->insert([
         //     'name' => "student",
-        //     '_rules' => "",
+        //     'rules' => "",
         //     'created_at' => date('Y-m-d'),
         //     'updated_at' => date('Y-m-d')
         // ]);
@@ -62,9 +62,9 @@ class DatabaseSeeder extends Seeder
         // ]);
         // DB::table('users')->insert([
         //     'user_type_id' => 4,
-        //     'parent_id' => 3,
+        //     'parent_id' => null,
         //     'name' => 'student',
-        //     'email' => 'student@gmail.com',
+        //     'email' => 'student22@gmail.com',
         //     'password' => Hash::make('123456')
         // ]);
 
@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
 
         // DB::table('users')->insert([
         //     'user_type_id' => 4,
-        //     'parent_id' => 3,
+        //     'parent_id' => null,
         //     'name' => 'mj',
         //     'email' => 'mj@gmail.com',
         //     'password' => Hash::make('123456')
@@ -150,27 +150,27 @@ class DatabaseSeeder extends Seeder
         //     'password' => Hash::make('123456')
         // ]);
 
-        DB::table('users')->insert([
-            'user_type_id' => 2,
-            'parent_id' => null,
-            'name' => 'teacherTwo',
-            'email' => 'teachetTwo@gmail.com',
-            'password' => Hash::make('123456')
-        ]);
-        DB::table('users')->insert([
-            'user_type_id' => 3,
-            'parent_id' => null,
-            'name' => 'Parent',
-            'email' => 'parent@gmail.com',
-            'password' => Hash::make('123456')
-        ]);
-        DB::table('users')->insert([
-            'user_type_id' => 4,
-            'parent_id' => 3,
-            'name' => 'student',
-            'email' => 'student@gmail.com',
-            'password' => Hash::make('123456')
-        ]);
+        // DB::table('users')->insert([
+        //     'user_type_id' => 2,
+        //     'parent_id' => null,
+        //     'name' => 'teacherTwo',
+        //     'email' => 'teachetTwo@gmail.com',
+        //     'password' => Hash::make('123456')
+        // ]);
+        // DB::table('users')->insert([
+        //     'user_type_id' => 3,
+        //     'parent_id' => null,
+        //     'name' => 'Parent',
+        //     'email' => 'parent@gmail.com',
+        //     'password' => Hash::make('123456')
+        // ]);
+        // DB::table('users')->insert([
+        //     'user_type_id' => 4,
+        //     'parent_id' => 3,
+        //     'name' => 'student',
+        //     'email' => 'student@gmail.com',
+        //     'password' => Hash::make('123456')
+        // ]);
 
         // DB::table('courses')->insert([
         //     'teacher_id' => 2,
@@ -178,36 +178,36 @@ class DatabaseSeeder extends Seeder
         //     'capacity' => 50,
         // ]);
 
-        DB::table('users')->insert([
-            'user_type_id' => 3,
-            'parent_id' => null,
-            'name' => 'parent1',
-            'email' => 'parent1@gmail.com',
-            'password' => Hash::make('123456')
-        ]);
-
         // DB::table('users')->insert([
-        //     'user_type_id' => 4,
-        //     'parent_id' => 3,
-        //     'name' => 'mj',
-        //     'email' => 'mj@gmail.com',
+        //     'user_type_id' => 3,
+        //     'parent_id' => null,
+        //     'name' => 'parent1',
+        //     'email' => 'parent1@gmail.com',
         //     'password' => Hash::make('123456')
         // ]);
 
+        DB::table('users')->insert([
+            'user_type_id' => 2,
+            'parent_id' => null,
+            'name' => 'maaj',
+            'email' => 'teacher2442@gmail.com',
+            'password' => Hash::make('123456')
+        ]);
+
         DB::table('courses')->insert([
-            'teacher_id' => 4,
+            'teacher_id' => 9,
             'name' => 'Intro to computer science',
             'capacity' => "20",
         ]);
 
-        DB::table('enrollements')->insert([
-            'course_id' => 1,
-            'student_id' => 2,
-            'is_completed' => false,
-        ]);
+        // DB::table('enrollements')->insert([
+        //     'course_id' => 1,
+        //     'student_id' => 2,
+        //     'is_completed' => false,
+        // ]);
 
         DB::table('materials')->insert([
-            'course_id' => 1,
+            'course_id' => 2,
             'title' => 'Lecture 1',
             'description' => 'First Computer Science Lecture',
             'file_url' => "file",
@@ -215,14 +215,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('materials')->insert([
-            'course_id' => 1,
+            'course_id' => 2,
             'title' => 'Announcement 1',
             'description' => 'First Computer Science Announcement',
             'file_url' => "file",
             'is_announcement' => true,
         ]);
         DB::table('assignments_quizzes')->insert([
-            'course_id' => 1,
+            'course_id' => 2,
             'title' => 'Quiz 1',
             'grade' => 100,
             'deadline' => '2023-08-12',
@@ -231,7 +231,7 @@ class DatabaseSeeder extends Seeder
             'is_quiz' => true,
         ]);
         DB::table('assignments_quizzes')->insert([
-            'course_id' => 1,
+            'course_id' => 2,
             'title' => 'Assignment 1',
             'grade' => 100,
             'deadline' => '2023-08-12',
@@ -240,10 +240,10 @@ class DatabaseSeeder extends Seeder
             'is_quiz' => false,
         ]);
 
-        DB::table('enrollements')->insert([
-            'course_id' => 1,
-            'student_id' => 2,
-            'is_completed' => false,
-        ]);
+        // DB::table('enrollements')->insert([
+        //     'course_id' => 1,
+        //     'student_id' => 2,
+        //     'is_completed' => false,
+        // ]);
     }
 }
