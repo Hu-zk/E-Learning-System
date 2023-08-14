@@ -80,6 +80,7 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     background-color: #ccccccc0;
+    width: 100%;
 }
 
 .dropdown {
@@ -131,6 +132,7 @@
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.356);
     padding: 20px;
+    z-index: 999;
 }
 
 
@@ -139,7 +141,7 @@
     flex-direction: column;
     gap: 20px;
     background-color: black;
-    padding: 20px;
+    padding: 30px 20px;
     width: 100%;
     max-width: 400px;
     border-radius: 10px;
@@ -173,7 +175,7 @@
     height: 100px;
 }
 
-.modal .box input, .modal .box textarea, .modal .box .upload-file {
+.modal .box input, .modal .box textarea, .modal .box .upload-file, .modal .box .assign {
     padding: 10px 15px;
     width: 100%;
     border-radius: 5px;
@@ -192,9 +194,5 @@
 }
 
 .modal .box .row > * {
-    width: 50%;
-}
-
-.modal .box .upload-file {
     width: 50%;
 }

@@ -1,7 +1,4 @@
 .announcement {
-    display: flex;
-    gap: 10px;
-    padding: 15px;
     -webkit-box-shadow: 10px -1px 36px -12px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px -1px 36px -12px rgba(0,0,0,0.75);
     box-shadow: 10px -1px 36px -12px rgba(0,0,0,0.75);
@@ -12,7 +9,32 @@
     -o-border-radius: 5px;
 }
 
-.announcement .profile-pic img {
+.announcement .bottom-announcement {
+    padding: 15px;
+}
+
+.announcement .bottom-announcement textarea {
+    font-size: 1.125rem;
+    height: 100px;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border: 1px solid #737373;
+}
+
+.top-announcement {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.top-announcement .profile-pic img {
     width: 45px;
     height: 45px;
     display: flex;
@@ -26,15 +48,15 @@
     object-fit: cover;
 }
 
-.announcement input {
+.top-announcement input {
     flex: 1;
     border: none;
     background-color: transparent;
-    font-size: .9375rem;
+    font-size: 1rem;
     outline: none;
 }
 
-.announcement .send {
+.top-announcement .send {
     display: flex;
     align-items: center;
     gap: 10px;

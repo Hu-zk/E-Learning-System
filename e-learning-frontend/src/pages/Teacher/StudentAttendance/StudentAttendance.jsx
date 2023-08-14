@@ -1,10 +1,10 @@
 import "./style.css"
 
-const StudentAttendance = () => {
+const StudentAttendance = ({name, id}) => {
     return (
-        <label className="student-attendance" htmlFor="student1">
-            <div className="name">Mohammad Hussein</div>
-            <input type="checkbox" id="student1"/>
+        <label className="student-attendance" htmlFor={id}>
+            <div className="name">{name}</div>
+            <input type="checkbox" id={id}/>
         </label>
     );
 }
