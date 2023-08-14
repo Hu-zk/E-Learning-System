@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Parent\ParentController;
@@ -17,7 +17,6 @@ Route::group(['prefix' => 'guest'], function () {
 
     Route::get("unauthorized", [AuthController::class, "unauthorized"])->name("unauthorized");
     Route::post('login', [AuthController::class, 'login']);
-
 });
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
@@ -31,7 +30,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get("attendance_course", [CourseController::class, "courseAttandance"]);
         Route::get("teachers_courses", [CourseController::class, "getCoursesTeacher"]);
         Route::get("teacher_announcement", [MaterialContoller::class, "TeacherAnnouncementWithParents"]);
-
     });
 
 
@@ -41,10 +39,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get("enrolled_courses", [CourseController::class, "getCourses"]);
         Route::get("courses", [CourseController::class, "allCourses"]);
         Route::post("enroll", [CourseController::class, "enroll"]);
-        
     });
 
-    Route::group(['prefix' => 'admin'], function(){
+    Route::group(['prefix' => 'admin'], function () {
         Route::post('/create-user', [UserController::class, 'createUser']);
         Route::put('/update-user/{userId}', [UserController::class, 'updateUser']);
         Route::delete('/delete-user/{userId}', [UserController::class, 'deleteUser']);
@@ -69,10 +66,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::post('{courseId}/create-material', [CourseController::class, 'createMaterial']);
         Route::get('{courseId}/students', [CourseController::class, 'getEnrolledStudents']);
         Route::get('{assignmentId}', [AssignmentController::class, 'getAssignmentDetails']);
-
     });
 
-    Route::group(['prefix' => 'shared', 'middleware' => 'auth.user'], function(){
+    Route::group(['prefix' => 'shared', 'middleware' => 'auth.user'], function () {
 
         Route::get("course_stats", [CourseController::class, "courseStats"]);
         Route::get("completed_courses", [CourseController::class, "completedCourses"]);
@@ -80,7 +76,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get("check_meet", [MeetController::class, "checkMeet"]);
         Route::post("remove_meet", [MeetController::class, "removeMeet"]);
         Route::get('{courseId}/content', [CourseController::class, 'getCourseContent']);
-        
     });
 
 
@@ -88,8 +83,3 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
     Route::post("logout", [AuthController::class, "logout"]);
     Route::post("refresh", [AuthController::class, "refresh"]);
 });
-
-
-
-
-
