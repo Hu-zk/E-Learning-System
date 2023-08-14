@@ -5,6 +5,8 @@ import Course from "./pages/Teacher/Course/Course";
 import Attendance from "./pages/Teacher/Attendance/Attendance";
 import Grades from "./pages/Teacher/Grades/Grades";
 import Landing from "./pages/Student/landing/landing";
+import AdminLayout from "./utils/AdminLayout";
+import AdminHome from "./pages/Admin/Home";
 
 function App() {
   return (
@@ -13,8 +15,8 @@ function App() {
         <Route path="/" element={<h1>Login</h1>} />
         <Route path="/register" element={<h1>Register</h1>} />
 
-        <Route path="/admin">
-          <Route index element={<h1>Admin</h1>} />
+        <Route path="/admin" element={<AdminLayout/>}>
+          <Route index element={<AdminHome/>} />
         </Route>
 
         <Route path="/student">

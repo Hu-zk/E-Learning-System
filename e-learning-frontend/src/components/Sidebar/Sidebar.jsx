@@ -7,7 +7,7 @@ import "./style.css"
 import { useState } from "react";
 
 const Sidebar = ({ sidebarContent }) => {
-  const [content, useContent] = useState(sidebarContent);
+  const [content, useContent] = useState(sidebarContent ? sidebarContent : []);
 
   return (
     <div className="sidebar">
