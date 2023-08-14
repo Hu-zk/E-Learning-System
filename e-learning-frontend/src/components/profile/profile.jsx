@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './profile.module.css';
 import { Card } from "../meet_card/card";
+import { ChildCard } from "../child_card/childCard";
 
 export const Profile = () =>{
     return(
@@ -20,6 +21,10 @@ export const Profile = () =>{
             <div className={styles.meet_container}>
                 <div className={styles.card_title}>Scheduled meetings:</div>
                 <Card/>
+            </div>
+            <div className={styles.meet_container}>
+                <div className={styles.card_title}>Children:</div>
+                <ChildCard/>
             </div>
         </div>
     )
