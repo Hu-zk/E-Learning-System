@@ -9,7 +9,8 @@ function UserForm({onToggle}) {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [name, setName] = useState('');
-    const [parent_id, setParentId] = useState(null);
+    const [parent_id, setParentId] = useState();
+    const [user_type_id, setUserTypeId] = useState();
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -17,11 +18,12 @@ function UserForm({onToggle}) {
         try {
             if (password === confirmPassword) {
                 
-                const response = await axios.post('http://127.0.0.1:8000/api/register', {
+                const response = await axios.post('http://127.0.0.1:8000/api/user/admin/create-user', {
                     name,
                     parent_id,
                     email,
                     password,
+                    user_type_id,
                 });
                 console.log(response.data)
             }else{
@@ -68,23 +70,23 @@ function UserForm({onToggle}) {
                             <label htmlFor="parent_id">Parent</label>
                             <input id="parent_id" name="parent_id" type="number" placeholder="parent_id" value={parent_id} onChange={(e) => setParentId(e.target.value)}/>
                         </div>
-                    <div class="user-type">
+                    <div className="user-type">
                         <h4>User Type :</h4>
 
-                        <div class="types">
-                            <div class="label-radio">
-                                <input required type="radio" name="type" value="4"/>
-                                <label for="student">Student</label>
+                        <div className="types">
+                            <div className="label-radio">
+                                <input required type="radio" name="user_type_id" value="4" onClick={(e) => setUserTypeId(e.target.value)}/>
+                                <label htmlFor="student">Student</label>
                             </div>
 
-                            <div class="label-radio">
-                                <input required type="radio" name="type" value="2"/>
-                                <label for="teacher">Teacher</label>
+                            <div className="label-radio">
+                                <input required type="radio" name="user_type_id" value="2" onClick={(e) => setUserTypeId(e.target.value)}/>
+                                <label htmlFor="teacher">Teacher</label>
                             </div>
 
-                            <div class="label-radio">
-                                <input required type="radio" name="type" value="3"/>
-                                <label for="teacher">Parent</label>
+                            <div className="label-radio">
+                                <input required type="radio" name="user_type_id" value="3" onClick={(e) => setUserTypeId(e.target.value)}/>
+                                <label htmlFor="teacher">Parent</label>
                             </div>
                         </div>
                     </div>
