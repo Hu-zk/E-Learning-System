@@ -157,8 +157,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'teachetTwo@gmail.com',
             'password' => Hash::make('123456')
         ]);
-<<<<<<< HEAD
-=======
         DB::table('users')->insert([
             'user_type_id' => 3,
             'parent_id' => null,
@@ -247,6 +245,5 @@ class DatabaseSeeder extends Seeder
             'student_id' => 2,
             'is_completed' => false,
         ]);
->>>>>>> df1deaa95dcbb936a503c06ad451b53e914c805c
     }
 }
