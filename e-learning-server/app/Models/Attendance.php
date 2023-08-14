@@ -27,4 +27,5 @@ class Attendance extends Model
     public function scopeAttendanceStatus($query) {
         return $query->where('status',1);
     }
+
 }

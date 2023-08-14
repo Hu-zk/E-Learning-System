@@ -18,4 +18,5 @@ class Submission extends Model
     {
         return $this->belongsTo(AssignmentQuiz::class, 'assignment_id');
     }
+
 }

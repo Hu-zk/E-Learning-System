@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Teacher\CourseController;
 use App\Http\Controllers\Teacher\TeacherController;
+use App\Http\Middleware\AuthenticateTeacher;
 
 
 Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
@@ -12,15 +13,7 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
     Route::group(['prefix' => 'student',  'middleware' => 'auth.student'], function(){
         Route::get('/test', [TestController::class, 'test']);
     });
-
-    Route::group(['prefix' => 'teacher'], function(){
-
-    });
-
-    // public function EnrolledCourses(){
-    //     return $this->belongsToMany(Course::class, 'enrollements', 'student_id', 'course_id');
-    // }
-
+    
     Route::group(['prefix' => 'parent'], function(){
         Route::get("get_parent",[ParentsController::class,"getParent"]);
         Route::get("get_child",[ParentsController::class,"getChild"]);
@@ -30,6 +23,17 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
         Route::get("teacher_announcement",[MaterialsContoller::class,"TeacherAnnouncementWithParents"]);
         Route::get("teachers_courses",[CoursesContoller::class,"getCoursesTeacher"]);
     });
+
+    Route::group(['prefix' => 'teacher'], function(){
+
+    Route::group(['prefix' => 'student',  'middleware' => 'auth.student'], function () {
+    });
+
+
+    // public function EnrolledCourses(){
+    //     return $this->belongsToMany(Course::class, 'enrollements', 'student_id', 'course_id');
+    // }
+
     Route::group(['prefix' => 'teacher',  'middleware' => 'auth.teacher'], function () {
 
         Route::group(['prefix' => 'teacher'], function () {
@@ -49,12 +53,9 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
             Route::get('{assignmentId}', [AssignmentController::class, 'getAssignmentDetails']);
         });
     });
+});
 
-    
-
-    Route::group(['prefix' => 'admin'], function(){
-
-    });
+    Route::group(['prefix' => 'admin'], function(){});
 
     Route::get("profile", [AuthController::class, "profile"]);
     Route::post("logout", [AuthController::class, "logout"]);
