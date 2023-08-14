@@ -45,6 +45,7 @@ return new class extends Migration
             $table->unsignedBigInteger('sender_id');
             $table->unsignedBigInteger('receiver_id');
             $table->string('link_url');
+            $table->datetime('date');
             $table->timestamps();
 
             $table->foreign('sender_id')->references('id')->on('users');

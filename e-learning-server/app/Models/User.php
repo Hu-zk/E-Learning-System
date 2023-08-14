@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
@@ -26,6 +27,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany(Course::class);
     }
+    
+    public function EnrolledCourses(){
+        return $this->belongsToMany(Course::class, 'enrollements', 'student_id', 'course_id');
+    }
+
+    public function CompletedCourses(){
+        return $this->belongsToMany(Course::class, 'enrollements', 'student_id', 'course_id')->where('is_completed', '=', 1);
+    }
 
     function UserSendMeet()
     {
@@ -35,12 +44,22 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->HasMany(Meeting::class, "reciever_id");
     }
+    function StudentEnroll(){
+        return $this->HasMany(Enrollement::class, 'student_id');
+    }
+
+    function scopeChild($query,$id){
+        return $query->where("parent_id",$id);
+    }
+
 
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
+
+
 
     protected $hidden = [
         'password',
@@ -60,4 +79,5 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
 }

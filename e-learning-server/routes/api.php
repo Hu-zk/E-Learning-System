@@ -9,7 +9,23 @@ use App\Http\Controllers\Student\TestController;
 
 Route::get('/test', [AdminUserController::class, 'create']);
 
-Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
+Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
+
+    Route::group(['prefix' => 'student',  'middleware' => 'auth.student'], function(){
+        Route::get('/test', [TestController::class, 'test']);
+    });
+    
+    Route::group(['prefix' => 'parent'], function(){
+        Route::get("get_parent",[ParentsController::class,"getParent"]);
+        Route::get("get_child",[ParentsController::class,"getChild"]);
+        Route::get("get_is_submited",[StudentsContoller::class,"IsSubmitted"]);
+        Route::get("get_is_completed",[StudentsContoller::class,"IsCompleted"]);
+        Route::get("attendance_course",[CoursesContoller::class,"courseAttandance"]);
+        Route::get("teacher_announcement",[MaterialsContoller::class,"TeacherAnnouncementWithParents"]);
+        Route::get("teachers_courses",[CoursesContoller::class,"getCoursesTeacher"]);
+    });
+
+    Route::group(['prefix' => 'teacher'], function(){
 
     Route::group(['prefix' => 'student',  'middleware' => 'auth.student'], function () {
     });
@@ -33,6 +49,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
         // Route::post("/update-appearance", [UserController::class, 'updateAppearance']);
     });
+});
+
+    Route::group(['prefix' => 'admin'], function(){});
 
     Route::get("profile", [AuthController::class, "profile"]);
     Route::post("logout", [AuthController::class, "logout"]);
@@ -40,7 +59,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 });
 
 
-Route::group(['prefix' => 'guest'], function () {
+Route::group(['prefix' => 'guest'], function(){
     Route::get("unauthorized", [AuthController::class, "unauthorized"])->name("unauthorized");
     Route::post('/login', [AuthController::class, 'login']);
 });
@@ -48,14 +67,10 @@ Route::group(['prefix' => 'guest'], function () {
 
 Route::group(['prefix' => 'teacher'], function () {
     Route::get('{teacherId}/courses', [TeacherController::class, 'getCourses']);
-    Route::post('record-attendance', [TeacherController::class, 'recordAttendance']);
 });
 
 Route::group(['prefix' => 'course'], function () {
     Route::get('{courseId}/content', [CourseController::class, 'getCourseContent']);
-    Route::post('{courseId}/create-assignment-quiz', [CourseController::class, 'createAssignmentQuiz']);
-    Route::post('{courseId}/create-material', [CourseController::class, 'createMaterial']);
-    Route::get('{courseId}/students', [CourseController::class, 'getEnrolledStudents']);
 });
 
 
@@ -71,10 +86,10 @@ Route::group(['prefix' => 'course'], function () {
 
 
 Route::post('/create-user', [AdminUserController::class, 'createUser']);
-        Route::put('/update-user/{userId}', [UserController::class, 'updateUser']);
-        Route::delete('/delete-user/{userId}', [UserController::class, 'deleteUser']);
-        Route::get('/get-users', [UserController::class, 'getUsers']);
-        Route::post("/backup", [UserController::class, 'createBackup']);
+        Route::put('/update-user/{userId}', [AdminUserController::class, 'updateUser']);
+        Route::delete('/delete-user/{userId}', [AdminUserController::class, 'deleteUser']);
+        Route::get('/get-users', [AdminUserController::class, 'getUsers']);
+        Route::post("/backup", [AdminUserController::class, 'createBackup']);
 
         Route::post('/create-course', [CourseController::class, 'createCourse']);
         Route::put('/update-course/{courseId}', [CourseController::class, 'updateCourse']);
