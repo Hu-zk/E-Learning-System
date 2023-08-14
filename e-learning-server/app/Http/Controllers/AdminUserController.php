@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
@@ -16,15 +17,15 @@ class AdminUserController extends Controller
 
     function createUser(Request $request) {
 
-        $validatedDate = $request->validate([
-            "user_type_id" => 'required|exists:user_types,id',
-            "parent_id" => 'required|exists:users,id',
-            "name" => 'required|string|max:255',
-            "email" => 'required|email|unique:users,email',
-            "password" => 'required|string|min:8'
-        ]);
-
-        $user = User::create($validatedDate);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->user_type_id = $request->user_type_id;
+        $user->password = Hash::make($request->password);
+        if($request->parent_id) {
+            $user->parent_id = $request->parent_id;
+        }
+        $user->save();
 
         return response()->json(['message' => 'User created successfully', 'user' => $user]);
     }
@@ -32,16 +33,13 @@ class AdminUserController extends Controller
     function updateUser(Request $request, $userId) {
 
         $user = User::find($userId);
-
-        $validatedDate = $request->validate([
-            "user_type_id" => 'required|exists:user_types,id',
-            "parent_id" => 'required|exists:users,id',
-            "name" => 'required|string|max:255',
-            "email" => 'required|email|unique:users,email',
-            "password" => 'required|string|min:8'
-        ]);
-
-        $user->update($validatedDate);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        if($request->parent_id) {
+            $user->parent_id = $request->parent_id;
+        }
+        $user->save();
 
         return response()->json(['message' => 'User updated successfully', 'user' => $user]);
     }
@@ -58,8 +56,8 @@ class AdminUserController extends Controller
 
         $content = [
             "students" => User::where('user_type_id', 4)->get(),
-            "parents" => User::whre('user_type_id', 3)->get(),
-            "teachers" => User::whre('user_type_id', 2)->get(),
+            "parents" => User::where('user_type_id', 3)->get(),
+            "teachers" => User::where('user_type_id', 2)->get(),
         ];
 
         return response()->json(['data' => $content]);
@@ -91,18 +89,19 @@ class AdminUserController extends Controller
         return response()->json(['message' => 'Backup created successfully']);
     }
 
-    function updateAppearance(Request $request) {
+    // function updateAppearance(Request $request) {
 
-        $user_type = UserType::find(1);
+    //     $user_type = UserType::find(1);
 
-        if($request->mode) {
-            $user_type->rules->mode = $request->mode;
-        }
+    //     $rules = json_decode($user_type->rules, true);
 
-        if($request->email) {
-            $user_type->rules->email = $request->email;
-        }
+    //     if($request->mode) {
+    //         $rules["mode"] = $request->mode;
+    //     }
 
-        return response()->json(['status' => 'success', 'message' => 'appearance updated successfully']);
-    }
+    //     $user_type->rules = $rules;
+    //     $user_type->save();
+
+    //     return response()->json(['status' => 'success', 'message' => 'appearance updated successfully']);
+    // }
 }

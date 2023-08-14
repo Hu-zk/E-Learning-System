@@ -68,11 +68,11 @@ class DatabaseSeeder extends Seeder
         //     'password' => Hash::make('123456')
         // ]);
 
-        DB::table('courses')->insert([
-            'teacher_id' => 2,
-            'name' => 'Computer Science',
-            'capacity' => 50,
-        ]);
+        // DB::table('courses')->insert([
+        //     'teacher_id' => 2,
+        //     'name' => 'Computer Science',
+        //     'capacity' => 50,
+        // ]);
 
         // DB::table('users')->insert([
         //     'user_type_id' => 3,
@@ -82,13 +82,13 @@ class DatabaseSeeder extends Seeder
         //     'password' => Hash::make('123456')
         // ]);
 
-        DB::table('users')->insert([
-            'user_type_id' => 4,
-            'parent_id' => 3,
-            'name' => 'mj',
-            'email' => 'mj@gmail.com',
-            'password' => Hash::make('123456')
-        ]);
+        // DB::table('users')->insert([
+        //     'user_type_id' => 4,
+        //     'parent_id' => 3,
+        //     'name' => 'mj',
+        //     'email' => 'mj@gmail.com',
+        //     'password' => Hash::make('123456')
+        // ]);
 
         // DB::table('courses')->insert([
         //     'teacher_id' => 4,
@@ -98,7 +98,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('enrollements')->insert([
             'course_id' => 1,
-            'student_id' => 5,
+            'student_id' => 2,
             'is_completed' => false,
         ]);
 
@@ -138,7 +138,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('enrollements')->insert([
             'course_id' => 1,
-            'student_id' => 4,
+            'student_id' => 2,
             'is_completed' => false,
         ]);
     }

@@ -25,13 +25,17 @@ class AdminCourseController extends Controller
 
         $course = Course::find($courseId);
 
-        $validatedData = $request->validate([
-            "teacher_id" => 'required|exists:users,id',
-            "name" => 'required|string|max:255',
-            "capacity" => 'required|integer'
-        ]);
+        $course->name = $request->name;
+        $course->capacity = $request->capacity;
+        $course->teacher_id = $request->teacher_id;
 
-        $course->update($validatedData);
+        // $validatedData = $request->validate([
+        //     "teacher_id" => 'required|exists:users,id',
+        //     "name" => 'required|string|max:255',
+        //     "capacity" => 'required|integer'
+        // ]);
+
+        // $course->update($validatedData);
 
         return response()->json(["message" => "course updated successfully", "course" => $course]);
     }
@@ -50,19 +54,35 @@ class AdminCourseController extends Controller
         ]);
     }
 
+    function teacherReport($teacherId) {
+
+        $teacher = User::find($teacherId);
+        $teacher_courses = Course::where('teacher_id', $teacherId)->get();
+
+        return response()->json($teacher_courses);
+    }
+
     function studentReport($studentId) {
 
         $student = User::find($studentId);
-        $enrolled_courses = $student->studentCourses->enrollments;
+        $enrolled_courses = $student->enrolledCourses;
+
+        // return response()->json($enrolled_courses);
 
         $content = [];
 
         foreach($enrolled_courses as $enrolledCourse) {
-            $avg_grade = $enrolledCourse->submissions->avg("grade");
+            $enrollments = $enrolledCourse->enrollments;
+
+            foreach($enrollments as $enrollment) {
+                $avg_grade = $enrollment->submission->avg("grade");
+                return response()->json($avg_grade);
+            }
+
 
             $content[] = [
                 "course" => $enrolledCourse,
-                "grade" => $avg_grade
+                // "grade" => $avg_grade
             ];
         }
 
