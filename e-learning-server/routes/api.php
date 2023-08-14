@@ -13,8 +13,8 @@ Route::group(['prefix'=> 'user', 'middleware' => 'auth:api'], function(){
     Route::group(['prefix' => 'student',  'middleware' => 'auth.student'], function(){
         Route::get('/test', [TestController::class, 'test']);
     });
-    
-    Route::group(['prefix' => 'parent'], function(){
+    Route::group(['prefix' => 'parent',  'middleware' => 'auth.parent'], function(){
+        
         Route::get("get_parent",[ParentsController::class,"getParent"]);
         Route::get("get_child",[ParentsController::class,"getChild"]);
         Route::get("get_is_submited",[StudentsContoller::class,"IsSubmitted"]);
