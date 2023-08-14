@@ -18,7 +18,7 @@ const Sidebar = ({ sidebarContent }) => {
       </div>
 
       <div className="mid">
-        {content.map((nav, index) => {
+        {sidebarContent.map((nav, index) => {
           return (
             <div className="one-navigate" key={index} onClick={nav.onclick}>
               {nav.svg}
@@ -26,7 +26,9 @@ const Sidebar = ({ sidebarContent }) => {
           );
         })}
       </div>
-      <div className="bottom">
+      <div
+        className="bottom one-navigate"
+        onClick={() => navigate("/admin/settings")}>
         <FiLogOut size={35} />
       </div>
     </div>

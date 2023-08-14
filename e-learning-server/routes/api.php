@@ -3,16 +3,9 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\Parent\ParentController;
 use App\Http\Controllers\Teacher\TeacherController;
-use App\Http\Middleware\AuthenticateTeacher;
-use App\Http\Controllers\Parents\ParentsController;
-use App\Http\Controllers\Parents\StudentsContoller;
-use App\Http\Controllers\Parents\MaterialsContoller;
-use App\Http\Controllers\Parents\CoursesContoller;
-
-
 use App\Http\Controllers\Student\StudentContoller;
 use App\Http\Controllers\Course\CourseController;
 use App\Http\Controllers\Course\MaterialContoller;
