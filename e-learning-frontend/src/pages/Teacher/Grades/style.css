@@ -1,0 +1,185 @@
+.grades {
+    padding: 40px 40px;
+    width: 100%;
+}
+
+.grades .top-grades {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.grades .top-grades .left {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.grades .top-grades .left .assignment-points {
+    padding: 12px 20px;
+    font-size: 1.125rem;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background-color: #ccccccb2;
+}
+
+.grades .bottom-grades {
+    margin-top: 30px;
+    border-top: 1px solid #737373;
+    display: flex;
+    height: 100%;
+}
+
+.grades .bottom-grades .left {
+    flex: 3.5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-right: 1px solid #737373;
+    background-color: red;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+/* STUDENT */
+
+.grades .student {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.grades .student .left-student {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.grades .student .left-student .name {
+    font-size: 1.125rem;
+}
+
+.grades .student .profile img {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+/* GRADE BOTTOM RIGHT */
+
+.grades .bottom-grades .right {
+    flex: 8.5;
+    padding: 20px;
+}
+
+.grades .bottom-grades .right > div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.grades .bottom-grades .right > div:first-child .name {
+    font-size: 1.125rem;
+}
+
+.grades .bottom-grades .right > div:first-child .grade-input {
+    border-bottom: 1px solid #737373;
+}
+
+.grades .bottom-grades .right > div:first-child .grade-input input {
+    height: 30px;
+    width: 50px;
+    border: none;
+    outline: none;
+    font-size: 1.125rem;
+    background-color: transparent;
+}
+
+.grades .bottom-grades .right .give-feedback {
+    padding: 11px 22px;
+    background-color: #ccc;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.grades .bottom-grades .right .feedback {
+    width: fit-content;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.grades .bottom-grades .right .feedback textarea {
+    width: 400px;
+    height: 100px;
+    padding: 10px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.grades .bottom-grades .right .feedback .close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #858585;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index: 9;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.grades .bottom-grades .right .submit-grade {
+    padding: 11px 20px;
+    background-color: #ccc;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    width: fit-content;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+iframe {
+    width: 440px;
+    height: 250px;
+    object-fit: cover;
+}
