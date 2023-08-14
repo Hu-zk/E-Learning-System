@@ -134,8 +134,11 @@ class CourseController extends Controller
     {
         $auth_user_id = Auth::user()->id;
         $child_course = User::child($auth_user_id)->first();
-        $all_data = $child_course->StudentEnroll()->with('course.teacher')->get();
-        $courseTeachers = $all_data->pluck('course.teacher.name')->toArray();
+        $all_data = $child_course->StudentEnroll()->with('course.teacher');
+        if ($all_data->exists()) {
+            $data=$all_data->get();
+        }
+        $courseTeachers = $data->pluck('course.teacher.name')->toArray();
 
 
         return response()->json([
