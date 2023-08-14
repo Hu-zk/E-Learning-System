@@ -7,11 +7,21 @@ use App\Http\Controllers\Teacher\AssignmentController;
 use App\Http\Controllers\Teacher\CourseController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Middleware\AuthenticateTeacher;
+use App\Http\Controllers\Student\CourseController as StudentCourseController;
+use App\Http\Controllers\Student\MeetController;
 
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'student',  'middleware' => 'auth.student'], function () {
+        Route::get("enrolled_courses", [StudentCourseController::class, "getCourses"]);
+        Route::get("courses", [StudentCourseController::class, "allCourses"]);
+        Route::get("course_stats", [StudentCourseController::class, "courseStats"]);
+        Route::get("completed_courses", [StudentCourseController::class, "completedCourses"]);
+        Route::post("enroll", [StudentCourseController::class, "enroll"]);
+        Route::post("send_meet", [MeetController::class, "createMeet"]);
+        Route::get("check_meet", [MeetController::class, "checkMeet"]);
+        Route::post("remove_meet", [MeetController::class, "removeMeet"]);
     });
 
 
