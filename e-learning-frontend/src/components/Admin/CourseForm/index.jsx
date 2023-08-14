@@ -7,12 +7,13 @@ function CourseForm({onToggle}) {
     const [teacher_id, setTeacherId] = useState('');
     const [capacity, setCapacity] = useState('');
 
-    const handleLogin = async (event) => {
+    const handleCourseCreation = async (event) => {
         event.preventDefault();
 
         try {
 
-            const response = await axios.post('http://127.0.0.1:8000/api/register', {
+              // const response = await axios.post('http://127.0.0.1:8000/api/user/admin/create-user', {
+                const response = await axios.post('http://127.0.0.1:8000/api/admin/create-course', {
                 name,
                 teacher_id,
                 capacity,
@@ -52,7 +53,7 @@ function CourseForm({onToggle}) {
 
                     </div>
 
-                    <button className='black-button' type="submit" onClick={handleLogin}>Create</button>
+                    <button className='black-button' type="submit" onClick={handleCourseCreation}>Create</button>
                 </form>
 
                 <div className="bottom-form">

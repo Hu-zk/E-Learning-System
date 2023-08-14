@@ -12,13 +12,14 @@ function UserForm({onToggle}) {
     const [parent_id, setParentId] = useState();
     const [user_type_id, setUserTypeId] = useState();
 
-    const handleLogin = async (event) => {
+    const handleUserCreation = async (event) => {
         event.preventDefault();
 
         try {
             if (password === confirmPassword) {
                 
-                const response = await axios.post('http://127.0.0.1:8000/api/user/admin/create-user', {
+                // const response = await axios.post('http://127.0.0.1:8000/api/user/admin/create-user', {
+                const response = await axios.post('http://127.0.0.1:8000/api/admin/create-user', {
                     name,
                     parent_id,
                     email,
@@ -91,7 +92,7 @@ function UserForm({onToggle}) {
                         </div>
                     </div>
 
-                    <button className='black-button' type="submit" onClick={handleLogin}>Create</button>
+                    <button className='black-button' type="submit" onClick={handleUserCreation}>Create</button>
                 </form>
 
 
