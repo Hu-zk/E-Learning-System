@@ -13,6 +13,7 @@ function App() {
       <Route path="/register" element={<h1>Register</h1>} />
       <Route path="/admin">
         <Route index element={<h1>Admin</h1>} />
+        
       </Route>
       <Route path="/student">
         <Route index element={<h1>Student</h1>} />
