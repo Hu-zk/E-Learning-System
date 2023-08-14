@@ -11,6 +11,9 @@ import AdminHome from "./pages/Admin/Home";
 import Create from "./pages/Admin/Create";
 import Display from "./pages/Admin/Display";
 import Settings from "./pages/Admin/Settings";
+import StudentLayout from "./utils/StudentLayout/StudentLayout";
+import Inprogress from "./pages/Student/inprogress/inprogress";
+import Completed from "./pages/Student/completed/completed";
 
 function App() {
   return (
@@ -26,8 +29,10 @@ function App() {
           <Route path="/admin/settings" element={<Settings />} />
         </Route>
 
-        <Route path="/student">
+        <Route path="/student" element={<StudentLayout />}>
           <Route index element={<Landing />} />
+          <Route path="inprogress" element={<Inprogress />} />
+          <Route path="completed" element={<Completed />} />
         </Route>
 
         <Route path="/teacher" element={<TeacherLayout />}>

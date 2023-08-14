@@ -1,0 +1,84 @@
+/* .cardContainer {
+    display: flex;
+    padding: 20px;
+}
+
+.courseCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
+    width: 250px;
+    padding: 40px;
+    border: 1px solid black;
+} */
+
+.class {
+    width: 18rem;
+    height: 18rem;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    margin: 20px;
+}
+
+.class:hover {
+    box-shadow: 10px 10px 26px -8px rgba(0, 0, 0, 0.6);
+
+}
+
+.class .top-class {
+    padding: 15px;
+    height: 100px;
+}
+
+.class .top-class {
+    background-image: url("https://plus.unsplash.com/premium_photo-1673697239936-c2599b0b0498?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.class .top-class .class-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.class .top-class .class-title p {
+    font-size: 1.375rem;
+}
+
+.class .mid-class {
+    height: 135px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.class .bottom-class {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 50px;
+    justify-content: flex-end;
+    padding: 5px;
+    border-top: 1px solid #ccc;
+}
+
+.class .bottom-class>div {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+
+}
+
+.class .bottom-class div:hover {
+    background-color: #cccccc33;
+}

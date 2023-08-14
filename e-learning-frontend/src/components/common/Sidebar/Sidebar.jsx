@@ -1,8 +1,10 @@
 import { FiLogOut } from "react-icons/fi";
 import "./style.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ sidebarContent }) => {
+  const navigate = useNavigate();
   const [content, useContent] = useState(sidebarContent ? sidebarContent : []);
   return (
     <div className="sidebar">
@@ -18,7 +20,7 @@ const Sidebar = ({ sidebarContent }) => {
       </div>
 
       <div className="mid">
-        {sidebarContent.map((nav, index) => {
+        {content.map((nav, index) => {
           return (
             <div className="one-navigate" key={index} onClick={nav.onclick}>
               {nav.svg}
