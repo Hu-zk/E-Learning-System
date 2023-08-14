@@ -9,7 +9,7 @@ function UserForm({onToggle}) {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [name, setName] = useState('');
-    const [parent_id, setParentId] = useState('');
+    const [parent_id, setParentId] = useState(null);
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -24,13 +24,12 @@ function UserForm({onToggle}) {
                     password,
                 });
                 console.log(response.data)
-                window.location.href='http://localhost:3000/'
             }else{
                 console.log("wrong pass")
             }
 
         } catch (error) {
-            console.error('Login failed:', error);
+            console.error('failed:', error);
         }
     };
 
@@ -42,7 +41,7 @@ function UserForm({onToggle}) {
                     </h1>
                 </div>
 
-                <form className="form">
+                <form className="create-form ">
 
                         <div className="label-input">
                             <label htmlFor="name">Name </label>
@@ -67,7 +66,7 @@ function UserForm({onToggle}) {
 
                         <div className="label-input">
                             <label htmlFor="parent_id">Parent</label>
-                            <input id="parent_id" name="parent_id" type="text" required placeholder="parent_id" value={parent_id} onChange={(e) => setParentId(e.target.value)}/>
+                            <input id="parent_id" name="parent_id" type="number" placeholder="parent_id" value={parent_id} onChange={(e) => setParentId(e.target.value)}/>
                         </div>
                     <div class="user-type">
                         <h4>User Type :</h4>

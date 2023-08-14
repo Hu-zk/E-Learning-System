@@ -22,7 +22,7 @@
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3);
 }
 
-form {
+.create-form {
   display: flex;
   flex-flow: column;
   margin: 1em 0 2em 0;
@@ -102,7 +102,7 @@ input:focus {
 }
 
 .bottom-form {
-  width: 18em;
+  width: 17em;
   display: flex;
   justify-content: space-between;
   align-items: center;
