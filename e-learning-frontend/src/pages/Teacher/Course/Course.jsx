@@ -102,9 +102,7 @@ const Course = () => {
                     <Dropdown
                         className="dropdown"
                         open={open}
-                        trigger={< button onClick = {
-                        handleOpen
-                    } > Upload Material </button>}
+                        trigger={< button onClick = {handleOpen} > Upload Material </button>}
                         menu={[ < button onClick = {
                             handleMenuOne
                         } > Lecture </button>, <button onClick={handleMenuTwo}>Quiz</button >, < button onClick = {
@@ -153,4 +151,4 @@ let Dropdown = ({open, trigger, menu}) => {
     );
 };
 
-export default Course
+export default Course;

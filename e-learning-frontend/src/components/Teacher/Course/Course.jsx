@@ -6,7 +6,7 @@ const Course = () => {
     return (
         <div className="class">
             <div className="top-class">
-                <div class="class-title">
+                <div className="class-title">
                     <p>Course One</p>
                     <BsThreeDotsVertical size={25}/>
                 </div>

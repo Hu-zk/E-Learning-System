@@ -31,7 +31,7 @@ const Grades = () => {
                             <div className="profile">
                                 <img
                                     src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?w=900&t=st=1691932082~exp=1691932682~hmac=f10869f2a6b989045fe787063f903e31785f016a5be93ef1194b14e23c31c296"
-                                    alt="profile picture"/>
+                                    alt="profile picture0"/>
                             </div>
                             <div className="name">Mohammad Hussein</div>
                         </div>
@@ -42,7 +42,7 @@ const Grades = () => {
                             <div className="profile">
                                 <img
                                     src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?w=900&t=st=1691932082~exp=1691932682~hmac=f10869f2a6b989045fe787063f903e31785f016a5be93ef1194b14e23c31c296"
-                                    alt="profile picture"/>
+                                    alt="profile picture1"/>
                             </div>
                             <div className="name">Mohammad Hussein</div>
                         </div>
@@ -53,7 +53,7 @@ const Grades = () => {
                             <div className="profile">
                                 <img
                                     src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?w=900&t=st=1691932082~exp=1691932682~hmac=f10869f2a6b989045fe787063f903e31785f016a5be93ef1194b14e23c31c296"
-                                    alt="profile picture"/>
+                                    alt="profile picture2"/>
                             </div>
                             <div className="name">Mohammad Hussein</div>
                         </div>
@@ -64,7 +64,7 @@ const Grades = () => {
                             <div className="profile">
                                 <img
                                     src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?w=900&t=st=1691932082~exp=1691932682~hmac=f10869f2a6b989045fe787063f903e31785f016a5be93ef1194b14e23c31c296"
-                                    alt="profile picture"/>
+                                    alt="profile picture3"/>
                             </div>
                             <div className="name">Mohammad Hussein</div>
                         </div>
@@ -75,7 +75,7 @@ const Grades = () => {
                             <div className="profile">
                                 <img
                                     src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?w=900&t=st=1691932082~exp=1691932682~hmac=f10869f2a6b989045fe787063f903e31785f016a5be93ef1194b14e23c31c296"
-                                    alt="profile picture"/>
+                                    alt="profile picture4"/>
                             </div>
                             <div className="name">Mohammad Hussein</div>
                         </div>
@@ -86,7 +86,7 @@ const Grades = () => {
                             <div className="profile">
                                 <img
                                     src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?w=900&t=st=1691932082~exp=1691932682~hmac=f10869f2a6b989045fe787063f903e31785f016a5be93ef1194b14e23c31c296"
-                                    alt="profile picture"/>
+                                    alt="profile picture5"/>
                             </div>
                             <div className="name">Mohammad Hussein</div>
                         </div>
@@ -97,7 +97,7 @@ const Grades = () => {
                             <div className="profile">
                                 <img
                                     src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?w=900&t=st=1691932082~exp=1691932682~hmac=f10869f2a6b989045fe787063f903e31785f016a5be93ef1194b14e23c31c296"
-                                    alt="profile picture"/>
+                                    alt="profile picture6"/>
                             </div>
                             <div className="name">Mohammad Hussein</div>
                         </div>
@@ -108,7 +108,7 @@ const Grades = () => {
                             <div className="profile">
                                 <img
                                     src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?w=900&t=st=1691932082~exp=1691932682~hmac=f10869f2a6b989045fe787063f903e31785f016a5be93ef1194b14e23c31c296"
-                                    alt="profile picture"/>
+                                    alt="profile picture7"/>
                             </div>
                             <div className="name">Mohammad Hussein</div>
                         </div>
@@ -119,7 +119,7 @@ const Grades = () => {
                             <div className="profile">
                                 <img
                                     src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?w=900&t=st=1691932082~exp=1691932682~hmac=f10869f2a6b989045fe787063f903e31785f016a5be93ef1194b14e23c31c296"
-                                    alt="profile picture"/>
+                                    alt="profile picture8"/>
                             </div>
                             <div className="name">Mohammad Hussein</div>
                         </div>
