@@ -11,6 +11,7 @@ use App\Http\Controllers\Student\MeetController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
 
 
+
 Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'parent',  'middleware' => 'auth.parent'], function () {
