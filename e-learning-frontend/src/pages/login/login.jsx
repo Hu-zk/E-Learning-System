@@ -24,7 +24,7 @@ function Login() {
                 localStorage.setItem('jwtToken', token);
                 localStorage.setItem('userData',data);
                 setAuthToken(token);            
-                window.location.href='http://localhost:3000/admin'
+                window.location.href='http://localhost:3000/parent/Home'
 
             }
         } catch (error) {
