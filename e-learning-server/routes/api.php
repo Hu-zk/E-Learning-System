@@ -33,6 +33,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'student',  'middleware' => 'auth.student'], function () {
 
+        Route::post('upload-submission', [StudentContoller::class, 'uploadSubmission']);
         Route::get("enrolled_courses", [CourseController::class, "getCourses"]);
         Route::get("courses", [CourseController::class, "allCourses"]);
         Route::get("course_stats", [CourseController::class, "courseStats"]);
