@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './profile.module.css';
+import { Card } from "../meet_card/card";
 
 export const Profile = () =>{
     return(
@@ -15,6 +16,10 @@ export const Profile = () =>{
                     <div className={styles.details}>email</div>
                     <div className={styles.details}>regitered type</div>
                 </div>
+            </div>
+            <div className={styles.meet_container}>
+                <div className={styles.card_title}>Scheduled meetings:</div>
+                <Card/>
             </div>
         </div>
     )
