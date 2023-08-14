@@ -9,27 +9,56 @@ const Attendance = () => {
     const {id} = useParams()
     let [students,
         setStudents] = useState([])
+    let [attendance,
+        setAttendance] = useState([])
 
     useEffect(() => {
         try {
             const getEnrolledStudents = async() => {
-                let response = await axios.get(`http://127.0.0.1:8000/api/user/teacher/${id}/students`, {
+                let { data } = await axios.get(
+                  `http://127.0.0.1:8000/api/user/teacher/${id}/students`,
+                  {
                     headers: {
-                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
-                                "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMDQzNDQyLCJleHAiOjE2OTIwNDcwNDIsIm5iZiI6" +
-                                "MTY5MjA0MzQ0MiwianRpIjoicjEzaUJhckNkZG5jeTRRYyIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
-                                "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.dL-29P-M6IlwVW5FGoSO13CW3DRuiJOC" +
-                                "HGlxmvIZ_XM"
-                    }
-                });
-                console.log(response.data.students)
-                setStudents(response.data.students)
+                      Authorization:
+                        "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMDQ4MTM1LCJleHAiOjE2OTIwNTE3MzUsIm5iZiI6MTY5MjA0ODEzNSwianRpIjoiQ3VnMVo4WDVWSDNTUXAxTiIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Hswzlu--KVEQcbU44_CJ_Hx0LHFQzDiTD3nSaaV13O8",
+                    },
+                  }
+                );
+                setStudents(data.students)
+
+                const initialAttendance = data
+                    .students
+                    .map((student) => ({studentId: student.id, status: false}));
+
+                setAttendance(initialAttendance)
             };
             getEnrolledStudents();
         } catch (error) {
             console.log(error)
         }
     }, [])
+
+    console.log(attendance)
+
+    const handleAttendance = async() => {
+        try {
+            let response = await axios.post(
+              `http://127.0.0.1:8000/api/user/teacher/record-attendance/${id}`,
+              {
+                students: attendance,
+              },
+              {
+                headers: {
+                  Authorization:
+                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMDQ4MTM1LCJleHAiOjE2OTIwNTE3MzUsIm5iZiI6MTY5MjA0ODEzNSwianRpIjoiQ3VnMVo4WDVWSDNTUXAxTiIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Hswzlu--KVEQcbU44_CJ_Hx0LHFQzDiTD3nSaaV13O8",
+                },
+              }
+            );
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div className="attendance">
@@ -39,9 +68,9 @@ const Attendance = () => {
                     ? (
                         <h1>No Students enrolled</h1>
                     )
-                    : (students.map((student) => (<StudentAttendance key={student.id} {...student}/>)))}
+                    : (students.map((student) => (<StudentAttendance setAttendance={setAttendance} key={student.id} {...student}/>)))}
             </div>
-            <div className="save-changes">
+            <div onClick={handleAttendance} className="save-changes">
                 <button>Save Changes</button>
             </div>
         </div>
