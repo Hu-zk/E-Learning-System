@@ -45,14 +45,14 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
             Route::get('{assignmentId}', [AssignmentController::class, 'getAssignmentDetails']);
         });
     });
+
+
+    Route::get("profile", [AuthController::class, "profile"]);
+    Route::post("logout", [AuthController::class, "logout"]);
+    Route::post("refresh", [AuthController::class, "refresh"]);
 });
 
-Route::group(['prefix' => 'admin'], function () {
-});
 
-Route::get("profile", [AuthController::class, "profile"]);
-Route::post("logout", [AuthController::class, "logout"]);
-Route::post("refresh", [AuthController::class, "refresh"]);
 
 
 
