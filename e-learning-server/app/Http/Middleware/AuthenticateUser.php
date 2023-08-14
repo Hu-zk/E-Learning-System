@@ -7,14 +7,19 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
-class AuthenticateStudent
+class AuthenticateUser
 {
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
         $type =  $user->user_type_id;
 
-        if ($type == 4) {
+        if ($type == 4 || $type == 3 || $type == 2) {
             return $next($request);
         }
 
