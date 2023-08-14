@@ -11,7 +11,6 @@ use App\Http\Controllers\Course\CourseController;
 use App\Http\Controllers\Course\MaterialContoller;
 use App\Http\Controllers\Meet\MeetController;
 
-Route::get('/test', [AdminUserController::class, 'create']);
 
 Route::group(['prefix' => 'guest'], function () {
 
