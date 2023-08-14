@@ -7,15 +7,15 @@ import {GrFormClose} from "react-icons/gr";
 export const Card = () =>{
     return(
         <div className={styles.container}>
-            <div className={styles.close}>
-                <div className={styles.clickable}>
-                    <GrFormClose/>
-                </div>
-            </div>
             <div className={styles.card_body}>
                 <div className={styles.name}>charbel daoud</div>
                 <div className={styles.icon}>
                     <BsCameraVideoFill/>
+                </div>
+            </div>
+            <div className={styles.close}>
+                <div className={styles.clickable}>
+                    <GrFormClose/>
                 </div>
             </div>
         </div>
