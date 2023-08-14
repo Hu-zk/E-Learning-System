@@ -30,7 +30,7 @@ const Sidebar = ({ sidebarContent }) => {
       </div>
       <div
         className="bottom one-navigate"
-        onClick={() => navigate("/admin/settings")}>
+        onClick={() => navigate("/")}>
         <FiLogOut size={35} />
       </div>
     </div>
