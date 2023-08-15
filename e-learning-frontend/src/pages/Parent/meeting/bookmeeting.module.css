@@ -32,14 +32,23 @@
     font-weight: 500;
 }
 
-.announcements_container{
-    width: 500px;
-    height: 100%;
-    border-left: 1px solid black;
-    overflow-y: auto;
-    padding: 1rem 2rem;
+.stats_container{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    column-gap: 6rem;
+    padding: 1rem 3rem 0 3rem;
 }
 
-.announcements_container::-webkit-scrollbar {
-  width: 0;
+.left_container{
+    width: 50%;
+    height: 100%;
+}
+
+.right_container{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

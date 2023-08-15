@@ -3,8 +3,9 @@ import axios from 'axios';
 import styles from './assignmentComp.module.css';
 import { AssignmentCard } from "../AssignmentCard/assignmentCard";
 
-export const Assignment = () =>{
+export const Assignment = ({title}) =>{
     const [assignments, setAssignments] = useState([]);
+    const [teachers, setTeachers] = useState([]);
     // const [isAvailable, setIsAvailable] = useState(false);
 
     const getAssignments = async () => {
@@ -31,15 +32,22 @@ export const Assignment = () =>{
 
     return (
         <div className={styles.container}>
-            <div className={styles.container_header}>Assignments</div>
+            <div className={styles.container_header}>{title}</div>
             {/* <div className={styles.container_stats}>Submitted</div> */}
             <div className={styles.Assignment_body}>
-                {assignments.map(assignment=>(
+            {title === "Assignments"? (assignments.map(assignment=>(
                 <AssignmentCard
                 key={assignment.id}
                 assignment={assignment}
                 />
-                ))}
+                ))):(teachers.map(teacher=>(
+                <AssignmentCard
+                key={teacher.id}
+                assignment={teacher}
+                />
+                )))}
+
+                
             </div>
         </div>
     )

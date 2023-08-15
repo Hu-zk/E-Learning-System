@@ -12,6 +12,7 @@ const Statistics = () => {
     const completed = "Completed";
     const enrolled = "Enrolled";
     const attend = "Attandance";
+    const title = "Assignments";
 
 
     const getCompleted = async () => {
@@ -71,7 +72,7 @@ const Statistics = () => {
                     <div className={styles.page_header}>Analytics</div>
                     <div className={styles.stats_container}>
                         <div className={styles.left_container}>
-                            <Assignment/>
+                            <Assignment title={title}/>
                         </div>
                         <div className={styles.right_container}>
                             <SharedComp title={completed} info={isCompleted}/>
