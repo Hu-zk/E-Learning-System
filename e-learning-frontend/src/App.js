@@ -14,6 +14,11 @@ import Settings from "./pages/Admin/Settings";
 import StudentLayout from "./utils/StudentLayout/StudentLayout";
 import Inprogress from "./pages/Student/inprogress/inprogress";
 import Completed from "./pages/Student/completed/completed";
+import CourseList from "./components/Admin/CourseList";
+import StudentList from "./components/Admin/StudentList";
+import TeacherList from "./components/Admin/TeacherList";
+import ParentList from "./components/Admin/ParentList";
+import UserList from "./components/Admin/UsersList";
 
 function App() {
   return (
@@ -26,7 +31,13 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminHome />} />
           <Route path="/admin/create" element={<Create />} />
-          <Route path="/admin/display" element={<Display />} />
+          <Route path="/admin/display" element={<Display />} >
+            <Route path="/admin/display/users" element={<UserList/>} />
+            <Route path="/admin/display/students" element={<StudentList/>} />
+            <Route path="/admin/display/teachers" element={<TeacherList />} />
+            <Route path="/admin/display/parents" element={<ParentList />} />
+            <Route path="/admin/display/courses" element={<CourseList />} />
+          </Route>
           <Route path="/admin/settings" element={<Settings />} />
         </Route>
 
