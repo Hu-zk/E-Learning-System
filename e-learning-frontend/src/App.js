@@ -14,6 +14,7 @@ import Settings from "./pages/Admin/Settings";
 import StudentLayout from "./utils/StudentLayout/StudentLayout";
 import Inprogress from "./pages/Student/inprogress/inprogress";
 import Completed from "./pages/Student/completed/completed";
+import CoursePage from "./pages/Student/coursePage/CoursePage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route index element={<Landing />} />
           <Route path="inprogress" element={<Inprogress />} />
           <Route path="completed" element={<Completed />} />
+          <Route path="course/:id" element={<CoursePage />} />
         </Route>
 
         <Route path="/teacher" element={<TeacherLayout />}>

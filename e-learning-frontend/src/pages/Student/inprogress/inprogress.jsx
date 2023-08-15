@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import MyResponsivePie from "../../../components/Student/ResponsivePie/ResponsivePie";
 import "./style.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Inprogress() {
-  const [progress, setProgress] = useState([]);
+  const navigate = useNavigate();
+  // const [progress, setProgress] = useState([]);
   const [courseData, setCourseData] = useState([]);
 
   const fetchdata = async () => {
@@ -13,7 +15,7 @@ function Inprogress() {
         "http://127.0.0.1:8000/api/user/shared/course_stats"
       );
       const data = response.data.data;
-      setProgress(data);
+      // setProgress(data);
       processCourseData(data);
     } catch (error) {
       console.error(error);
@@ -23,6 +25,7 @@ function Inprogress() {
   const processCourseData = (courses) => {
     const updatedCourseData = courses.map((course) => {
       let courseData = {
+        id: course.id,
         name: course.name,
         attandence: 0,
         absent: 0,
@@ -62,7 +65,13 @@ function Inprogress() {
         <div key={index} className="chart">
           <div className="right-side">
             <h3>{course.name}</h3>
-            <button className="courseBtn">Enter course</button>
+            <button
+              className="courseBtn"
+              onClick={() => {
+                navigate(`/student/course/${course.id}`);
+              }}>
+              Enter course
+            </button>
           </div>
           <div className="responsivePie">
             <MyResponsivePie
