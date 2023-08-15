@@ -55,3 +55,16 @@ th {
 .edit-button:hover {
   background-color: rgb(49, 49, 49);
 }
+
+.course-report {
+  height: 500px;
+  width: 500px;
+}
+
+.close-text {
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  margin-left: 1em;
+  justify-content: flex-end;
+}

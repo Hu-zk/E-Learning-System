@@ -59,7 +59,7 @@ class CourseController extends Controller
         $completedEnrollments = $course->enrollments->where("is_completed", true)->count();
 
         return response()->json([
-            "course" => $course,
+            // "course" => $course,
             "total_enrollments" => $totalEnrollments,
             "completed_enrollments" => $completedEnrollments,
         ]);

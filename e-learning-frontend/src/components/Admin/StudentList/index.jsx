@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { requestMethods } from '../../../core/enums/requestMethods';
 import { sendRequest } from '../../../core/config/request';
-import EditUserModal from '../EditForm';
+import StudentProgress from '../StudentProgress';
 
 function StudentList() {
     const [students, setStudents] = useState('');
@@ -67,7 +67,7 @@ function StudentList() {
             </tbody>
         </table>
         {showEditModal && (
-        <EditUserModal
+        <StudentProgress
             user={selectedUser}
             onClose={handleCloseModal}
         />
