@@ -7,7 +7,7 @@ function Navbar({nav}) {
             <span className='admin-page-title'>{nav.title}</span>
             <div className='admin-nav-content-container'>
                     {nav.content.map((content,index)=>(
-                        <div className='admin-nav-content' key={index}>{content}</div>
+                        <div className='admin-nav-content' key={index} onClick={content.onclick}>{content.title}</div>
                     ))}
             </div>
         </div>

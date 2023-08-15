@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Http\Request;
@@ -59,6 +60,7 @@ class UserController extends Controller
             "students" => User::where('user_type_id', 4)->get(),
             "parents" => User::where('user_type_id', 3)->get(),
             "teachers" => User::where('user_type_id', 2)->get(),
+            "courses" => Course::all(),
         ];
 
         return response()->json(['data' => $content]);
