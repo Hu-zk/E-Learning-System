@@ -4,7 +4,9 @@ const SubmittedStudent = ({student, grade, setSolution, setIsFeedbackOpened, sol
 
     const {name} = student.student
 
+    console.log("stddddddd")
     console.log(student)
+    console.log("stddddddd")
 
     const handleOpenSolution = (e) => {
 
@@ -40,7 +42,7 @@ const SubmittedStudent = ({student, grade, setSolution, setIsFeedbackOpened, sol
                 </div>
                 <div className="name">{name}</div>
             </div>
-            <div className="right-student">/{grade}</div>
+            <div className="right-student">{student.grade}/{grade}</div>
         </div>
     );
 }

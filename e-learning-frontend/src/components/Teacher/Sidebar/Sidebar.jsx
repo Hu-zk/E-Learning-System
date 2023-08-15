@@ -4,6 +4,7 @@ import {BsFillChatLeftTextFill} from "react-icons/bs"
 import {MdGrade} from "react-icons/md"
 import { FiLogOut } from "react-icons/fi"
 import "./style.css"
+import { Link } from "react-router-dom/dist/umd/react-router-dom.development"
 
 const Sidebar = () => {
     return (
@@ -12,9 +13,9 @@ const Sidebar = () => {
                 <SiRedux size={40}/>
             </div>
             <div className="mid">
-                <div>
+                <Link to="/teacher">
                     <AiFillHome size={32}/>
-                </div>
+                </Link>
                 <div>
                     <BsFillChatLeftTextFill size={32}/>
                 </div>

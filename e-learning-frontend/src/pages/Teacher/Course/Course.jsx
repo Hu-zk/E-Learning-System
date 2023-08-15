@@ -26,6 +26,7 @@ const Course = () => {
     const boxModalRef = useRef(null)
     let [materialType,
         setMaterialType] = useState("")
+    let [materials, setMaterials] = useState([])
 
     let [isAnnouncementOpened,
         setIsAnnouncementOpened] = useState(false)
@@ -50,10 +51,10 @@ const Course = () => {
             let response = await axios.post(`http://127.0.0.1:8000/api/user/teacher/${id}/create-assignment-quiz`, data, {
                 headers: {
                     Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
-                            "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMDQxMDEwLCJleHAiOjE2OTIwNDQ2MTAsIm5iZiI6" +
-                            "MTY5MjA0MTAxMCwianRpIjoiUzc2dEpISjVLbVBTUDNpOCIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
-                            "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Lfu1lilaozWX07rux7qGAhATUcOrLcTx" +
-                            "JLpFtXKqu_E"
+                            "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTA4MTMxLCJleHAiOjE2OTIxMTE3MzEsIm5iZiI6" +
+                            "MTY5MjEwODEzMSwianRpIjoiZzUxVlpFRHVXQTJ3RHlJMiIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
+                            "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-vDzOXKaA-dRd8y1QjgUFAXn838JfT8u" +
+                            "Gb5sgfGkEK0"
                 }
             });
             console.log(response)
@@ -110,19 +111,29 @@ const Course = () => {
 
     useEffect(() => {
         const getCourseDetails = async() => {
-            let response = await axios.get(
-              `http://127.0.0.1:8000/api/user/shared/${id}/content`,
-              {
+            let {data} = await axios.get(`http://127.0.0.1:8000/api/user/shared/${id}/content`, {
                 headers: {
-                  Authorization:
-                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMDQ4MTM1LCJleHAiOjE2OTIwNTE3MzUsIm5iZiI6MTY5MjA0ODEzNSwianRpIjoiQ3VnMVo4WDVWSDNTUXAxTiIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Hswzlu--KVEQcbU44_CJ_Hx0LHFQzDiTD3nSaaV13O8",
-                },
-              }
-            );
-            console.log(response.data.content)
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
+                            "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTA4MTMxLCJleHAiOjE2OTIxMTE3MzEsIm5iZiI6" +
+                            "MTY5MjEwODEzMSwianRpIjoiZzUxVlpFRHVXQTJ3RHlJMiIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
+                            "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-vDzOXKaA-dRd8y1QjgUFAXn838JfT8u" +
+                            "Gb5sgfGkEK0"
+                }
+            });
+            let details = data.content
+            let combinedArray = [
+                ...details.materials,
+                ...details.announcements,
+                ...details.assignments,
+                ...details.quizzes
+            ];
+            const compareByCreatedAt = (a, b) =>
+              new Date(a.created_at) - new Date(b.created_at);
+            combinedArray.sort(compareByCreatedAt)
+            setMaterials(combinedArray.reverse())
         }
         getCourseDetails()
-    }, [])
+    }, [id])
 
     return (
         <div className="teacher-course-page">
@@ -199,11 +210,11 @@ const Course = () => {
                         trigger={<button onClick = {
                         handleOpen
                     } > Upload Material </button>}
-                        menu={[ < button onClick = {
+                        menu={[< button onClick = {
                             handleMenuOne
                         } > Lecture </button>, <button onClick={handleMenuTwo}>Quiz</button >, < button onClick = {
                             handleMenuThree
-                        } > Assignment </button>, ]}/>
+                        } > Assignment </button>,]}/>
                 </div>
             </div>
             <div className="course-name">Course One</div>
@@ -211,10 +222,9 @@ const Course = () => {
                 <div className="left-stream">
                     {isAnnouncementOpened && <Announcement/>}
                     <div className="content">
-                        <Material/>
-                        <Material/>
-                        <Material/>
-                        <Material/>
+                        {materials.map((item, index) => (
+                            <Material key={index} data={item} />
+                        ))}
                     </div>
                 </div>
                 <div className="right-stream">

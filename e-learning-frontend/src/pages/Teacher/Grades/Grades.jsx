@@ -39,7 +39,7 @@ const Grades = () => {
         } catch (error) {
             console.log(error)
         }
-    }, [solution])
+    }, [solution, assignmentId])
 
     // const handleFileInput = (e) => {     const fileType = e.target.files[0].type;
     //     setFile(URL.createObjectURL(e.target.files[0]))
