@@ -4,10 +4,6 @@ import {formatDistanceToNow, parseISO} from "date-fns";
 
 const Announcement = ({data}) => {
 
-    console.log("annnoun")
-    console.log(data)
-    console.log("announcc")
-
     const dateObject = data?.created_at
         ? parseISO(data.created_at)
         : null;

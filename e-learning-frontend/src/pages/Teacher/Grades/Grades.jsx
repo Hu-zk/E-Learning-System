@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import "./style.css"
 import {GrClose} from "react-icons/gr"
 import axios from "axios"
-import {useParams} from "react-router-dom/dist/umd/react-router-dom.development";
+import {Link, useParams} from "react-router-dom/dist/umd/react-router-dom.development";
 import SubmittedStudent from "../../../components/Teacher/SubmittedStudent/SubmittedStudent";
 
 const Grades = () => {
@@ -19,6 +19,7 @@ const Grades = () => {
         setGrade] = useState("")
     let [feedback,
         setFeedback] = useState("")
+    const {id} = useParams()
 
     useEffect(() => {
         try {
@@ -76,7 +77,6 @@ const Grades = () => {
             }
             setGrade("")
             setFeedback("")
-            console.log(data)
         } catch (error) {
             console.log(error)
         }
@@ -85,86 +85,100 @@ const Grades = () => {
     console.log(solution)
 
     return (
-        <div className="grades">
-            <div className="top-grades">
-                <div className="left">
-                    <div className="assignment-points">
-                        {assignmentData
-                            ?.grade}
-                        points
-                    </div>
-                </div>
-                <div className="right">
-                    {assignmentData
-                        ?.count_student
-                            ?.submitted_students_count}
-                    Turned in /{" "} {assignmentData
-                        ?.count_student
-                            ?.not_submitted_students_count}
-                    Assigned
-                </div>
+      <div className="grades">
+        <div className="top-grades">
+          <div className="left">
+            <div className="assignment-points">
+              {assignmentData?.grade}
+              points
             </div>
-            <div className="bottom-grades">
-                <div className="left">
-                    {assignmentData && assignmentData
-                        ?.submitted_students
-                            ? (assignmentData.submitted_students.map((student, index) => (<SubmittedStudent
-                                key={index}
-                                solution={solution}
-                                grade={assignmentData
-                                ?.grade}
-                                student={student}
-                                setSolution={setSolution}
-                                setIsFeedbackOpened={setIsFeedbackOpened}/>)))
-                            : (
-                                <p>Loading or no data available</p>
-                            )}
-                </div>
-                <div className="right">
-                    {solution && (
-                        <React.Fragment>
-                            <div>
-                                <div className="name">{solution.student.name}</div>
-                                <div className="grade-input">
-                                    <input
-                                        disabled={solution.grade}
-                                        value={solution.grade
-                                        ? solution.grade
-                                        : grade}
-                                        onChange={handleGradeChange}
-                                        type="text"/>
-                                    /{assignmentData
-                                        ?.grade}
-                                </div>
-                            </div>
-                            {!solution.grade && <button className="give-feedback" onClick={(e) => setIsFeedbackOpened(true)}>
-                                Give Feedbak
-                            </button>}
-                            {isFeedbackOpened && (
-                                <div className="feedback">
-                                    <textarea
-                                        disabled={solution.feedback}
-                                        value={solution.feedback
-                                        ? solution.feedback
-                                        : feedback}
-                                        onChange={e => setFeedback(e.target.value)}
-                                        placeholder="Provide a feedback"
-                                        cols="20"
-                                        rows="10"></textarea>
-                                    {!solution.feedback && <div className="close">
-                                        <GrClose size={20} onClick={(e) => setIsFeedbackOpened(false)}/>
-                                    </div>}
-                                </div>
-                            )}
-                            {!solution.grade && <div onClick={handleSubmitGrade} className="submit-grade">Submit</div>}
-                            <img src="" alt=""/>{" "} {solution.file_url === "image"
-                                ? (<img src={solution.file_url}/>)
-                                : (<iframe src={solution.file_url} alt=""/>)}
-                        </React.Fragment>
-                    )}
-                </div>
-            </div>
+          </div>
+          <div className="right">
+            {assignmentData?.count_student?.submitted_students_count}
+            Turned in /{" "}
+            {assignmentData?.count_student?.not_submitted_students_count}
+            Assigned
+          </div>
         </div>
+        <Link to={`/teacher/course/${id}`}>
+          <button className="back-to-stream">Back to stream</button>
+        </Link>
+        <div className="bottom-grades">
+          <div className="left">
+            {assignmentData && assignmentData?.submitted_students ? (
+              assignmentData.submitted_students.map((student, index) => (
+                <SubmittedStudent
+                  key={index}
+                  solution={solution}
+                  grade={assignmentData?.grade}
+                  student={student}
+                  setSolution={setSolution}
+                  setIsFeedbackOpened={setIsFeedbackOpened}
+                />
+              ))
+            ) : (
+              <p>Loading or no data available</p>
+            )}
+          </div>
+          <div className="right">
+            {solution && (
+              <React.Fragment>
+                <div>
+                  <div className="name">{solution.student.name}</div>
+                  <div className="grade-input">
+                    <input
+                      disabled={solution.grade}
+                      value={solution.grade ? solution.grade : grade}
+                      onChange={handleGradeChange}
+                      type="text"
+                    />
+                    /{assignmentData?.grade}
+                  </div>
+                </div>
+                {!solution.grade && (
+                  <button
+                    className="give-feedback"
+                    onClick={(e) => setIsFeedbackOpened(true)}
+                  >
+                    Give Feedbak
+                  </button>
+                )}
+                {isFeedbackOpened && (
+                  <div className="feedback">
+                    <textarea
+                      disabled={solution.feedback}
+                      value={solution.feedback ? solution.feedback : feedback}
+                      onChange={(e) => setFeedback(e.target.value)}
+                      placeholder="Provide a feedback"
+                      cols="20"
+                      rows="10"
+                    ></textarea>
+                    {!solution.feedback && (
+                      <div className="close">
+                        <GrClose
+                          size={20}
+                          onClick={(e) => setIsFeedbackOpened(false)}
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+                {!solution.grade && (
+                  <div onClick={handleSubmitGrade} className="submit-grade">
+                    Submit
+                  </div>
+                )}
+                <img src="" alt="" />{" "}
+                {solution.file_url === "image" ? (
+                  <img src={solution.file_url} />
+                ) : (
+                  <iframe src={solution.file_url} alt="" />
+                )}
+              </React.Fragment>
+            )}
+          </div>
+        </div>
+      </div>
     );
 }
 

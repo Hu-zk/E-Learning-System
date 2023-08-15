@@ -1,6 +1,8 @@
 .teacher-course-page {
-    padding: 40px 200px;
+    padding: 40px 20px;
     width: 100%;
+    max-width: 900px;
+    margin: auto;
 }
 
 .teacher-course-page .buttons {
@@ -196,4 +198,20 @@
 
 .modal .box .row > * {
     width: 50%;
+}
+
+
+@media (max-width: 1000px) {
+    
+    .teacher-course-page .stream {
+        flex-direction: column-reverse;
+    }
+
+    .teacher-course-page .stream .left-stream {
+        flex: 8;
+    }
+
+    .teacher-course-page .stream .right-stream {
+        flex: 4;
+    }
 }

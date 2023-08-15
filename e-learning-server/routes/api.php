@@ -45,13 +45,13 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::put('/update-user/{userId}', [UserController::class, 'updateUser']);
         Route::delete('/delete-user/{userId}', [UserController::class, 'deleteUser']);
         Route::get('/get-users', [UserController::class, 'getUsers']);
-        Route::post("/backup", [UserController::class, 'createBackup']);
+        Route::get("/backup", [UserController::class, 'createBackup']);
 
         Route::post('/create-course', [CourseController::class, 'createCourse']);
         Route::put('/update-course/{courseId}', [CourseController::class, 'updateCourse']);
         Route::get('/course-report/{courseId}', [CourseController::class, 'courseReport']);
         Route::get('/teacher-report/{teacherId}', [CourseController::class, 'teacherReport']);
-        // Route::get('/student-report/{studentId}', [CourseController::class, 'studentReport']);
+        Route::get('/student-report/{studentId}', [CourseController::class, 'studentReport']);
 
         Route::post("/update-appearance", [UserController::class, 'updateAppearance']); 
     });

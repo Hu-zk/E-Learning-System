@@ -51,9 +51,9 @@ class CourseController extends Controller
         return response()->json(["message" => "course updated successfully", "course" => $course]);
     }
 
-    function courseReport($courseReport) {
+    function courseReport($courseId) {
 
-        $course = Course::find($courseReport);
+        $course = Course::find($courseId);
 
         $totalEnrollments = $course->enrollments->count();
         $completedEnrollments = $course->enrollments->where("is_completed", true)->count();
@@ -65,21 +65,66 @@ class CourseController extends Controller
         ]);
     }
 
-    // needs to be updated
     function teacherReport($teacherId) {
 
-        $teacher = User::find($teacherId);
         $teacher_courses = Course::where('teacher_id', $teacherId)->get();
+        $data = [];
 
-        return response()->json($teacher_courses);
+        foreach($teacher_courses as $course) {
+            $course_assignments = $course->assignmentsQuizzes;
+
+            $totalCourseGrade = 0;
+            $totalAssignments = count($course_assignments);
+
+            foreach($course_assignments as $course_assignment) {
+            $course_submissions = $course_assignment->submissions;
+
+            foreach ($course_submissions as $submission) {
+                $totalCourseGrade += $submission->grade ?? 0;
+            }
+
+        }
+
+        $averageCourseGrade = $totalAssignments > 0 ? $totalCourseGrade / $totalAssignments : 0;
+        $data[] = [
+            'course' => $course->name,
+            'average_grade' => $averageCourseGrade,
+        ];
+        }
+        
+        return response()->json($data);
     }
 
     function studentReport($studentId) {
 
         $user = User::find($studentId);
-        $enrolledCoursesWithAvgGrade = $user->EnrolledCoursesWithAvgGrade()->get();
+        $enrolledCourses = $user->EnrolledCourses;
 
-        return response()->json(["courses" => $enrolledCoursesWithAvgGrade]);
+        $data = [];
+
+        foreach($enrolledCourses as $course) {
+            $course_assignments = $course->assignmentsQuizzes;
+
+            $totalCourseGrade = 0;
+            $totalAssignments = count($course_assignments);
+
+            foreach($course_assignments as $course_assignment) {
+            $course_assignment->load('submissions');
+            $course_submission = $course_assignment->submissions;
+            dd($course_submission);
+
+
+            $totalCourseGrade += $course_submission->grade ?? 0;
+        }
+
+        $averageCourseGrade = $totalAssignments > 0 ? $totalCourseGrade / $totalAssignments : 0;
+        $data[] = [
+            'course' => $course->name,
+            'average_grade' => $averageCourseGrade,
+        ];
+        }
+
+        return response()->json($data);
     }
     
     public function getCourseContent($courseId)

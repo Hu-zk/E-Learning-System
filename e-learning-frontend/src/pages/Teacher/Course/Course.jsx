@@ -37,7 +37,7 @@ const Course = () => {
 
     const uploadAssignmentQuiz = async(type) => {
         if(materialType === "quiz" || materialType === "assignment") {
-            let data = {
+            let body = {
               title,
               description,
               grade,
@@ -46,11 +46,10 @@ const Course = () => {
               file,
               is_quiz: type === "quiz" ? true : false,
             };
-            console.log(data);
             try {
-              let response = await axios.post(
+              let {data} = await axios.post(
                 `http://127.0.0.1:8000/api/user/teacher/${id}/create-assignment-quiz`,
-                data,
+                body,
                 {
                   headers: {
                     Authorization:
@@ -58,7 +57,7 @@ const Course = () => {
                   },
                 }
               );
-              console.log(response);
+              setMaterials(prev => [data.content, ...prev])
               setTitle("");
               setDescription("");
               setDate("");
@@ -69,17 +68,16 @@ const Course = () => {
               console.log(error);
             }
         }else {
-            let data = {
+            let body = {
               title,
               description,
               file,
               is_announcement: false
             };
-            console.log(data);
             try {
-              let response = await axios.post(
+              let {data} = await axios.post(
                 `http://127.0.0.1:8000/api/user/teacher/${id}/create-material`,
-                data,
+                body,
                 {
                   headers: {
                     Authorization:
@@ -87,7 +85,10 @@ const Course = () => {
                   },
                 }
               );
-              console.log(response);
+              setMaterials(prev => [data.content, ...prev])
+              console.log("daaaaataaaaaa")
+              console.log(data)
+              console.log("daaaaataaaaaa");
               setTitle("");
               setDescription("");
               setDate("");
