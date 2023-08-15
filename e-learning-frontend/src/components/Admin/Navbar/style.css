@@ -1,0 +1,29 @@
+.admin-nav {
+  display: flex;
+  align-items: center;
+  margin: 2em;
+}
+
+.admin-page-title {
+  font-size: 2em;
+  font-weight: 600;
+  margin: 0 1em;
+}
+
+.admin-nav-content-container {
+  display: flex;
+  align-items: center;
+  gap: 4em;
+  margin: 1em;
+}
+
+.admin-nav-content {
+  font-size: 1.5em;
+  border: 2pt rgb(255, 255, 255) solid;
+}
+
+.admin-nav-content:hover {
+  border-bottom: 2pt black solid;
+  cursor: pointer;
+  font-weight: 500;
+}

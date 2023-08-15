@@ -16,11 +16,10 @@ function UserForm({onToggle}) {
     const handleUserCreation = async (event) => {
         event.preventDefault();
 
-        // const response = await axios.post('http://127.0.0.1:8000/api/user/admin/create-user', {
         try {
             if (password === confirmPassword) {
                 const response = await sendRequest({
-                    route: "/admin/create-user",
+                    route: "/user/admin/create-user",
                     method: requestMethods.POST,
                     body:{name,
                         parent_id,

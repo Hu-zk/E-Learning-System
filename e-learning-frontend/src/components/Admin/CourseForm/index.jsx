@@ -13,7 +13,7 @@ function CourseForm({onToggle}) {
 
         try {
             const response = await sendRequest({
-                route: "/admin/create-course",
+                route: "/user/admin/create-course",
                 method: requestMethods.POST,
                 body:{name,
                     teacher_id,

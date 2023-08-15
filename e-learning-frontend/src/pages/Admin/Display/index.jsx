@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from '../../../components/Admin/Navbar'
 
 function Display() {
+    const nav={"title":'Display :',"content":['Courses','All Users','Students','Teachers','Parents']} 
+
     return (
-        <div>Display</div>
+        <Navbar nav={nav} />
     )
 }
 
