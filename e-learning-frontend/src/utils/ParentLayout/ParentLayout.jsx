@@ -5,7 +5,7 @@ import './ParentLayout.css';
 import Sidebar from "../../components/common/Sidebar/Sidebar";
 import { useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
-import { BsFillChatLeftTextFill } from "react-icons/bs";
+import { ImStatsDots } from "react-icons/im";
 import { MdGrade } from "react-icons/md";
 import { Profile } from "../../components/profile/profile";
 
@@ -14,11 +14,11 @@ const ParentLayout = () => {
     const sidebar = [
         {
         svg: <AiFillHome size={32} />,
-        onclick: () => navigate("/student"),
+        onclick: () => navigate("/parent"),
         },
         {
-        svg: <BsFillChatLeftTextFill size={32} />,
-        onclick: () => navigate("/student/InProcess"),
+        svg: <ImStatsDots size={32} />,
+        onclick: () => navigate("/parent/statistics"),
         },
         {
         svg: <MdGrade size={32} />,

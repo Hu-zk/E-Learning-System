@@ -16,6 +16,7 @@ import Settings from "./pages/Admin/Settings";
 import StudentLayout from "./utils/StudentLayout/StudentLayout";
 import Inprogress from "./pages/Student/inprogress/inprogress";
 import Completed from "./pages/Student/completed/completed";
+import Statistics from "./pages/Parent/statistics/statistics";
 
 function App() {
   return (
@@ -52,8 +53,8 @@ function App() {
         </Route>
 
         <Route path="/parent" element={<ParentLayout />}>
-          <Route index element={<h1>Parent</h1>} />
-          <Route path="/parent/Home" element={<Home />} />
+          <Route index element={<Home/>} />
+          <Route path="/parent/statistics" element={<Statistics />} />
         </Route>
       </Routes>
     </div>
