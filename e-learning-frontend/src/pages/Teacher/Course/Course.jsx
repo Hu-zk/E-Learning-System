@@ -110,15 +110,15 @@ const Course = () => {
 
     useEffect(() => {
         const getCourseDetails = async() => {
-            let response = await axios.get(`http://127.0.0.1:8000/api/user/shared/${id}/content`, {
+            let response = await axios.get(
+              `http://127.0.0.1:8000/api/user/shared/${id}/content`,
+              {
                 headers: {
-                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
-                            "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMDQxMDEwLCJleHAiOjE2OTIwNDQ2MTAsIm5iZiI6" +
-                            "MTY5MjA0MTAxMCwianRpIjoiUzc2dEpISjVLbVBTUDNpOCIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
-                            "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Lfu1lilaozWX07rux7qGAhATUcOrLcTx" +
-                            "JLpFtXKqu_E"
-                }
-            });
+                  Authorization:
+                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMDQ4MTM1LCJleHAiOjE2OTIwNTE3MzUsIm5iZiI6MTY5MjA0ODEzNSwianRpIjoiQ3VnMVo4WDVWSDNTUXAxTiIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Hswzlu--KVEQcbU44_CJ_Hx0LHFQzDiTD3nSaaV13O8",
+                },
+              }
+            );
             console.log(response.data.content)
         }
         getCourseDetails()
@@ -218,7 +218,7 @@ const Course = () => {
                     </div>
                 </div>
                 <div className="right-stream">
-                    <div className="attendance">
+                    <div className="attendance-course">
                         <h4>Attendance</h4>
                         <Link to={`/teacher/course/${id}/attendance`}>
                             <button>Manage Attendance</button>

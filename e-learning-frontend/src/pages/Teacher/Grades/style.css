@@ -1,6 +1,8 @@
 .grades {
     padding: 40px 40px;
     width: 100%;
+    height: 100%;
+    min-height: 100vh;
 }
 
 .grades .top-grades {
@@ -32,59 +34,24 @@
     margin-top: 30px;
     border-top: 1px solid #737373;
     display: flex;
+    min-height: 100%;
     height: 100%;
 }
 
 .grades .bottom-grades .left {
     flex: 3.5;
-    padding: 20px;
+    padding: 20px 20px 20px 0;
     display: flex;
     flex-direction: column;
     gap: 20px;
     border-right: 1px solid #737373;
-    background-color: red;
     max-height: 600px;
     overflow-y: scroll;
 }
 
 /* STUDENT */
 
-.grades .student {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #ccc;
-    padding: 5px 10px;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-}
 
-.grades .student .left-student {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.grades .student .left-student .name {
-    font-size: 1.125rem;
-}
-
-.grades .student .profile img {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    object-fit: cover;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-}
 
 /* GRADE BOTTOM RIGHT */
 

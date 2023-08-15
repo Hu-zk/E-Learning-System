@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom/dist/umd/react-router-dom.development";
+import {useNavigate, useParams} from "react-router-dom/dist/umd/react-router-dom.development";
 import StudentAttendance from "../StudentAttendance/StudentAttendance";
 import "./Attendance.css"
 import {useEffect, useState} from "react";
@@ -11,6 +11,7 @@ const Attendance = () => {
         setStudents] = useState([])
     let [attendance,
         setAttendance] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         try {
@@ -42,7 +43,7 @@ const Attendance = () => {
 
     const handleAttendance = async() => {
         try {
-            let response = await axios.post(
+            await axios.post(
               `http://127.0.0.1:8000/api/user/teacher/record-attendance/${id}`,
               {
                 students: attendance,
@@ -54,7 +55,7 @@ const Attendance = () => {
                 },
               }
             );
-            console.log(response)
+            navigate(`/teacher/course/${id}`)
         } catch (error) {
             console.log(error)
         }

@@ -23,7 +23,11 @@ class CourseController extends Controller
             "capacity" => 'required|integer'
         ]);
 
-        $course = Course::create($validatedData);
+        $teacher = User::find($request->teacher_id);
+
+        if($teacher->user_type_id == 2) {
+            $course = Course::create($validatedData);
+        }
 
         return response()->json(["message" => "course created successfully", "course" => $course]);
     }

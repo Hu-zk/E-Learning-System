@@ -50,7 +50,7 @@
     flex: 3;
 }
 
-.teacher-course-page .stream .right-stream .attendance {
+.teacher-course-page .stream .right-stream .attendance-course {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -63,14 +63,15 @@
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+    height: 150px !important;
 }
 
-.teacher-course-page .stream .right-stream .attendance h4 {
+.teacher-course-page .stream .right-stream .attendance-course h4 {
     font-weight: 500;
     font-size: 1.25rem;
 }
 
-.teacher-course-page .stream .right-stream .attendance button {
+.teacher-course-page .stream .right-stream .attendance-course button {
     padding: 12px;
     font-size: 1rem;
     border: none;

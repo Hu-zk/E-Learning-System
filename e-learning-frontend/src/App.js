@@ -21,7 +21,7 @@ function App() {
         <Route index element={<TeacherHome />} />
         <Route path="/teacher/course/:id" element={<Course />} />
         <Route path="/teacher/course/:id/attendance" element={<Attendance />} />
-        <Route path="/teacher/course/:id/assignment/:id" element={<Grades />} />
+        <Route path="/teacher/course/:id/assignment/:assignmentId" element={<Grades />} />
       </Route>
       <Route path="/parent">
         <Route index element={<h1>Parent</h1>} />
