@@ -209,7 +209,7 @@ class CourseController extends Controller
         foreach ($course_attend as $attendance) {
             $data[] = [
                 "course_name" => $attendance->course->name,
-                "attendance_status" => $attendance->attendance_status
+                "attendance_status" => $attendance->status
             ];
         }
 
@@ -232,15 +232,29 @@ class CourseController extends Controller
         $all_data = $child_course->StudentEnroll()->with('course.teacher');
         if ($all_data->exists()) {
             $data=$all_data->get();
-        }
-        $courseTeachers = $data->pluck('course.teacher.name')->toArray();
+            $courseTeachers = [];
 
+        foreach ($data as $enrollment) {
+            $teacherId = $enrollment->course->teacher->id;
+            $teacherName = $enrollment->course->teacher->name;
+
+            $courseTeachers[] = [
+                "teacher_id" => $teacherId,
+                "teacher_name" => $teacherName
+            ];
+        }
 
         return response()->json([
             "status" => "success",
             "data" => $courseTeachers
         ]);
+        } else {
+        return response()->json([
+            "status" => "success",
+            "message" => "No courses found"
+        ]);
     }
+}
 
     //enrolled courses by signed in student
     function getCourses()
