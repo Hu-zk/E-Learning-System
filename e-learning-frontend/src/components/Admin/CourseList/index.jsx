@@ -34,7 +34,7 @@ function CourseList() {
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Teacher</th>
+                    <th>Teacher id</th>
                     <th>Capacity</th>
                 </tr>
             </thead>

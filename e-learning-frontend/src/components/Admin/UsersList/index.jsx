@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { requestMethods } from '../../../core/enums/requestMethods';
 import { sendRequest } from '../../../core/config/request';
+import EditUserModal from '../../EditForm';
 
 function UserList() {
 
     const [users, setUsers] = useState('');
-    
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [selectedUser, setSelectedUser] = useState();
     
     useEffect(() => {
         const fetchData = async () =>{
@@ -19,26 +21,36 @@ function UserList() {
                 console.error('failed:', error);
             }
         }
-    
+        
         fetchData();
-    }, []);
-    
-    console.log('users:', users);
+    }, [showEditModal]);
 
-    const handleDelete = (id) => {
-        // Perform delete operation based on the user ID
-        // You can send a DELETE request to your API here
+    const handleDelete = async(id) => {
+        try {
+            const response = await sendRequest({
+                route: `/user/admin/delete-user/${id}`,
+                method: requestMethods.GET,
+            });
+            console.log(response)
+        } catch (error) {
+            console.error('failed:', error);
+        }
         console.log(`Delete user with ID: ${id}`);
     };
     
-    const handleEdit = (id) => {
-        // Open the edit form or modal based on the user ID
-        console.log(`Edit user with ID: ${id}`);
-    };
-
     if (!users) {
         return <p>Loading users...</p>;
     }
+
+    const handleEdit = (user) => {
+        setSelectedUser(user);
+        setShowEditModal(true);
+    };
+    const handleCloseModal = () => {
+        setShowEditModal(false);
+        setSelectedUser(null);
+    };
+
 
     return (
         <div className="table-container">
@@ -63,15 +75,25 @@ function UserList() {
                             : 'Student'}
                         </td>
                         <td>{users.email}</td>
-                        <td>
-                            <button onClick={() => handleEdit(users.id)}>Edit</button>
-                            <button onClick={() => handleDelete(users.id)}>Delete</button>
+                        <td className='list-buttons'>
+                            <button className='delete-button' onClick={() => handleDelete(users.id)}>Delete</button>
+                        </td>
+                        <td className='list-buttons'>
+                            <button className='edit-button' onClick={() => handleEdit(users.id)}>Edit</button>
                         </td>
                     </tr>
                     
                 ))}
+                
             </tbody>
         </table>
+        {showEditModal && (
+        <EditUserModal
+            user={selectedUser}
+            onClose={handleCloseModal}
+        />
+        )}
+        
     </div>
     )
 }

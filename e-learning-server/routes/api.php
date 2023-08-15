@@ -41,8 +41,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'admin'], function () {
         Route::post('/create-user', [UserController::class, 'createUser']);
-        Route::put('/update-user/{userId}', [UserController::class, 'updateUser']);
-        Route::delete('/delete-user/{userId}', [UserController::class, 'deleteUser']);
+        Route::post('/update-user/{userId}', [UserController::class, 'updateUser']);
+        Route::get('/delete-user/{userId}', [UserController::class, 'deleteUser']);
         Route::get('/get-users', [UserController::class, 'getUsers']);
         Route::post("/backup", [UserController::class, 'createBackup']);
 

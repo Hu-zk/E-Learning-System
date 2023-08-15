@@ -5,8 +5,8 @@ import CourseList from '../../../components/Admin/CourseList';
 import StudentList from '../../../components/Admin/StudentList';
 import TeacherList from '../../../components/Admin/TeacherList';
 import ParentList from '../../../components/Admin/ParentList';
-// import { sendRequest } from '../../../core/config/request';
-// import { requestMethods } from '../../../core/enums/requestMethods';
+import { sendRequest } from '../../../core/config/request';
+import { requestMethods } from '../../../core/enums/requestMethods';
 import "./style.css";
 import UserList from '../../../components/Admin/UsersList';
 
@@ -68,7 +68,7 @@ function Display() {
     return (
         <div>
             <Navbar nav={nav}/>
-            <div className="admin-outlet">
+            <div>
                 <Outlet/>
             </div>
         </div>

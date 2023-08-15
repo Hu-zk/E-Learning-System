@@ -32,7 +32,7 @@ function App() {
           <Route index element={<AdminHome />} />
           <Route path="/admin/create" element={<Create />} />
           <Route path="/admin/display" element={<Display />} >
-            <Route path="/admin/display/users" element={<UserList/>} />
+            <Route path="/admin/display/users" element={<UserList />} />
             <Route path="/admin/display/students" element={<StudentList/>} />
             <Route path="/admin/display/teachers" element={<TeacherList />} />
             <Route path="/admin/display/parents" element={<ParentList />} />

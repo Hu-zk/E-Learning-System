@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { requestMethods } from '../../../core/enums/requestMethods';
 import { sendRequest } from '../../../core/config/request';
+import EditUserModal from '../../EditForm';
 
 function StudentList() {
     const [students, setStudents] = useState('');
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [selectedUser, setSelectedUser] = useState();
     
     useEffect(() => {
         const fetchData = async () =>{
@@ -28,6 +31,15 @@ function StudentList() {
         return <p>Loading students...</p>;
     }
 
+    const handleEdit = (user) => {
+        setSelectedUser(user);
+        setShowEditModal(true);
+    };
+    const handleCloseModal = () => {
+        setShowEditModal(false);
+        setSelectedUser(null);
+    };
+
     return (
         <div className="table-container">
         <table id="contactsTable">
@@ -35,6 +47,7 @@ function StudentList() {
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Parent id</th>
                     <th>Email</th>
                 </tr>
             </thead>
@@ -43,11 +56,21 @@ function StudentList() {
                     <tr key={index}>
                         <td>{students.id}</td>
                         <td>{students.name}</td>
+                        <td>{students.parent_id}</td>
                         <td>{students.email}</td>
+                        <td className='list-buttons'>
+                            <button className='edit-button' onClick={() => handleEdit(students.id)}>Statistics</button>
+                        </td>
                     </tr>
                 ))}
             </tbody>
         </table>
+        {showEditModal && (
+        <EditUserModal
+            user={selectedUser}
+            onClose={handleCloseModal}
+        />
+        )}
     </div>
     )
 }
