@@ -16,8 +16,7 @@ const Material = ({data}) => {
         : null
 
     const handleNavigate = (e) => {
-        console.log(isQuiz)
-        if(isQuiz !== "undefined") {
+        if(data.is_quiz !== undefined) {
             navigate(`/teacher/course/${id}/assignment/${data.id}`)
         }
     }

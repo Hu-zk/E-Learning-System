@@ -1,11 +1,12 @@
 import React, {useState, useRef, useEffect} from "react";
-import Announcement from "../../../components/Teacher/Announcement/Announcement";
+import AnnouncementForm from "../../../components/Teacher/AnnouncementForm/AnnouncementForm";
 import Material from "../../../components/Teacher/Material/Material";
 import "./style.css"
 import "react-dropdown/style.css";
 import {GrClose} from "react-icons/gr"
 import {Link, useParams} from "react-router-dom/dist/umd/react-router-dom.development";
 import axios from "axios"
+import Announcement from "../../../components/Teacher/Announcement/Announcement";
 
 const Course = () => {
 
@@ -48,15 +49,16 @@ const Course = () => {
         }
         console.log(data)
         try {
-            let response = await axios.post(`http://127.0.0.1:8000/api/user/teacher/${id}/create-assignment-quiz`, data, {
+            let response = await axios.post(
+              `http://127.0.0.1:8000/api/user/teacher/${id}/create-assignment-quiz`,
+              data,
+              {
                 headers: {
-                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
-                            "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTA4MTMxLCJleHAiOjE2OTIxMTE3MzEsIm5iZiI6" +
-                            "MTY5MjEwODEzMSwianRpIjoiZzUxVlpFRHVXQTJ3RHlJMiIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
-                            "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-vDzOXKaA-dRd8y1QjgUFAXn838JfT8u" +
-                            "Gb5sgfGkEK0"
-                }
-            });
+                  Authorization:
+                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTEzODY5LCJleHAiOjE2OTIxMTc0NjksIm5iZiI6MTY5MjExMzg2OSwianRpIjoibDh5N3piZmV4RXM0Nm9pUyIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.PhLpP_d0OuIUZJp2ecCzSDnnGeCIO-VyWyVXSXaLLo4",
+                },
+              }
+            );
             console.log(response)
             setTitle("")
             setDescription("")
@@ -111,15 +113,15 @@ const Course = () => {
 
     useEffect(() => {
         const getCourseDetails = async() => {
-            let {data} = await axios.get(`http://127.0.0.1:8000/api/user/shared/${id}/content`, {
+            let { data } = await axios.get(
+              `http://127.0.0.1:8000/api/user/shared/${id}/content`,
+              {
                 headers: {
-                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
-                            "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTA4MTMxLCJleHAiOjE2OTIxMTE3MzEsIm5iZiI6" +
-                            "MTY5MjEwODEzMSwianRpIjoiZzUxVlpFRHVXQTJ3RHlJMiIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
-                            "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-vDzOXKaA-dRd8y1QjgUFAXn838JfT8u" +
-                            "Gb5sgfGkEK0"
-                }
-            });
+                  Authorization:
+                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTEzODY5LCJleHAiOjE2OTIxMTc0NjksIm5iZiI6MTY5MjExMzg2OSwianRpIjoibDh5N3piZmV4RXM0Nm9pUyIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.PhLpP_d0OuIUZJp2ecCzSDnnGeCIO-VyWyVXSXaLLo4",
+                },
+              }
+            );
             let details = data.content
             let combinedArray = [
                 ...details.materials,
@@ -220,8 +222,9 @@ const Course = () => {
             <div className="course-name">Course One</div>
             <div className="stream">
                 <div className="left-stream">
-                    {isAnnouncementOpened && <Announcement/>}
+                    {isAnnouncementOpened && <AnnouncementForm/>}
                     <div className="content">
+                        <Announcement />
                         {materials.map((item, index) => (
                             <Material key={index} data={item} />
                         ))}
