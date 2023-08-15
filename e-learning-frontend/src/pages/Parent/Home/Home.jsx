@@ -7,20 +7,6 @@ const Home = () => {
     const [announcement, setAnnouncment] = useState([]);
     const [isAvailable, setIsAvailable] = useState(false);
 
-    // const items = [
-    // {
-    //     title: "Section 1",
-    //     content: "This is the content of section 1"
-    // },
-    // {
-    //     title: "Section 2",
-    //     content: "This is the content of section 2"
-    // },
-    // {
-    //     title: "Section 3",
-    //     content: "This is the content of section 3"
-    // }
-    // ]
     const getAnnouncments = async () => {
         const token = localStorage.getItem('jwtToken');
         const response = await axios.get('http://127.0.0.1:8000/api/user/parent/teacher_announcement', {
@@ -34,7 +20,6 @@ const Home = () => {
             setAnnouncment(data.data);
             setIsAvailable(true);
         }else{
-            // setMeeting(true);
             setIsAvailable(false);
             console.log("there are no announcments");
         }
