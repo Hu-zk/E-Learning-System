@@ -5,7 +5,6 @@ import {
   AiFillHome,
   AiFillPlusCircle,
   AiFillSetting,
-  AiOutlineFundProjectionScreen,
 } from "react-icons/ai";
 import { CgDisplayFullwidth } from "react-icons/cg";
 import Sidebar from "../../components/common/Sidebar/Sidebar";
@@ -24,10 +23,6 @@ function AdminLayout() {
     {
       svg: <CgDisplayFullwidth size={32} />,
       onclick: () => navigate("/admin/display"),
-    },
-    {
-      svg: <AiOutlineFundProjectionScreen size={32} />,
-      onclick: () => navigate("/admin"),
     },
     {
       svg: <AiFillSetting size={32} />,
