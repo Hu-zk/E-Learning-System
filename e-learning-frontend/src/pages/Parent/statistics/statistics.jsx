@@ -7,7 +7,9 @@ import { SharedComp } from "../../../components/multiUseComp/multiUseComp";
 const Statistics = () => {
     const [notCompleted,setNotCompleted] = useState(false);
     const [messagebody, setMessage] = useState('');
+    const [info, setInfo] = useState([]);
     const completed = "completed";
+    const enrolled = "enrolled";
 
 
     const getCompleted = async () => {
@@ -22,38 +24,32 @@ const Statistics = () => {
             if(data.data){
                 console.log("enrolled classes are...", data.data);
             }
-            else{
-                // if (notCompleted){
-                setMessage("no completed courses yet");
-                setNotCompleted(true);
-                console.log(notCompleted);  
-
-                // }
-            }
         }else{
             console.log("no enrolled courses.")
         }
     }
 
-    //     const getChild = async () => {
-    //     const token = localStorage.getItem('jwtToken');
-    //     const response = await axios.get('http://127.0.0.1:8000/api/user/parent/get_child', {
-    //         headers: {
-    //             'Authorization': `Bearer ${token}`
-    //         }
-    //     });
-    //     const data = response.data;
-    //     if(data.status == 'success'){
-    //         setChildren(data.data);
-    //         console.log('children', children)
-    //     }else{
-    //         console.log("no children exist")
-    //     }
-    // }
+        const getAttendance = async () => {
+        const token = localStorage.getItem('jwtToken');
+        const response = await axios.get('http://127.0.0.1:8000/api/user/parent/attendance_course', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const data = response.data;
+        console.log("majed",data);
+        if(data.status == 'success'){
+            // console.log(data.data)
+
+            setInfo(data.data);
+        }else{
+            console.log("no attendance")
+        }
+    }
 
     useEffect(()=>{
         getCompleted();
-        // getChild();
+        getAttendance();
     },[])
 
     return(
@@ -66,7 +62,8 @@ const Statistics = () => {
                             <Assignment/>
                         </div>
                         <div className={styles.right_container}>
-                            <SharedComp title={completed} info={messagebody}/>{/* add the info*/}
+                            <SharedComp title={completed} info={messagebody}/>
+                            <SharedComp title={enrolled} info={info}/>
                         </div>
                     </div>
                 </div>
