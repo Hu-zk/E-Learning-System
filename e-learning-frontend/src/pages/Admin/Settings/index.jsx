@@ -1,7 +1,9 @@
 import React from 'react'
 import Navbar from '../../../components/Admin/Navbar'
-import { Outlet, useNavigate } from 'react-router-dom';
+import Appearance from '../../../components/Admin/Appearance';
+import { Outlet } from 'react-router-dom';
 import "./style.css";
+import EmailSection from '../../../components/Admin/EmailSection';
 
 function Settings() {
 
@@ -14,8 +16,9 @@ function Settings() {
     return (
         <div>
             <Navbar nav={nav}/>
-            <div>
-                <Outlet/>
+            <div className='setting-page'>
+                <Appearance/>
+                <EmailSection/>
             </div>
         </div>
     )
