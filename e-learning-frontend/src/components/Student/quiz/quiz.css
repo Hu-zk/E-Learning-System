@@ -17,7 +17,7 @@
 }
 
 #submit {
-    opacity: 0;
+    display: none;
 }
 
 .inputfile {
@@ -26,6 +26,19 @@
 }
 
 .submitBtn {
+    background-color: rgba(78, 153, 224, 0.589);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+.buttonquiz {
+    display: flex;
+    justify-content: flex-end;
+    gap: 80px;
+    align-items: center;
+}
+
+.SubmitBtn {
     background-color: rgba(78, 153, 224, 0.589);
     padding: 20px;
     text-align: center;

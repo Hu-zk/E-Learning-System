@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./quiz.css";
+import axios from "axios";
 
 function Quiz({ quizData }) {
-  console.log(quizData);
   const [uploadedFile, setUploadedFile] = useState(null);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     setUploadedFile(file);
   };
-
+  const submitData = async () => {
+    const data = new FormData();
+    data.append("file", uploadedFile);
+    data.append("assignment_id", quizData.id);
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/user/student/upload-submission",
+        data
+      );
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {});
   return (
     <div className="quiz-container">
       <div className="quizinfo">
@@ -31,11 +45,16 @@ function Quiz({ quizData }) {
         ) : (
           <p>No file available for this quiz.</p>
         )}
-        <div className="inputfile">
-          <label htmlFor="submit" className="submitBtn">
-            Submit
-          </label>
-          <input type="file" id="submit" onChange={handleFileUpload} />
+        <div className="buttonquiz">
+          <div className="inputfile">
+            <label htmlFor="submit" className="submitBtn">
+              Upload
+            </label>
+            <input type="file" id="submit" onChange={handleFileUpload} />
+          </div>
+          <div className="SubmitBtn" onClick={submitData}>
+            submit
+          </div>
         </div>
       </div>
       <p>Created on: {quizData.created_at.split("T")[0]}</p>
