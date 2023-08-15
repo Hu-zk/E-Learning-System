@@ -9,20 +9,20 @@ export const Assignment = ({title}) =>{
 
     const getAssignments = async () => {
         const token = localStorage.getItem('jwtToken');
-        const response = await axios.get('http://127.0.0.1:8000/api/user/parent/get_is_submited', {
+        const response = await axios.get('http://127.0.0.1:8000/api/user/shared/get_is_submited', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         });
-        const data = response.data;
-        console.log("dataaaaa",data);
-        if(data.status == 'success'){
-            setAssignments(data.data);
+        const data = response.data.data;
+        console.log("hatshyyy",data);
+        // if(data.status == 'success'){
+            setAssignments(data);
             // setIsAvailable(true);
-        }else{
+        // }else{
             // setIsAvailable(false);
             console.log("there are no assignments");
-        }
+        // }
     }
 
     useEffect(()=>{

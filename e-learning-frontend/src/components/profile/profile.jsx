@@ -17,7 +17,7 @@ export const Profile = () =>{
 
     const getMeeting = async () => {
         const token = localStorage.getItem('jwtToken');
-        const response = await axios.get('http://127.0.0.1:8000/api/user/parent/get_parent', {
+        const response = await axios.get('http://127.0.0.1:8000/api/user/shared/get_parent', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
