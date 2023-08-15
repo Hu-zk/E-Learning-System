@@ -7,9 +7,11 @@ import { SharedComp } from "../../../components/multiUseComp/multiUseComp";
 const Statistics = () => {
     const [notCompleted,setNotCompleted] = useState(false);
     const [messagebody, setMessage] = useState('');
-    const [info, setInfo] = useState([]);
-    const completed = "completed";
-    const enrolled = "enrolled";
+    const [courses, setEnrolledCourses] = useState([]);
+    const [attendance, setAttendance] = useState([]);
+    const completed = "Completed";
+    const enrolled = "Enrolled";
+    const attend = "Attandance";
 
 
     const getCompleted = async () => {
@@ -29,7 +31,26 @@ const Statistics = () => {
         }
     }
 
-        const getAttendance = async () => {
+    //     const getAttendance = async () => {
+    //     const token = localStorage.getItem('jwtToken');
+    //     const response = await axios.get('http://127.0.0.1:8000/api/user/parent/attendance_course', {
+    //         headers: {
+    //             'Authorization': `Bearer ${token}`
+    //         }
+    //     });
+    //     const data = response.data;
+    //     console.log("majed",data.data);
+    //     if(data.status == 'success'){
+    //         // console.log(data.data)
+
+    //         // setInfo(data.data);
+
+    //         console.log(data.data.course_name)
+    //     }else{
+    //         console.log("no attendance")
+    //     }
+    // }
+    const getAttendance = async () => {
         const token = localStorage.getItem('jwtToken');
         const response = await axios.get('http://127.0.0.1:8000/api/user/parent/attendance_course', {
             headers: {
@@ -37,14 +58,15 @@ const Statistics = () => {
             }
         });
         const data = response.data;
-        console.log("majed",data);
-        if(data.status == 'success'){
-            // console.log(data.data)
-
-            setInfo(data.data);
-        }else{
-            console.log("no attendance")
-        }
+        console.log("data",data);
+        console.log("data.status",data.status)
+        console.log("data.data",data.data) 
+        const course_names = data.data.map(course => (
+            setEnrolledCourses(course.course_name),
+            setAttendance(course.attendance_status),
+            console.log("attend", course.attendance_status)
+        ));
+        console.log("info",courses)
     }
 
     useEffect(()=>{
@@ -63,7 +85,8 @@ const Statistics = () => {
                         </div>
                         <div className={styles.right_container}>
                             <SharedComp title={completed} info={messagebody}/>
-                            <SharedComp title={enrolled} info={info}/>
+                            <SharedComp title={enrolled} info={courses}/>
+                            <SharedComp title={attend} info={attendance}/>
                         </div>
                     </div>
                 </div>
