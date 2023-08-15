@@ -1,7 +1,17 @@
 import "./style.css"
-import { BsThreeDotsVertical } from "react-icons/bs"
+import {BsThreeDotsVertical} from "react-icons/bs"
+import {formatDistanceToNow, parseISO} from "date-fns";
 
-const Announcement = () => {
+const Announcement = ({data}) => {
+
+    console.log("annnoun")
+    console.log(data)
+    console.log("announcc")
+
+    const dateObject = data?.created_at
+        ? parseISO(data.created_at)
+        : null;
+
     return (
         <div className="annoucement">
             <div className="annoucement-top">
@@ -13,14 +23,22 @@ const Announcement = () => {
                     </div>
                     <div>
                         <div className="name">Mhmd Hussein</div>
-                        <div className="date">Jul 23</div>
+                        <div className="date">
+                            {dateObject && (
+                                <p>{formatDistanceToNow(dateObject, {addSuffix: true})}</p>
+                            )}
+                        </div>
                     </div>
                 </div>
-                <div className="right"><BsThreeDotsVertical size={25} /></div>
+                <div className="right">
+                    <BsThreeDotsVertical size={25}/>
+                </div>
             </div>
             <div className="announcement-bottom">
-                <div className="title">announcementttt</div>
-                <p>Description</p>
+                <div className="title">{data
+                        ?.title}</div>
+                <p>{data
+                        ?.description}</p>
             </div>
         </div>
     );

@@ -4,7 +4,7 @@ import {LiaPaperPlaneSolid} from "react-icons/lia";
 import {useParams} from "react-router-dom/dist/umd/react-router-dom.development";
 import axios from "axios";
 
-const AnnouncementForm = () => {
+const AnnouncementForm = ({materials, setMaterials}) => {
 
     const {id} = useParams()
     let [title,
@@ -13,22 +13,23 @@ const AnnouncementForm = () => {
         setDesc] = useState("")
 
     const handleAnnounce = async() => {
-        let data = {
+        let body = {
             title,
             description: desc,
             is_announcement: true,
         }
         try {
-            let response = await axios.post(
+            let { data } = await axios.post(
               `http://127.0.0.1:8000/api/user/teacher/${id}/create-material`,
-              data,
+              body,
               {
                 headers: {
                   Authorization:
-                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTEzODY5LCJleHAiOjE2OTIxMTc0NjksIm5iZiI6MTY5MjExMzg2OSwianRpIjoibDh5N3piZmV4RXM0Nm9pUyIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.PhLpP_d0OuIUZJp2ecCzSDnnGeCIO-VyWyVXSXaLLo4",
+                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTI0MzY5LCJleHAiOjE2OTIxMjc5NjksIm5iZiI6MTY5MjEyNDM2OSwianRpIjoiUVhJV1hNTllNeVJVUEV0WSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rXmmhEnIK5rHMmHsFURR8AEat-wkrqiqVQrAWJbUzeI",
                 },
               }
             );
+            setMaterials(prev => [data.content, ...prev])
             setTitle("")
             setDesc("")
         } catch (error) {

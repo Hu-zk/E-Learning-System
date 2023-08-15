@@ -36,40 +36,68 @@ const Course = () => {
     const fileRef = useRef(null)
 
     const uploadAssignmentQuiz = async(type) => {
-        let data = {
-            title,
-            description,
-            grade,
-            deadline: date,
-            course_id: id,
-            file,
-            is_quiz: type === "quiz"
-                ? true
-                : false
+        if(materialType === "quiz" || materialType === "assignment") {
+            let data = {
+              title,
+              description,
+              grade,
+              deadline: date,
+              course_id: id,
+              file,
+              is_quiz: type === "quiz" ? true : false,
+            };
+            console.log(data);
+            try {
+              let response = await axios.post(
+                `http://127.0.0.1:8000/api/user/teacher/${id}/create-assignment-quiz`,
+                data,
+                {
+                  headers: {
+                    Authorization:
+                      "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTI0MzY5LCJleHAiOjE2OTIxMjc5NjksIm5iZiI6MTY5MjEyNDM2OSwianRpIjoiUVhJV1hNTllNeVJVUEV0WSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rXmmhEnIK5rHMmHsFURR8AEat-wkrqiqVQrAWJbUzeI",
+                  },
+                }
+              );
+              console.log(response);
+              setTitle("");
+              setDescription("");
+              setDate("");
+              setGrade("");
+              setFile(null);
+              setIsModalOpened(false);
+            } catch (error) {
+              console.log(error);
+            }
+        }else {
+            let data = {
+              title,
+              description,
+              file,
+              is_announcement: false
+            };
+            console.log(data);
+            try {
+              let response = await axios.post(
+                `http://127.0.0.1:8000/api/user/teacher/${id}/create-material`,
+                data,
+                {
+                  headers: {
+                    Authorization:
+                      "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTI0MzY5LCJleHAiOjE2OTIxMjc5NjksIm5iZiI6MTY5MjEyNDM2OSwianRpIjoiUVhJV1hNTllNeVJVUEV0WSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rXmmhEnIK5rHMmHsFURR8AEat-wkrqiqVQrAWJbUzeI",
+                  },
+                }
+              );
+              console.log(response);
+              setTitle("");
+              setDescription("");
+              setDate("");
+              setGrade("");
+              setFile(null);
+              setIsModalOpened(false);
+            } catch (error) {
+              console.log(error);
+            }
         }
-        console.log(data)
-        try {
-            let response = await axios.post(
-              `http://127.0.0.1:8000/api/user/teacher/${id}/create-assignment-quiz`,
-              data,
-              {
-                headers: {
-                  Authorization:
-                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTEzODY5LCJleHAiOjE2OTIxMTc0NjksIm5iZiI6MTY5MjExMzg2OSwianRpIjoibDh5N3piZmV4RXM0Nm9pUyIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.PhLpP_d0OuIUZJp2ecCzSDnnGeCIO-VyWyVXSXaLLo4",
-                },
-              }
-            );
-            console.log(response)
-            setTitle("")
-            setDescription("")
-            setDate("")
-            setGrade("")
-            setFile(null)
-            setIsModalOpened(false)
-        } catch (error) {
-            console.log(error)
-        }
-
     }
 
     const handleOpen = () => {
@@ -86,17 +114,18 @@ const Course = () => {
     }
 
     const handleMenuOne = () => {
+        setMaterialType("lecture")
         openModal()
     };
 
     const handleMenuTwo = () => {
-        openModal()
         setMaterialType("quiz")
+        openModal()
     };
 
     const handleMenuThree = () => {
-        openModal()
         setMaterialType("assignment")
+        openModal()
     };
 
     const handleGradeChange = (e) => {
@@ -118,7 +147,7 @@ const Course = () => {
               {
                 headers: {
                   Authorization:
-                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTEzODY5LCJleHAiOjE2OTIxMTc0NjksIm5iZiI6MTY5MjExMzg2OSwianRpIjoibDh5N3piZmV4RXM0Nm9pUyIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.PhLpP_d0OuIUZJp2ecCzSDnnGeCIO-VyWyVXSXaLLo4",
+                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTI0MzY5LCJleHAiOjE2OTIxMjc5NjksIm5iZiI6MTY5MjEyNDM2OSwianRpIjoiUVhJV1hNTllNeVJVUEV0WSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rXmmhEnIK5rHMmHsFURR8AEat-wkrqiqVQrAWJbUzeI",
                 },
               }
             );
@@ -160,6 +189,7 @@ const Course = () => {
                                 cols="30"
                                 rows="10"></textarea>
                         </div>
+                        {(materialType === "quiz" || materialType === "assignment") &&
                         <div className="row">
                             <div>
                                 <input
@@ -175,7 +205,7 @@ const Course = () => {
                                     type="text"
                                     placeholder="Grade"/>
                             </div>
-                        </div>
+                        </div>}
                         <div>
                             <button onClick={() => fileRef.current.click()} className="upload-file">
                                 Upload File
@@ -222,9 +252,8 @@ const Course = () => {
             <div className="course-name">Course One</div>
             <div className="stream">
                 <div className="left-stream">
-                    {isAnnouncementOpened && <AnnouncementForm/>}
+                    {isAnnouncementOpened && <AnnouncementForm setMaterials={setMaterials} materials={materials}/>}
                     <div className="content">
-                        <Announcement />
                         {materials.map((item, index) => (
                             <Material key={index} data={item} />
                         ))}
