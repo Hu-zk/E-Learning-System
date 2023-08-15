@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 function Inprogress() {
   const navigate = useNavigate();
-  // const [progress, setProgress] = useState([]);
   const [courseData, setCourseData] = useState([]);
 
   const fetchdata = async () => {
@@ -15,7 +14,6 @@ function Inprogress() {
         "http://127.0.0.1:8000/api/user/shared/course_stats"
       );
       const data = response.data.data;
-      // setProgress(data);
       processCourseData(data);
     } catch (error) {
       console.error(error);

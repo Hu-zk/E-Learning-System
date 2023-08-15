@@ -1,0 +1,9 @@
+.lecture-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+video {
+    width: 900px;
+}

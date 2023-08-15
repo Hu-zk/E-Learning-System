@@ -9,9 +9,9 @@ import Quiz from "../../../components/Student/quiz/Quiz";
 function CoursePage() {
   const { userData } = useContext(AuthContext);
   axios.defaults.headers.common["Authorization"] = `Bearer ${userData.token}`;
+  const [selectedData, setSelectedData] = useState(null);
   const [type, setType] = useState("");
   const param = useParams();
-  //   const [data, setData] = useState([]);
   const [lectures, setLectures] = useState([]);
   const fetchdata = async () => {
     try {
@@ -19,7 +19,6 @@ function CoursePage() {
         `http://127.0.0.1:8000/api/user/shared/${param.id}/content`
       );
       const lectureData = await response.data;
-      //   setData(lectureData.content);
       setLectures([
         ...lectureData.content.materials,
         ...lectureData.content.assignments,
@@ -46,13 +45,12 @@ function CoursePage() {
                 className="title"
                 key={index}
                 onClick={() => {
+                  setSelectedData(ele);
                   if (ele.is_announcement == 0) {
                     setType("lecture");
                   } else {
                     setType("quiz");
                   }
-                  console.log(type);
-                  console.log("type");
                 }}>
                 {ele.title}
               </div>
@@ -63,9 +61,9 @@ function CoursePage() {
           {type == "" ? (
             <div>wlecome</div>
           ) : type == "lecture" ? (
-            <Lecture />
+            <Lecture lectureData={selectedData} />
           ) : (
-            <Quiz />
+            <Quiz quizData={selectedData} />
           )}
         </div>
       </div>

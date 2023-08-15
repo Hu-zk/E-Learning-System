@@ -4,6 +4,7 @@
     gap: 30px;
     padding: 20px;
     width: 70%;
+    flex: 120;
 
 }
 .chart {

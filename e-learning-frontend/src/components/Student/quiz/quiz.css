@@ -1,0 +1,33 @@
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    padding-left: 20px;
+}
+
+.quizinfo {
+    display: flex;
+    justify-content: space-around;
+}
+
+.file {
+    display: flex;
+    justify-content: space-around;
+}
+
+#submit {
+    opacity: 0;
+}
+
+.inputfile {
+    display: flex;
+    flex-direction: column;
+}
+
+.submitBtn {
+    background-color: rgba(78, 153, 224, 0.589);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
