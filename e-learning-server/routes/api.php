@@ -42,7 +42,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get("get_child", [ParentController::class, "getChild"]);
         Route::get("get_is_submited", [StudentContoller::class, "IsSubmitted"]);
         Route::get("get_is_completed", [StudentContoller::class, "IsCompleted"]);
-        Route::get("attendance_course", [CourseController::class, "courseAttandance"]);
+        Route::get("attendance_course", [CourseController::class, "courseAttendance"]);
         Route::get("teachers_courses", [CourseController::class, "getCoursesTeacher"]);
         Route::get("teacher_announcement", [MaterialContoller::class, "TeacherAnnouncementWithParents"]);
     });

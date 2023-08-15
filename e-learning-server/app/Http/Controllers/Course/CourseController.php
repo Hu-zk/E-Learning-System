@@ -196,24 +196,34 @@ class CourseController extends Controller
         ], 201);
     }
 
-    function courseAttandance()
-    {
-        $auth_user_id = Auth::user()->id;
-        $student = User::child($auth_user_id)->first();
-        $attendance = Attendance::AttendanceStatus()->where("student_id", $student->id);
-        if ($attendance->exists()) {
-            $course_attend = $attendance->with('course')->get();
-        } else {
-            return response()->json([
-                "status" => "success",
-                "message" => "Not atttendent courses"
-            ]);
+    function courseAttendance()
+{
+    $auth_user_id = Auth::user()->id;
+    $student = User::child($auth_user_id)->first();
+    $attendance = Attendance::AttendanceStatus()->where("student_id", $student->id);
+
+    if ($attendance->exists()) {
+        $course_attend = $attendance->with('course')->get();
+
+        $data = [];
+        foreach ($course_attend as $attendance) {
+            $data[] = [
+                "course_name" => $attendance->course->name,
+                "attendance_status" => $attendance->attendance_status
+            ];
         }
+
         return response()->json([
             "status" => "success",
-            "data" => $course_attend
+            "data" => $data
+        ]);
+    } else {
+        return response()->json([
+            "status" => "success",
+            "message" => "Not attended courses"
         ]);
     }
+}
 
     function getCoursesTeacher()
     {
