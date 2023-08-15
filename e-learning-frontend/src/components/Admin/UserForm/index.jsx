@@ -28,6 +28,12 @@ function UserForm({onToggle}) {
                         user_type_id,}
                 });
                 console.log(response)
+                setName("")
+                setParentId("")
+                setConfirmPassword("")
+                setEmail("")
+                setPassword("")
+
             }
         } catch (error) {
             console.error('failed:', error);

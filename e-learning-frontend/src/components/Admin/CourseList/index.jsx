@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { requestMethods } from '../../../core/enums/requestMethods';
 import { sendRequest } from '../../../core/config/request';
+import EditCourse from '../EditCourse';
 
 function CourseList() {
     const [courses, setCourses] = useState('');
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [selectedCourse, setSelectedCourse] = useState();
     
     useEffect(() => {
         const fetchData = async () =>{
@@ -20,13 +23,23 @@ function CourseList() {
         }
     
         fetchData();
-    }, []);
+    }, [showEditModal]);
     
     console.log('courses:', courses);
 
     if (!courses) {
         return <p>Loading courses...</p>;
     }
+
+    const handleEdit = (course) => {
+        setSelectedCourse(course);
+        setShowEditModal(true);
+    };
+    const handleCloseModal = () => {
+        setShowEditModal(false);
+        setSelectedCourse(null);
+    };
+
     return (
         <div className="table-container">
         <table id="contactsTable">
@@ -45,10 +58,19 @@ function CourseList() {
                         <td>{courses.name}</td>
                         <td>{courses.teacher_id}</td>
                         <td>{courses.capacity}</td>
+                        <td className='list-buttons'>
+                            <button className='edit-button' onClick={() => handleEdit(courses.id)}>Edit</button>
+                        </td>
                     </tr>
                 ))}
             </tbody>
         </table>
+        {showEditModal && (
+        <EditCourse
+            course={selectedCourse}
+            onClose={handleCloseModal}
+        />
+        )}
     </div>
     )
 }

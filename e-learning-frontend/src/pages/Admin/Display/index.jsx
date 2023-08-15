@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Navbar from '../../../components/Admin/Navbar'
 import { Outlet, useNavigate } from 'react-router-dom';
 import CourseList from '../../../components/Admin/CourseList';
 import StudentList from '../../../components/Admin/StudentList';
 import TeacherList from '../../../components/Admin/TeacherList';
 import ParentList from '../../../components/Admin/ParentList';
-import { sendRequest } from '../../../core/config/request';
-import { requestMethods } from '../../../core/enums/requestMethods';
+// import { sendRequest } from '../../../core/config/request';
+// import { requestMethods } from '../../../core/enums/requestMethods';
 import "./style.css";
 import UserList from '../../../components/Admin/UsersList';
 

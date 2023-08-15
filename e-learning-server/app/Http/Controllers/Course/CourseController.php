@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Auth;
 class CourseController extends Controller
 {
 
-    function createCourse(Request $request) {
+    function createCourse(Request $request)
+    {
 
         $validatedData = $request->validate([
             "teacher_id" => 'required|exists:users,id',
@@ -28,13 +29,15 @@ class CourseController extends Controller
         return response()->json(["message" => "course created successfully", "course" => $course]);
     }
 
-    function updateCourse(Request $request, $courseId) {
+    function updateCourse(Request $request, $courseId)
+    {
 
         $course = Course::find($courseId);
 
         $course->name = $request->name;
         $course->capacity = $request->capacity;
         $course->teacher_id = $request->teacher_id;
+        $course->save();
 
         // $validatedData = $request->validate([
         //     "teacher_id" => 'required|exists:users,id',
@@ -47,7 +50,8 @@ class CourseController extends Controller
         return response()->json(["message" => "course updated successfully", "course" => $course]);
     }
 
-    function courseReport($courseReport) {
+    function courseReport($courseReport)
+    {
 
         $course = Course::find($courseReport);
 
@@ -61,7 +65,8 @@ class CourseController extends Controller
         ]);
     }
 
-    function teacherReport($teacherId) {
+    function teacherReport($teacherId)
+    {
 
         $teacher = User::find($teacherId);
         $teacher_courses = Course::where('teacher_id', $teacherId)->get();
@@ -69,7 +74,8 @@ class CourseController extends Controller
         return response()->json($teacher_courses);
     }
 
-    function studentReport($studentId) {
+    function studentReport($studentId)
+    {
 
         $student = User::find($studentId);
         $enrolled_courses = $student->enrolledCourses;
@@ -78,10 +84,10 @@ class CourseController extends Controller
 
         $content = [];
 
-        foreach($enrolled_courses as $enrolledCourse) {
+        foreach ($enrolled_courses as $enrolledCourse) {
             $enrollments = $enrolledCourse->enrollments;
 
-            foreach($enrollments as $enrollment) {
+            foreach ($enrollments as $enrollment) {
                 $avg_grade = $enrollment->submission->avg("grade");
                 return response()->json($avg_grade);
             }
@@ -98,7 +104,7 @@ class CourseController extends Controller
             'data' => $content
         ]);
     }
-    
+
     public function getCourseContent($courseId)
     {
         $course = Course::findOrFail($courseId);
@@ -221,7 +227,7 @@ class CourseController extends Controller
         $child_course = User::child($auth_user_id)->first();
         $all_data = $child_course->StudentEnroll()->with('course.teacher');
         if ($all_data->exists()) {
-            $data=$all_data->get();
+            $data = $all_data->get();
         }
         $courseTeachers = $data->pluck('course.teacher.name')->toArray();
 

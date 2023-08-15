@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { requestMethods } from '../../../core/enums/requestMethods';
 import { sendRequest } from '../../../core/config/request';
-import EditUserModal from '../../EditForm';
+import EditUserModal from '../EditForm';
 
 function StudentList() {
     const [students, setStudents] = useState('');
     const [showEditModal, setShowEditModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState();
+    
     
     useEffect(() => {
         const fetchData = async () =>{

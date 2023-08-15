@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { requestMethods } from '../../../core/enums/requestMethods';
 import { sendRequest } from '../../../core/config/request';
-import EditUserModal from '../../EditForm';
+import EditUserModal from '../EditForm';
 
 function UserList() {
 
     const [users, setUsers] = useState('');
     const [showEditModal, setShowEditModal] = useState(false);
+    const [deleted, setDeleted] = useState(false);
     const [selectedUser, setSelectedUser] = useState();
     
     useEffect(() => {
@@ -23,7 +24,7 @@ function UserList() {
         }
         
         fetchData();
-    }, [showEditModal]);
+    }, [showEditModal,deleted]);
 
     const handleDelete = async(id) => {
         try {
@@ -32,6 +33,7 @@ function UserList() {
                 method: requestMethods.GET,
             });
             console.log(response)
+            setDeleted(true);
         } catch (error) {
             console.error('failed:', error);
         }

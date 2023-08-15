@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { sendRequest } from '../../core/config/request';
-import { requestMethods } from '../../core/enums/requestMethods';
+import { sendRequest } from '../../../core/config/request';
+import { requestMethods } from '../../../core/enums/requestMethods';
 
 function EditUserModal({ user, onClose, onUpdate }) {
 
@@ -29,7 +29,6 @@ function EditUserModal({ user, onClose, onUpdate }) {
         } catch (error) {
             console.error('failed:', error);
         }
-        // onUpdate(user_id, { name, email });
         onClose();
     };
 
