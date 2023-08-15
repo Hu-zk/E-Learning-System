@@ -4,10 +4,6 @@ const SubmittedStudent = ({student, grade, setSolution, setIsFeedbackOpened, sol
 
     const {name} = student.student
 
-    console.log("stddddddd")
-    console.log(student)
-    console.log("stddddddd")
-
     const handleOpenSolution = (e) => {
 
         console.log(student)
@@ -16,16 +12,6 @@ const SubmittedStudent = ({student, grade, setSolution, setIsFeedbackOpened, sol
         if(student.feedback) {
             setIsFeedbackOpened(true)
         }
-        console.log("uppp")
-        console.log("solution")
-        console.log(student)
-        console.log("solution")
-        console.log("grade")
-        console.log(student.grade)
-        console.log("grade")
-        console.log("feedback")
-        console.log(student.feedback)
-        console.log("feedback")
         if (student && student.grade && !student.feedback) {
           setIsFeedbackOpened(false);
           console.log("heeereeee")

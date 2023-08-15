@@ -1,5 +1,5 @@
 import {Link, useNavigate, useParams} from "react-router-dom/dist/umd/react-router-dom.development";
-import StudentAttendance from "../StudentAttendance/StudentAttendance";
+import StudentAttendance from "../../../components/Teacher/StudentAttendance/StudentAttendance";
 import "./Attendance.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -41,15 +41,12 @@ const Attendance = () => {
 
     const handleAttendance = async() => {
         try {
+            const token = localStorage.getItem("jwtToken")
             await axios.post(`http://127.0.0.1:8000/api/user/teacher/record-attendance/${id}`, {
                 students: attendance
             }, {
                 headers: {
-                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
-                            "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMDQ4MTM1LCJleHAiOjE2OTIwNTE3MzUsIm5iZiI6" +
-                            "MTY5MjA0ODEzNSwianRpIjoiQ3VnMVo4WDVWSDNTUXAxTiIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
-                            "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Hswzlu--KVEQcbU44_CJ_Hx0LHFQzDiT" +
-                            "D3nSaaV13O8"
+                    Authorization: `Bearer ${token}`
                 }
             });
             navigate(`/teacher/course/${id}`)

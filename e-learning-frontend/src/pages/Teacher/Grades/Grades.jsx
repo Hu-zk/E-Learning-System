@@ -23,14 +23,11 @@ const Grades = () => {
 
     useEffect(() => {
         try {
+            const token = localStorage.getItem("jwtToken");
             const getAssignmentData = async() => {
                 let {data} = await axios.get(`http://127.0.0.1:8000/api/user/teacher/${assignmentId}`, {
                     headers: {
-                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
-                                "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMDk3MjA3LCJleHAiOjE2OTIxMDA4MDcsIm5iZiI6" +
-                                "MTY5MjA5NzIwNywianRpIjoiYlBCYzVRV1pjVGVhQUVSWSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
-                                "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.stJUYkfQ_G4Y8TExcUbdVCOROC5kaZYB" +
-                                "3BBgjIWFNzc"
+                        Authorization: `Bearer ${token}`
                     }
                 });
                 console.log(data)
@@ -182,4 +179,4 @@ const Grades = () => {
     );
 }
 
-export default Grades
+export default Grades;

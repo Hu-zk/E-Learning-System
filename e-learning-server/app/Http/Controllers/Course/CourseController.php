@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Auth;
 class CourseController extends Controller
 {
 
-    function createCourse(Request $request) {
+    function createCourse(Request $request)
+    {
 
         $validatedData = $request->validate([
             "teacher_id" => 'required|exists:users,id',
@@ -32,13 +33,15 @@ class CourseController extends Controller
         return response()->json(["message" => "course created successfully", "course" => $course]);
     }
 
-    function updateCourse(Request $request, $courseId) {
+    function updateCourse(Request $request, $courseId)
+    {
 
         $course = Course::find($courseId);
 
         $course->name = $request->name;
         $course->capacity = $request->capacity;
         $course->teacher_id = $request->teacher_id;
+        $course->save();
 
         // $validatedData = $request->validate([
         //     "teacher_id" => 'required|exists:users,id',
@@ -59,13 +62,14 @@ class CourseController extends Controller
         $completedEnrollments = $course->enrollments->where("is_completed", true)->count();
 
         return response()->json([
-            "course" => $course,
+            // "course" => $course,
             "total_enrollments" => $totalEnrollments,
             "completed_enrollments" => $completedEnrollments,
         ]);
     }
 
-    function teacherReport($teacherId) {
+    function teacherReport($teacherId)
+    {
 
         $teacher_courses = Course::where('teacher_id', $teacherId)->get();
         $data = [];
@@ -95,7 +99,8 @@ class CourseController extends Controller
         return response()->json($data);
     }
 
-    function studentReport($studentId) {
+    function studentReport($studentId)
+    {
 
         $user = User::find($studentId);
         $enrolledCourses = $user->EnrolledCourses;
@@ -126,7 +131,7 @@ class CourseController extends Controller
 
         return response()->json($data);
     }
-    
+
     public function getCourseContent($courseId)
     {
         $course = Course::findOrFail($courseId);
@@ -249,7 +254,7 @@ class CourseController extends Controller
         $child_course = User::child($auth_user_id)->first();
         $all_data = $child_course->StudentEnroll()->with('course.teacher');
         if ($all_data->exists()) {
-            $data=$all_data->get();
+            $data = $all_data->get();
         }
         $courseTeachers = $data->pluck('course.teacher.name')->toArray();
 

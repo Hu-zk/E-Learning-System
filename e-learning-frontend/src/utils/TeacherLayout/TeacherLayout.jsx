@@ -1,6 +1,6 @@
 import {Outlet} from "react-router-dom"
 import "./style.css"
-import Sidebar from "../../components/Teacher/Sidebar/Sidebar"
+import Sidebar from "../../components/common/Sidebar/Sidebar";
 
 const TeacherLayout = () => {
     return (

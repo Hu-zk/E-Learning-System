@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Http\Request;
@@ -12,14 +13,15 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-    function createUser(Request $request) {
+    function createUser(Request $request)
+    {
 
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->user_type_id = $request->user_type_id;
         $user->password = Hash::make($request->password);
-        if($request->parent_id) {
+        if ($request->parent_id) {
             $user->parent_id = $request->parent_id;
         }
         $user->save();
@@ -27,13 +29,14 @@ class UserController extends Controller
         return response()->json(['message' => 'User created successfully', 'user' => $user]);
     }
 
-    function updateUser(Request $request, $userId) {
+    function updateUser(Request $request, $userId)
+    {
 
         $user = User::find($userId);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        if($request->parent_id) {
+        if ($request->parent_id) {
             $user->parent_id = $request->parent_id;
         }
         $user->save();
@@ -41,7 +44,8 @@ class UserController extends Controller
         return response()->json(['message' => 'User updated successfully', 'user' => $user]);
     }
 
-    function deleteUser($userId) {
+    function deleteUser($userId)
+    {
 
         $user = User::find($userId);
         $user->delete();
@@ -49,12 +53,14 @@ class UserController extends Controller
         return response()->json(['message' => 'User deleted successfully']);
     }
 
-    function getUsers() {
+    function getUsers()
+    {
 
         $content = [
             "students" => User::where('user_type_id', 4)->get(),
             "parents" => User::where('user_type_id', 3)->get(),
             "teachers" => User::where('user_type_id', 2)->get(),
+            "courses" => Course::all(),
         ];
 
         return response()->json(['data' => $content]);
@@ -67,11 +73,11 @@ class UserController extends Controller
 
         $content = [];
 
-        foreach($teacher_courses as $course) {
+        foreach ($teacher_courses as $course) {
             $averageGrade = $course->assignmentsQuizzes->submissions()->avg("grade");
 
             $content[] = [
-                "course" => $course, 
+                "course" => $course,
                 "average_grade" => $averageGrade
             ];
         }
@@ -79,7 +85,8 @@ class UserController extends Controller
         return response()->json(['data' => $content]);
     }
 
-    function createBackup() {
+    function createBackup()
+    {
 
         Artisan::call('backup:run');
 

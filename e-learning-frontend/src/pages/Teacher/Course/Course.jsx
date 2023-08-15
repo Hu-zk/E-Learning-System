@@ -27,7 +27,8 @@ const Course = () => {
     const boxModalRef = useRef(null)
     let [materialType,
         setMaterialType] = useState("")
-    let [materials, setMaterials] = useState([])
+    let [materials,
+        setMaterials] = useState([])
 
     let [isAnnouncementOpened,
         setIsAnnouncementOpened] = useState(false)
@@ -36,67 +37,71 @@ const Course = () => {
     const fileRef = useRef(null)
 
     const uploadAssignmentQuiz = async(type) => {
-        if(materialType === "quiz" || materialType === "assignment") {
+        if (materialType === "quiz" || materialType === "assignment") {
             let body = {
-              title,
-              description,
-              grade,
-              deadline: date,
-              course_id: id,
-              file,
-              is_quiz: type === "quiz" ? true : false,
+                title,
+                description,
+                grade,
+                deadline: date,
+                course_id: id,
+                file,
+                is_quiz: type === "quiz"
+                    ? true
+                    : false
             };
             try {
-              let {data} = await axios.post(
-                `http://127.0.0.1:8000/api/user/teacher/${id}/create-assignment-quiz`,
-                body,
-                {
-                  headers: {
-                    Authorization:
-                      "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTI0MzY5LCJleHAiOjE2OTIxMjc5NjksIm5iZiI6MTY5MjEyNDM2OSwianRpIjoiUVhJV1hNTllNeVJVUEV0WSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rXmmhEnIK5rHMmHsFURR8AEat-wkrqiqVQrAWJbUzeI",
-                  },
-                }
-              );
-              setMaterials(prev => [data.content, ...prev])
-              setTitle("");
-              setDescription("");
-              setDate("");
-              setGrade("");
-              setFile(null);
-              setIsModalOpened(false);
+                let {data} = await axios.post(`http://127.0.0.1:8000/api/user/teacher/${id}/create-assignment-quiz`, body, {
+                    headers: {
+                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
+                                "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTI0MzY5LCJleHAiOjE2OTIxMjc5NjksIm5iZiI6" +
+                                "MTY5MjEyNDM2OSwianRpIjoiUVhJV1hNTllNeVJVUEV0WSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
+                                "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rXmmhEnIK5rHMmHsFURR8AEat-wkrqiq" +
+                                "VQrAWJbUzeI"
+                    }
+                });
+                setMaterials(prev => [
+                    data.content, ...prev
+                ])
+                setTitle("");
+                setDescription("");
+                setDate("");
+                setGrade("");
+                setFile(null);
+                setIsModalOpened(false);
             } catch (error) {
-              console.log(error);
+                console.log(error);
             }
-        }else {
+        } else {
             let body = {
-              title,
-              description,
-              file,
-              is_announcement: false
+                title,
+                description,
+                file,
+                is_announcement: false
             };
             try {
-              let {data} = await axios.post(
-                `http://127.0.0.1:8000/api/user/teacher/${id}/create-material`,
-                body,
-                {
-                  headers: {
-                    Authorization:
-                      "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTI0MzY5LCJleHAiOjE2OTIxMjc5NjksIm5iZiI6MTY5MjEyNDM2OSwianRpIjoiUVhJV1hNTllNeVJVUEV0WSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rXmmhEnIK5rHMmHsFURR8AEat-wkrqiqVQrAWJbUzeI",
-                  },
-                }
-              );
-              setMaterials(prev => [data.content, ...prev])
-              console.log("daaaaataaaaaa")
-              console.log(data)
-              console.log("daaaaataaaaaa");
-              setTitle("");
-              setDescription("");
-              setDate("");
-              setGrade("");
-              setFile(null);
-              setIsModalOpened(false);
+                let {data} = await axios.post(`http://127.0.0.1:8000/api/user/teacher/${id}/create-material`, body, {
+                    headers: {
+                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
+                                "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTI0MzY5LCJleHAiOjE2OTIxMjc5NjksIm5iZiI6" +
+                                "MTY5MjEyNDM2OSwianRpIjoiUVhJV1hNTllNeVJVUEV0WSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
+                                "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rXmmhEnIK5rHMmHsFURR8AEat-wkrqiq" +
+                                "VQrAWJbUzeI"
+                    }
+                });
+                setMaterials(prev => [
+                    data.content, ...prev
+                ])
+                console.log("daaaaataaaaaa")
+                console.log(data)
+                console.log("daaaaataaaaaa");
+                setTitle("");
+                setDescription("");
+                setDate("");
+                setGrade("");
+                setFile(null);
+                setIsModalOpened(false);
             } catch (error) {
-              console.log(error);
+                console.log(error);
             }
         }
     }
@@ -142,16 +147,14 @@ const Course = () => {
     }
 
     useEffect(() => {
+        const token = localStorage.getItem("jwtToken");
+
         const getCourseDetails = async() => {
-            let { data } = await axios.get(
-              `http://127.0.0.1:8000/api/user/shared/${id}/content`,
-              {
+            let {data} = await axios.get(`http://127.0.0.1:8000/api/user/shared/${id}/content`, {
                 headers: {
-                  Authorization:
-                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTI0MzY5LCJleHAiOjE2OTIxMjc5NjksIm5iZiI6MTY5MjEyNDM2OSwianRpIjoiUVhJV1hNTllNeVJVUEV0WSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rXmmhEnIK5rHMmHsFURR8AEat-wkrqiqVQrAWJbUzeI",
-                },
-              }
-            );
+                    Authorization: `Bearer ${token}`
+                }
+            });
             let details = data.content
             let combinedArray = [
                 ...details.materials,
@@ -159,8 +162,7 @@ const Course = () => {
                 ...details.assignments,
                 ...details.quizzes
             ];
-            const compareByCreatedAt = (a, b) =>
-              new Date(a.created_at) - new Date(b.created_at);
+            const compareByCreatedAt = (a, b) => new Date(a.created_at) - new Date(b.created_at);
             combinedArray.sort(compareByCreatedAt)
             setMaterials(combinedArray.reverse())
         }
@@ -190,8 +192,7 @@ const Course = () => {
                                 cols="30"
                                 rows="10"></textarea>
                         </div>
-                        {(materialType === "quiz" || materialType === "assignment") &&
-                        <div className="row">
+                        {(materialType === "quiz" || materialType === "assignment") && <div className="row">
                             <div>
                                 <input
                                     value={date}
@@ -240,10 +241,10 @@ const Course = () => {
                     <Dropdown
                         className="dropdown"
                         open={open}
-                        trigger={<button onClick = {
+                        trigger={< button onClick = {
                         handleOpen
                     } > Upload Material </button>}
-                        menu={[< button onClick = {
+                        menu={[ <button onClick = {
                             handleMenuOne
                         } > Lecture </button>, <button onClick={handleMenuTwo}>Quiz</button >, < button onClick = {
                             handleMenuThree
@@ -255,9 +256,7 @@ const Course = () => {
                 <div className="left-stream">
                     {isAnnouncementOpened && <AnnouncementForm setMaterials={setMaterials} materials={materials}/>}
                     <div className="content">
-                        {materials.map((item, index) => (
-                            <Material key={index} data={item} />
-                        ))}
+                        {materials.map((item, index) => (<Material key={index} data={item}/>))}
                     </div>
                 </div>
                 <div className="right-stream">
@@ -292,4 +291,4 @@ let Dropdown = ({open, trigger, menu}) => {
     );
 };
 
-export default Course
+export default Course;
