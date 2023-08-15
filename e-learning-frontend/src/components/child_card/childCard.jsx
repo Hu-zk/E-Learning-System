@@ -13,9 +13,6 @@ export const ChildCard = ({child}) =>{
                     <img src="/image.jpg" alt="child image"/>
                 </div>
             </div>
-            {/* <div className={styles.container_body}>
-                <div className={styles.card_title}>courses:</div>
-            </div> */}
         </div>
     )
 }

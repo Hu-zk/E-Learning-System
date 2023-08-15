@@ -36,7 +36,6 @@ const Home = () => {
                     <div className={styles.page_header}>Announcements</div>
                     <div className={styles.announcements_container}>
                         {isAvailable ? ( <Accordion items={announcement}/>): (<div>no announcements</div>)}
-                       
                     </div>
                 </div>
             </div>
