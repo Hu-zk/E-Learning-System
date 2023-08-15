@@ -45,3 +45,17 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
 }
+
+@media (max-width: 1000px) {
+    
+    .attendance .students-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 730px) {
+    
+    .attendance .students-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

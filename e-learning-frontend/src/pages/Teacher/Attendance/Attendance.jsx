@@ -16,16 +16,18 @@ const Attendance = () => {
     useEffect(() => {
         try {
             const getEnrolledStudents = async() => {
-                let {data} = await axios.get(`http://127.0.0.1:8000/api/user/teacher/${id}/students`, {
+                let { data } = await axios.get(
+                  `http://127.0.0.1:8000/api/user/teacher/${id}/students`,
+                  {
                     headers: {
-                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
-                                "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTI0MzY5LCJleHAiOjE2OTIxMjc5NjksIm5iZiI6" +
-                                "MTY5MjEyNDM2OSwianRpIjoiUVhJV1hNTllNeVJVUEV0WSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
-                                "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rXmmhEnIK5rHMmHsFURR8AEat-wkrqiq" +
-                                "VQrAWJbUzeI"
-                    }
-                });
+                      Authorization:
+                        "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTQxOTI2LCJleHAiOjE2OTIxNDU1MjYsIm5iZiI6MTY5MjE0MTkyNiwianRpIjoibUpZRDV1MlhLUm5ObWlDaiIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.HtKyULCx8uce-pGrrcpQFaqA2JCdbClcYGHCNYP2hNY",
+                    },
+                  }
+                );
+                console.log(data)
                 setStudents(data.students)
+                console.log(data.students)
 
                 const initialAttendance = data
                     .students
@@ -42,13 +44,17 @@ const Attendance = () => {
     const handleAttendance = async() => {
         try {
             const token = localStorage.getItem("jwtToken")
-            await axios.post(`http://127.0.0.1:8000/api/user/teacher/record-attendance/${id}`, {
-                students: attendance
-            }, {
+            await axios.post(
+              `http://127.0.0.1:8000/api/user/teacher/record-attendance/${id}`,
+              {
+                students: attendance,
+              },
+              {
                 headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+                  Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTQxNjIyLCJleHAiOjE2OTIxNDUyMjIsIm5iZiI6MTY5MjE0MTYyMiwianRpIjoiVkZBSHNRTlJiVDBENm9mcyIsInN1YiI6IjciLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0tUvSifCvUG7_UrZCqOYSAfjVHCimPVRO4ZiMQGDbgU`,
+                },
+              }
+            );
             navigate(`/teacher/course/${id}`)
         } catch (error) {
             console.log(error)
@@ -62,11 +68,11 @@ const Attendance = () => {
                 <button className="back-to-stream">Back to stream</button>
             </Link>
             <div className="students-list">
-                {students.length === 0
+                {students?.length === 0
                     ? (
                         <h1>No Students enrolled</h1>
                     )
-                    : (students.map((student) => (<StudentAttendance setAttendance={setAttendance} key={student.id} {...student}/>)))}
+                    : (students?.map((student) => (<StudentAttendance setAttendance={setAttendance} key={student?.id} {...student}/>)))}
             </div>
             <div onClick={handleAttendance} className="save-changes">
                 <button>Save Changes</button>
