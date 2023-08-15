@@ -3,11 +3,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./coursePage.css";
 import { AuthContext } from "../../../Context/AuthContext";
+import Lecture from "../../../components/Student/lecture/Lecture";
+import Quiz from "../../../components/Student/quiz/Quiz";
 
 function CoursePage() {
   const { userData } = useContext(AuthContext);
   axios.defaults.headers.common["Authorization"] = `Bearer ${userData.token}`;
-
+  const [type, setType] = useState("");
   const param = useParams();
   //   const [data, setData] = useState([]);
   const [lectures, setLectures] = useState([]);
@@ -40,13 +42,32 @@ function CoursePage() {
         <div className="title-side">
           {lectures.map((ele, index) => {
             return (
-              <div className="title" key={ele.index}>
+              <div
+                className="title"
+                key={index}
+                onClick={() => {
+                  if (ele.is_announcement == 0) {
+                    setType("lecture");
+                  } else {
+                    setType("quiz");
+                  }
+                  console.log(type);
+                  console.log("type");
+                }}>
                 {ele.title}
               </div>
             );
           })}
         </div>
-        <div className="contentSide">content</div>
+        <div className="contentSide">
+          {type == "" ? (
+            <div>wlecome</div>
+          ) : type == "lecture" ? (
+            <Lecture />
+          ) : (
+            <Quiz />
+          )}
+        </div>
       </div>
     </div>
   );
