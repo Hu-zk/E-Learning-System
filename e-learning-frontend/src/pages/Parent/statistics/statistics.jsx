@@ -21,15 +21,16 @@ const Statistics = () => {
                 'Authorization': `Bearer ${token}`
             }
         });
-        const data = await response.data;
-        if(data.data){
-            console.log("data.data",data.data);
+        const data = await response.data.data;
+        if(data){
+            // console.log("data.data",data.data);
+            const course_names = data.map(course => 
+                course.course.name);
+            setIsCompleted(course_names);
+
             // for(const i=0;i<data.data.length;i++){
             //     console.log(data.data.name)
             // }
-            const course_names = data.data.map(() => (
-            setIsCompleted(data.data.name)
-        ));
         }
         // else if(data.message === 'Not compeleted courses'){
         //     console.log("no completed courses.");
