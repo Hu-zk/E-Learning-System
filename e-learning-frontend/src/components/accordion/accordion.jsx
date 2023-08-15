@@ -11,14 +11,14 @@ export const Accordion = ({items}) => {
     return (
         <div className={styles.container}>
             {items.map((item, index) => (
-                <div key={item.title}>
+                <div key={item.id}>
                 <button onClick={() =>handleClick(index)} className={styles.accordian_container}>
-                    {item.title}
+                    {item.teacher_name}
                     <MdOutlineKeyboardArrowDown/>
                 </button>
                 {index === activeIndex && 
                 <div className={styles.accordion_body}>
-                    <p>{item.content}</p>
+                    <p>{item.material_content}</p>
                 </div>}
                 </div>
             ))}
