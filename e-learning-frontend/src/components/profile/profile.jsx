@@ -7,67 +7,43 @@ import { ChildCard } from "../child_card/childCard";
 export const Profile = () =>{
     const [meeting, setMeeting] = useState(false);
       const [children, setChildren] = useState([]);
-    // const [type, setType] = useState('');
 
     const user_data = localStorage.getItem('userData');
     const user_info  = JSON.parse(user_data);
-    // console.log(user_info.name)
 
     // if(user_info.user_type_id == 3){
     //     setType("parent");
     // }
-    // else if(user_info.user_type_id == 4){
-    //     setType("student");
-    // }else if(user_info.user_type_id == 2){
-    //     setType("teacher");
-    // }
 
     const getMeeting = async () => {
         const token = localStorage.getItem('jwtToken');
-        // console.log(token);
         const response = await axios.get('http://127.0.0.1:8000/api/user/parent/get_parent', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         });
-        // const data = response.data.message;
         const data = response.data;
         if(data.message == 'No meeting'){
             setMeeting(false);
-            // console.log("user has no meetings");
         }else{
             setMeeting(true);
         }
-        // console.log(data);
     }
 
         const getChild = async () => {
         const token = localStorage.getItem('jwtToken');
-        // console.log(token);
         const response = await axios.get('http://127.0.0.1:8000/api/user/parent/get_child', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         });
-        // const data = response.data.message;
         const data = response.data;
         if(data.status == 'success'){
-            // setMeeting(false);
-            // console.log(data);
             setChildren(data.data);
             console.log('children', children)
-            // for(const i=0;i<data.length;i++){
-                // console.log(data[i])
-                // const student = response.data[i];
-                // const studentName = student.name;
-                // console.log(studentName);
-            // }
-            // console.log(data);
-            // console.log("user has no meetings");
         }else{
-            // setMeeting(true);
+            console.log("no children exist")
         }
-        // console.log(data);
     }
 
     useEffect(()=>{
