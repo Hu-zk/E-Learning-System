@@ -15,8 +15,10 @@ const Grades = () => {
         setAssignmentData] = useState([])
     let [solution,
         setSolution] = useState(null)
-
-    console.log(assignmentData)
+    let [grade,
+        setGrade] = useState("")
+    let [feedback,
+        setFeedback] = useState("")
 
     useEffect(() => {
         try {
@@ -24,26 +26,63 @@ const Grades = () => {
                 let {data} = await axios.get(`http://127.0.0.1:8000/api/user/teacher/${assignmentId}`, {
                     headers: {
                         Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
-                                "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMDg5NTUxLCJleHAiOjE2OTIwOTMxNTEsIm5iZiI6" +
-                                "MTY5MjA4OTU1MSwianRpIjoiNnpZNHJTWUV0NGU1QjJaOCIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
-                                "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.mAZmqqIRS3sKgJaflbbo8Rl8YPWfHCXc" +
-                                "MGEMMLmfucY"
+                                "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMDk3MjA3LCJleHAiOjE2OTIxMDA4MDcsIm5iZiI6" +
+                                "MTY5MjA5NzIwNywianRpIjoiYlBCYzVRV1pjVGVhQUVSWSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
+                                "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.stJUYkfQ_G4Y8TExcUbdVCOROC5kaZYB" +
+                                "3BBgjIWFNzc"
                     }
                 });
+                console.log(data)
                 setAssignmentData(data.assignment)
             };
             getAssignmentData();
         } catch (error) {
             console.log(error)
         }
-    }, [])
+    }, [solution])
 
     // const handleFileInput = (e) => {     const fileType = e.target.files[0].type;
     //     setFile(URL.createObjectURL(e.target.files[0]))
     // fileType.startsWith("image/")         ? setFileType("image")         :
-    // setFileType("pdf"); }
+    // setFileType("pdf"); } let fileType = solution.file_url
 
-    // let fileType = solution.file_url
+    const handleGradeChange = (e) => {
+        if (!isNaN(e.target.value)) {
+            setGrade(e.target.value)
+        }
+    }
+
+    const handleSubmitGrade = async(e) => {
+        try {
+            let body = {
+                grade,
+                feedback,
+                submission_id: solution.id
+            }
+            let {data} = await axios.post("http://127.0.0.1:8000/api/user/teacher/update-submission", body, {
+                headers: {
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
+                            "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMDk3MjA3LCJleHAiOjE2OTIxMDA4MDcsIm5iZiI6" +
+                            "MTY5MjA5NzIwNywianRpIjoiYlBCYzVRV1pjVGVhQUVSWSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
+                            "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.stJUYkfQ_G4Y8TExcUbdVCOROC5kaZYB" +
+                            "3BBgjIWFNzc"
+                }
+            });
+            if (solution.id === data.data.id) {
+                setSolution(data.data)
+                if (solution.feedback) {
+                    setIsFeedbackOpened(true)
+                }
+            }
+            setGrade("")
+            setFeedback("")
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    console.log(solution)
 
     return (
         <div className="grades">
@@ -71,10 +110,12 @@ const Grades = () => {
                         ?.submitted_students
                             ? (assignmentData.submitted_students.map((student, index) => (<SubmittedStudent
                                 key={index}
+                                solution={solution}
                                 grade={assignmentData
                                 ?.grade}
                                 student={student}
-                                setSolution={setSolution}/>)))
+                                setSolution={setSolution}
+                                setIsFeedbackOpened={setIsFeedbackOpened}/>)))
                             : (
                                 <p>Loading or no data available</p>
                             )}
@@ -85,22 +126,37 @@ const Grades = () => {
                             <div>
                                 <div className="name">{solution.student.name}</div>
                                 <div className="grade-input">
-                                    <input type="text"/>
-                                    /{assignmentData?.grade}
+                                    <input
+                                        disabled={solution.grade}
+                                        value={solution.grade
+                                        ? solution.grade
+                                        : grade}
+                                        onChange={handleGradeChange}
+                                        type="text"/>
+                                    /{assignmentData
+                                        ?.grade}
                                 </div>
                             </div>
-                            <button className="give-feedback" onClick={(e) => setIsFeedbackOpened(true)}>
+                            {!solution.grade && <button className="give-feedback" onClick={(e) => setIsFeedbackOpened(true)}>
                                 Give Feedbak
-                            </button>
+                            </button>}
                             {isFeedbackOpened && (
                                 <div className="feedback">
-                                    <textarea placeholder="Provide a feedback" cols="20" rows="10"></textarea>
-                                    <div className="close">
+                                    <textarea
+                                        disabled={solution.feedback}
+                                        value={solution.feedback
+                                        ? solution.feedback
+                                        : feedback}
+                                        onChange={e => setFeedback(e.target.value)}
+                                        placeholder="Provide a feedback"
+                                        cols="20"
+                                        rows="10"></textarea>
+                                    {!solution.feedback && <div className="close">
                                         <GrClose size={20} onClick={(e) => setIsFeedbackOpened(false)}/>
-                                    </div>
+                                    </div>}
                                 </div>
                             )}
-                            <div className="submit-grade">Submit</div>
+                            {!solution.grade && <div onClick={handleSubmitGrade} className="submit-grade">Submit</div>}
                             <img src="" alt=""/>{" "} {solution.file_url === "image"
                                 ? (<img src={solution.file_url}/>)
                                 : (<iframe src={solution.file_url} alt=""/>)}

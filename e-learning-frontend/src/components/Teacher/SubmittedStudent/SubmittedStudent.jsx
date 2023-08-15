@@ -1,11 +1,37 @@
 import "./style.css"
 
-const SubmittedStudent = ({student, grade, setSolution}) => {
+const SubmittedStudent = ({student, grade, setSolution, setIsFeedbackOpened, solution}) => {
 
     const {name} = student.student
 
+    console.log(student)
+
+    const handleOpenSolution = (e) => {
+
+        console.log(student)
+
+        setSolution(student)
+        if(student.feedback) {
+            setIsFeedbackOpened(true)
+        }
+        console.log("uppp")
+        console.log("solution")
+        console.log(student)
+        console.log("solution")
+        console.log("grade")
+        console.log(student.grade)
+        console.log("grade")
+        console.log("feedback")
+        console.log(student.feedback)
+        console.log("feedback")
+        if (student && student.grade && !student.feedback) {
+          setIsFeedbackOpened(false);
+          console.log("heeereeee")
+        }
+    }
+
     return (
-        <div onClick={e => setSolution(student)} className="student">
+        <div onClick={handleOpenSolution} className="student">
             <div className="left-student">
                 <div className="profile">
                     <img

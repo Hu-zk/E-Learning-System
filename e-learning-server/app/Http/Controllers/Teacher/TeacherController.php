@@ -63,9 +63,11 @@ class TeacherController extends Controller
         $submission->feedback = $request->feedback;
         $submission->save();
 
+        $student = User::find($submission->student_id);
+        $submission->student = $student;
+
         return response()->json([
-            'message' => 'Submission updated successfully',
-            'submission' => $submission,
+            'data' => $submission
         ], 200);
     }
 }
