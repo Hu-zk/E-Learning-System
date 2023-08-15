@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { requestMethods } from '../../../core/enums/requestMethods';
 import { sendRequest } from '../../../core/config/request';
 
-function CourseForm({onToggle}) {
+function EditCourse({ course, onClose}) {
 
     const [name, setName] = useState('');
     const [teacher_id, setTeacherId] = useState('');
     const [capacity, setCapacity] = useState('');
 
-    const handleCourseCreation = async (event) => {
+    const handleCourseUpdate = async (event) => {
         event.preventDefault();
 
         try {
             const response = await sendRequest({
-                route: "/user/admin/create-course",
+                route: `/user/admin/update-course/${course}`,
                 method: requestMethods.POST,
                 body:{name,
                     teacher_id,
@@ -23,6 +23,7 @@ function CourseForm({onToggle}) {
             setName("")
             setTeacherId("")
             setCapacity("")
+            onClose();
 
         } catch (error) {
             console.error('failed:', error);
@@ -33,7 +34,7 @@ function CourseForm({onToggle}) {
             <div className="create-form-container">
                 <div className="form-header">
                     <h1>
-                        Create Course
+                        Edit Course
                     </h1>
                 </div>
 
@@ -57,15 +58,12 @@ function CourseForm({onToggle}) {
 
                     </div>
 
-                    <button className='black-button' type="submit" onClick={handleCourseCreation}>Create</button>
-                </form>
+                    <button className='black-button' type="submit" onClick={handleCourseUpdate}>Update</button> <br />
+                    <button className='black-button' type="button" onClick={onClose}>Cancel</button>
 
-                <div className="bottom-form">
-                    <p>Add User?</p>
-                    <span className='create-toggle' onClick={() => onToggle(true)}>User </span>
-                </div>
+                </form>
             </div>
     )
 }
 
-export default CourseForm
+export default EditCourse

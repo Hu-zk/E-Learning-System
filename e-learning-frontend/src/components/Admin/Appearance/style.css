@@ -1,0 +1,19 @@
+.appearance-container {
+  display: flex;
+  gap: 2em;
+  padding: 1em;
+  background-color: rgb(233, 233, 233);
+  border-radius: 0.2em;
+}
+
+.modes {
+  display: flex;
+  gap: 2em;
+}
+
+.modes .label-radio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}

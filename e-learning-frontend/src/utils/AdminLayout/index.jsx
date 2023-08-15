@@ -2,10 +2,9 @@ import React from "react";
 import "./style.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import {
-  AiFillHome,
+  // AiFillHome,
   AiFillPlusCircle,
   AiFillSetting,
-  AiOutlineFundProjectionScreen,
 } from "react-icons/ai";
 import { CgDisplayFullwidth } from "react-icons/cg";
 import Sidebar from "../../components/common/Sidebar/Sidebar";
@@ -13,10 +12,10 @@ import Sidebar from "../../components/common/Sidebar/Sidebar";
 function AdminLayout() {
   const navigate = useNavigate();
   const sidebar = [
-    {
-      svg: <AiFillHome size={32} />,
-      onclick: () => navigate("/admin"),
-    },
+    // {
+    //   svg: <AiFillHome size={32} />,
+    //   onclick: () => navigate("/admin"),
+    // },
     {
       svg: <AiFillPlusCircle size={32} />,
       onclick: () => navigate("/admin/create"),
@@ -24,10 +23,6 @@ function AdminLayout() {
     {
       svg: <CgDisplayFullwidth size={32} />,
       onclick: () => navigate("/admin/display"),
-    },
-    {
-      svg: <AiOutlineFundProjectionScreen size={32} />,
-      onclick: () => navigate("/admin"),
     },
     {
       svg: <AiFillSetting size={32} />,
