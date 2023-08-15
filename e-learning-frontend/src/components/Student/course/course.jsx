@@ -3,6 +3,7 @@ import { BsThreeDotsVertical, BsFolder } from "react-icons/bs";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 const Course = (props) => {
   const location = useLocation();
@@ -17,11 +18,23 @@ const Course = (props) => {
       }
     }
   } else {
-    var { name, capacity, enrollments_count, created_at } = props.course;
+    var { name, capacity, enrollments_count, created_at, id } = props.course;
   }
-
+  const enrollCourse = async () => {
+    const data = new FormData();
+    data.append("course_id", id);
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/user/student/enroll",
+        data
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
-    <div className="class">
+    <div className="class" onClick={enrollCourse}>
       <div className="top-class">
         <div className="class-title">
           <p>{name}</p>

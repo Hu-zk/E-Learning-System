@@ -6,6 +6,7 @@ import "./courses.css";
 
 function Courses() {
   const [courses, setCourses] = useState([]);
+  const [enrolledCourses, setEnrolledCourses] = useState([]);
   const { userData } = useContext(AuthContext);
   axios.defaults.headers.common["Authorization"] = `Bearer ${userData.token}`;
 
@@ -20,14 +21,30 @@ function Courses() {
       console.error(error);
     }
   };
+  const getEnrollerCourses = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/user/student/enrolled_courses"
+      );
+      let data = await response.data;
+      setEnrolledCourses(data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const enrolledCourseIds = enrolledCourses.map((course) => course.id);
+  const filteredCourses = courses.filter(
+    (course) => !enrolledCourseIds.includes(course.id)
+  );
 
   useEffect(() => {
     getCourses();
+    getEnrollerCourses();
   }, []);
   return (
     <div className="card-container">
-      {courses.map((ele) => {
-        return <Course course={ele} />;
+      {filteredCourses.map((ele) => {
+        return <Course course={ele} key={ele.id} />;
       })}
     </div>
   );
