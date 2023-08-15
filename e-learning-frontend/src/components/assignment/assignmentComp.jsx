@@ -32,7 +32,7 @@ export const Assignment = () =>{
     return (
         <div className={styles.container}>
             <div className={styles.container_header}>Assignments</div>
-            <div className={styles.container_stats}>Submitted</div>
+            {/* <div className={styles.container_stats}>Submitted</div> */}
             <div className={styles.Assignment_body}>
                 {assignments.map(assignment=>(
                 <AssignmentCard
