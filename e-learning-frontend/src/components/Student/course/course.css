@@ -38,20 +38,29 @@
 
 .class .mid-class {
     height: 135px;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding: 10px;
 }
-
+    
+.completed-grade {
+    display: flex;
+    gap: 10px
+}
 .class .bottom-class {
     display: flex;
     align-items: center;
     gap: 8px;
     height: 50px;
-    justify-content: flex-end;
-    padding: 5px;
+    justify-content: space-between;
+    padding: 15px;
     border-top: 1px solid #ccc;
+    background-color: rgba(0, 0, 0, 0.456);
+    color: #fcfcfc;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .class .bottom-class>div {

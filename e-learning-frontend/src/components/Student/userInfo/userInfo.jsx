@@ -5,7 +5,7 @@ function UserInfo() {
   const { userData } = useContext(AuthContext);
   return (
     <div className="top-side">
-      <div className="user-info">
+      <div className="userInfo">
         <div className="image">
           <img src="image.jpg" alt="" />
         </div>
