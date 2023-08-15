@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import "./style.css"
+import { requestMethods } from '../../../core/enums/requestMethods';
+import { sendRequest } from '../../../core/config/request';
 
 
 function UserForm({onToggle}) {
@@ -12,24 +13,23 @@ function UserForm({onToggle}) {
     const [parent_id, setParentId] = useState();
     const [user_type_id, setUserTypeId] = useState();
 
-    const handleLogin = async (event) => {
+    const handleUserCreation = async (event) => {
         event.preventDefault();
 
+        // const response = await axios.post('http://127.0.0.1:8000/api/user/admin/create-user', {
         try {
             if (password === confirmPassword) {
-                
-                const response = await axios.post('http://127.0.0.1:8000/api/user/admin/create-user', {
-                    name,
-                    parent_id,
-                    email,
-                    password,
-                    user_type_id,
+                const response = await sendRequest({
+                    route: "/admin/create-user",
+                    method: requestMethods.POST,
+                    body:{name,
+                        parent_id,
+                        email,
+                        password,
+                        user_type_id,}
                 });
-                console.log(response.data)
-            }else{
-                console.log("wrong pass")
+                console.log(response)
             }
-
         } catch (error) {
             console.error('failed:', error);
         }
@@ -91,7 +91,7 @@ function UserForm({onToggle}) {
                         </div>
                     </div>
 
-                    <button className='black-button' type="submit" onClick={handleLogin}>Create</button>
+                    <button className='black-button' type="submit" onClick={handleUserCreation}>Create</button>
                 </form>
 
 

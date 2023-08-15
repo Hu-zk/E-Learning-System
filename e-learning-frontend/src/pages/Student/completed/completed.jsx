@@ -6,6 +6,7 @@ import { AuthContext } from "../../../Context/AuthContext";
 // http:127.0.0.1:8000/api/user/shared/completed_courses
 function Completed() {
   const { userData } = useContext(AuthContext);
+
   axios.defaults.headers.common["Authorization"] = `Bearer ${userData.token}`;
   const [completedCourse, setCompletedCourse] = useState([]);
 

@@ -1,4 +1,5 @@
 .sidebar {
+<<<<<<< HEAD
     flex: 1;
     width: 100px;
     min-height: 100vh;
@@ -10,29 +11,39 @@
     padding: 30px;
     background-color: var(--black);
     color: var(--white);
+=======
+  width: 100px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+  padding: 30px;
+  background-color: var(--black);
+  color: var(--white);
+>>>>>>> b3ddbbc2d955b611ccc65386668b2a6b24905c3b
 }
 
 .sidebar .mid {
-    display: flex;
-    flex-direction: column;
-    height: 420px;
-    gap:50px
+  display: flex;
+  flex-direction: column;
+  height: 420px;
+  gap: 50px;
 }
-    
-.logo {
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px;
-}
-    
-.logo svg {
-    width: 50px;
-    height: 50px;
-}
-.one-navigate{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    cursor: pointer;
 
+.logo {
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.logo svg {
+  width: 50px;
+  height: 50px;
+}
+.one-navigate {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  cursor: pointer;
 }

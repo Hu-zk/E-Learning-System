@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { requestMethods } from '../../../core/enums/requestMethods';
+import { sendRequest } from '../../../core/config/request';
 
 function CourseForm({onToggle}) {
 
@@ -7,18 +8,18 @@ function CourseForm({onToggle}) {
     const [teacher_id, setTeacherId] = useState('');
     const [capacity, setCapacity] = useState('');
 
-    const handleLogin = async (event) => {
+    const handleCourseCreation = async (event) => {
         event.preventDefault();
 
         try {
-
-            const response = await axios.post('http://127.0.0.1:8000/api/register', {
-                name,
-                teacher_id,
-                capacity,
+            const response = await sendRequest({
+                route: "/admin/create-course",
+                method: requestMethods.POST,
+                body:{name,
+                    teacher_id,
+                    capacity,}
             });
-            console.log(response.data)
-
+            console.log(response)
         } catch (error) {
             console.error('failed:', error);
         }
@@ -52,7 +53,7 @@ function CourseForm({onToggle}) {
 
                     </div>
 
-                    <button className='black-button' type="submit" onClick={handleLogin}>Create</button>
+                    <button className='black-button' type="submit" onClick={handleCourseCreation}>Create</button>
                 </form>
 
                 <div className="bottom-form">
