@@ -5,31 +5,45 @@ import React, { useEffect, useState } from 'react';
 import { Assignment } from '../../../components/assignment/assignmentComp';
 
 const BookMeeting = () => {
-    // const [announcement, setAnnouncment] = useState([]);
+    const [teachers, setTeachers] = useState([]);
     // const [isAvailable, setIsAvailable] = useState(false);
     const title = "Teacher";
 
-    // const getAnnouncments = async () => {
-    //     const token = localStorage.getItem('jwtToken');
-    //     const response = await axios.get('http://127.0.0.1:8000/api/user/parent/teacher_announcement', {
-    //         headers: {
-    //             'Authorization': `Bearer ${token}`
-    //         }
-    //     });
-    //     const data = response.data;
-    //     console.log("dataaaaa",data);
-    //     if(data.status == 'success'){
-    //         setAnnouncment(data.data);
-    //         setIsAvailable(true);
-    //     }else{
-    //         setIsAvailable(false);
-    //         console.log("there are no announcments");
-    //     }
-    // }
+    const getAnnouncments = async () => {
+        const token = localStorage.getItem('jwtToken');
+        const response = await axios.get('http://127.0.0.1:8000/api/user/parent/teachers_courses', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const data = response.data;
+        // console.log("data= response.data",data[0].teacher_id);
+        if(data.status == 'success'){
+            // console.log("data.data",data.data[0].teacher_id)
+            // setTeachers(data);
+            // console.log(teachers[0][0])
 
-    // useEffect(()=>{
-    //     getAnnouncments();
-    // },[])
+            // const course_teacher = data.data.map(item => 
+            //     item.teacher_id);
+            
+
+            const course_teacher = data.data.map(item => ({
+            teacher_id: item.teacher_id,
+            teacher_name: item.teacher_name})
+            // console.log("attend", item.attendance_status)
+        );
+        setTeachers(course_teacher)
+            // setIsAvailable(true);            console.log(teachers)
+
+        }else{
+            // setIsAvailable(false);
+            console.log("there are no teachers");
+        }
+    }
+
+    useEffect(()=>{
+        getAnnouncments();
+    },[])
 
     return (
         <div className={styles.container}>
@@ -38,10 +52,20 @@ const BookMeeting = () => {
                     <div className={styles.page_header}>Analytics</div>
                     <div className={styles.stats_container}>
                         <div className={styles.left_container}>
-                            <Assignment title={title}/>
+                            <div className={styles.teacher_container}>
+                                <div className={styles.teacher_container_header}>{title}</div>
+                                <div className={styles.teacher_list}>
+                                    {teachers.map(teacher=>(
+                                        <div key={teacher.teacher_id}  className={styles.teachers_container}>
+                                            <div className={styles.name}>{teacher.teacher_name}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                         <div className={styles.right_container}>
                             {/* <SharedComp title={completed} info={isCompleted}/> */}
+
                             {/* <SharedComp title={enrolled} info={courses}/>
                             <SharedComp title={attend} info={attendance}/> */}
                         </div>

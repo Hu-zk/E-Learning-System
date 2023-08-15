@@ -5,7 +5,6 @@ import { AssignmentCard } from "../AssignmentCard/assignmentCard";
 
 export const Assignment = ({title}) =>{
     const [assignments, setAssignments] = useState([]);
-    const [teachers, setTeachers] = useState([]);
     // const [isAvailable, setIsAvailable] = useState(false);
 
     const getAssignments = async () => {
@@ -35,19 +34,12 @@ export const Assignment = ({title}) =>{
             <div className={styles.container_header}>{title}</div>
             {/* <div className={styles.container_stats}>Submitted</div> */}
             <div className={styles.Assignment_body}>
-            {title === "Assignments"? (assignments.map(assignment=>(
+                {assignments.map(assignment=>(
                 <AssignmentCard
                 key={assignment.id}
                 assignment={assignment}
                 />
-                ))):(teachers.map(teacher=>(
-                <AssignmentCard
-                key={teacher.id}
-                assignment={teacher}
-                />
-                )))}
-
-                
+                ))}
             </div>
         </div>
     )
