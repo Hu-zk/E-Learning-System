@@ -5,7 +5,7 @@ import { Assignment } from "../../../components/assignment/assignmentComp";
 import { SharedComp } from "../../../components/multiUseComp/multiUseComp";
 
 const Statistics = () => {
-    const [notCompleted,setNotCompleted] = useState(false);
+    const [isCompleted,setIsCompleted] = useState([]);
     const [messagebody, setMessage] = useState('');
     const [courses, setEnrolledCourses] = useState([]);
     const [attendance, setAttendance] = useState([]);
@@ -21,35 +21,24 @@ const Statistics = () => {
                 'Authorization': `Bearer ${token}`
             }
         });
-        const data = response.data;
-        if(data.message == 'success'){
-            if(data.data){
-                console.log("enrolled classes are...", data.data);
-            }
-        }else{
-            console.log("no enrolled courses.")
+        const data = await response.data;
+        if(data.data){
+            console.log("data.data",data.data);
+            // for(const i=0;i<data.data.length;i++){
+            //     console.log(data.data.name)
+            // }
+            const course_names = data.data.map(() => (
+            setIsCompleted(data.data.name)
+        ));
+        }
+        // else if(data.message === 'Not compeleted courses'){
+        //     console.log("no completed courses.");
+        // }
+        else{
+            console.log("user has no registered courses");
         }
     }
 
-    //     const getAttendance = async () => {
-    //     const token = localStorage.getItem('jwtToken');
-    //     const response = await axios.get('http://127.0.0.1:8000/api/user/parent/attendance_course', {
-    //         headers: {
-    //             'Authorization': `Bearer ${token}`
-    //         }
-    //     });
-    //     const data = response.data;
-    //     console.log("majed",data.data);
-    //     if(data.status == 'success'){
-    //         // console.log(data.data)
-
-    //         // setInfo(data.data);
-
-    //         console.log(data.data.course_name)
-    //     }else{
-    //         console.log("no attendance")
-    //     }
-    // }
     const getAttendance = async () => {
         const token = localStorage.getItem('jwtToken');
         const response = await axios.get('http://127.0.0.1:8000/api/user/parent/attendance_course', {
@@ -58,9 +47,9 @@ const Statistics = () => {
             }
         });
         const data = response.data;
-        console.log("data",data);
-        console.log("data.status",data.status)
-        console.log("data.data",data.data) 
+        // console.log("data",data);
+        // console.log("data.status",data.status)
+        // console.log("data.data",data.data) 
         const course_names = data.data.map(course => (
             setEnrolledCourses(course.course_name),
             setAttendance(course.attendance_status),
@@ -84,7 +73,7 @@ const Statistics = () => {
                             <Assignment/>
                         </div>
                         <div className={styles.right_container}>
-                            <SharedComp title={completed} info={messagebody}/>
+                            <SharedComp title={completed} info={isCompleted}/>
                             <SharedComp title={enrolled} info={courses}/>
                             <SharedComp title={attend} info={attendance}/>
                         </div>

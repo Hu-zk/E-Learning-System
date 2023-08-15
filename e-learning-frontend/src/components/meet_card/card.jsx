@@ -2,7 +2,6 @@ import React from "react";
 import styles from  './card.module.css';
 import {BsCameraVideoFill} from "react-icons/bs";
 import {GrFormClose} from "react-icons/gr";
-// BsCameraVideoFill GrFormClose
 
 export const Card = () =>{
     return(
