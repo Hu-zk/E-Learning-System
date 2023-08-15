@@ -38,9 +38,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'parent',  'middleware' => 'auth.parent'], function () {
 
-        Route::get("get_parent", [ParentController::class, "getParent"]);
         Route::get("get_child", [ParentController::class, "getChild"]);
-        Route::get("get_is_submited", [StudentContoller::class, "IsSubmitted"]);
         Route::get("get_is_completed", [StudentContoller::class, "IsCompleted"]);
         Route::get("attendance_course", [CourseController::class, "courseAttendance"]);
         Route::get("teachers_courses", [CourseController::class, "getCoursesTeacher"]);
@@ -91,6 +89,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get("check_meet", [MeetController::class, "checkMeet"]);
         Route::post("remove_meet", [MeetController::class, "removeMeet"]);
         Route::get('{courseId}/content', [CourseController::class, 'getCourseContent']);
+        Route::get("get_is_submited", [StudentContoller::class, "IsSubmitted"]);
+        Route::get("get_parent", [ParentController::class, "getParent"]);
+
     });
 
 
