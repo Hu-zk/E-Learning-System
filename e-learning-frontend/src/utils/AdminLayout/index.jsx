@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import {
-  AiFillHome,
+  // AiFillHome,
   AiFillPlusCircle,
   AiFillSetting,
 } from "react-icons/ai";
@@ -12,10 +12,10 @@ import Sidebar from "../../components/common/Sidebar/Sidebar";
 function AdminLayout() {
   const navigate = useNavigate();
   const sidebar = [
-    {
-      svg: <AiFillHome size={32} />,
-      onclick: () => navigate("/admin"),
-    },
+    // {
+    //   svg: <AiFillHome size={32} />,
+    //   onclick: () => navigate("/admin"),
+    // },
     {
       svg: <AiFillPlusCircle size={32} />,
       onclick: () => navigate("/admin/create"),

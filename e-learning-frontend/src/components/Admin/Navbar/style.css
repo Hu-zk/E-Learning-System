@@ -1,12 +1,12 @@
 .admin-nav {
   display: flex;
   align-items: center;
-  margin: 2em;
+  margin: 2.5em;
 }
 
 .admin-page-title {
   font-size: 2em;
-  font-weight: 600;
+  font-weight: 700;
   margin: 0 1em;
 }
 
@@ -14,7 +14,6 @@
   display: flex;
   align-items: center;
   gap: 4em;
-  margin: 1em;
 }
 
 .admin-nav-content {
