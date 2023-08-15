@@ -4,10 +4,11 @@ import "./style.css"
 function Appearance() {
 
     const [mode, setMode] = useState();
+    console.log(mode)
 
     return (
         <div className="appearance-container">
-            <h4>Appearance :</h4>
+            <h3>Appearance :</h3>
 
             <div className="modes">
                 <div className="label-radio">
