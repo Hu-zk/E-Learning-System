@@ -5,9 +5,10 @@ import Course from "../../../components/Student/course/course";
 import { AuthContext } from "../../../Context/AuthContext";
 // http:127.0.0.1:8000/api/user/shared/completed_courses
 function Completed() {
-  const { userData } = useContext(AuthContext);
+  // const { userData } = useContext(AuthContext);
 
-  axios.defaults.headers.common["Authorization"] = `Bearer ${userData.token}`;
+  const jwtToken = localStorage.getItem("jwtToken");
+  axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
   const [completedCourse, setCompletedCourse] = useState([]);
 
   const fetchdata = async () => {

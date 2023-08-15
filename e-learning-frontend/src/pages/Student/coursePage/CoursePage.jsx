@@ -7,12 +7,13 @@ import Lecture from "../../../components/Student/lecture/Lecture";
 import Quiz from "../../../components/Student/quiz/Quiz";
 
 function CoursePage() {
-  const { userData } = useContext(AuthContext);
-  axios.defaults.headers.common["Authorization"] = `Bearer ${userData.token}`;
+  const jwtToken = localStorage.getItem("jwtToken");
+  axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
   const [selectedData, setSelectedData] = useState(null);
   const [type, setType] = useState("");
   const param = useParams();
   const [lectures, setLectures] = useState([]);
+
   const fetchdata = async () => {
     try {
       const response = await axios.get(

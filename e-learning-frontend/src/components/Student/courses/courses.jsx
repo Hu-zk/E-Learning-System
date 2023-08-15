@@ -7,8 +7,9 @@ import "./courses.css";
 function Courses() {
   const [courses, setCourses] = useState([]);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
-  const { userData } = useContext(AuthContext);
-  axios.defaults.headers.common["Authorization"] = `Bearer ${userData.token}`;
+  // const { userData } = useContext(AuthContext);
+  const jwtToken = localStorage.getItem("jwtToken");
+  axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
 
   const getCourses = async () => {
     try {

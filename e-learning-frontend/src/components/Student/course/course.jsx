@@ -7,6 +7,8 @@ import axios from "axios";
 
 const Course = (props) => {
   const location = useLocation();
+    const jwtToken = localStorage.getItem("jwtToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
   if (location.pathname == "/student/Completed") {
     var { name, assignments_quizzes } = props.course;
     var submissionsTotalGrade = 0;

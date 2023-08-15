@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import "./userInfo.css";
 import { AuthContext } from "../../../Context/AuthContext";
 function UserInfo() {
-  const { userData } = useContext(AuthContext);
+  // const { userData } = useContext(AuthContext);
+  const userData = JSON.parse(localStorage.getItem("userData"));
   return (
     <div className="top-side">
       <div className="userInfo">
