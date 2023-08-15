@@ -55,6 +55,7 @@ function App() {
         <Route path="/parent" element={<ParentLayout />}>
           <Route index element={<Home/>} />
           <Route path="/parent/statistics" element={<Statistics />} />
+          <Route path="/parent/bookmeet" element={<Statistics />} />
         </Route>
       </Routes>
     </div>

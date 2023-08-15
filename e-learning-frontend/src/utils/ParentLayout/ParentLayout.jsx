@@ -8,6 +8,7 @@ import { AiFillHome } from "react-icons/ai";
 import { ImStatsDots } from "react-icons/im";
 import { MdGrade } from "react-icons/md";
 import { Profile } from "../../components/profile/profile";
+import {BsCameraVideoFill} from "react-icons/bs";
 
 const ParentLayout = () => {
     const navigate = useNavigate();
@@ -21,8 +22,8 @@ const ParentLayout = () => {
         onclick: () => navigate("/parent/statistics"),
         },
         {
-        svg: <MdGrade size={32} />,
-        onclick: () => navigate("/student/Completed"),
+        svg: <BsCameraVideoFill size={32} />,
+        onclick: () => navigate("/parent/bookmeet"),
         },
     ];
 
