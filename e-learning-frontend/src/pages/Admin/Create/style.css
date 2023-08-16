@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2pt solid black;
+  /* border: 2pt solid var(--black); */
   min-height: 100vh;
-  background-color: rgb(235, 235, 235);
+  background-color: var(--white);
   font-size: 15px;
   line-height: 1.4286;
 }
