@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { requestMethods } from '../../../core/enums/requestMethods';
+import { sendRequest } from '../../../core/config/request';
 
 function CourseForm({onToggle}) {
 
@@ -11,14 +12,17 @@ function CourseForm({onToggle}) {
         event.preventDefault();
 
         try {
-
-              // const response = await axios.post('http://127.0.0.1:8000/api/user/admin/create-user', {
-                const response = await axios.post('http://127.0.0.1:8000/api/admin/create-course', {
-                name,
-                teacher_id,
-                capacity,
+            const response = await sendRequest({
+                route: "/user/admin/create-course",
+                method: requestMethods.POST,
+                body:{name,
+                    teacher_id,
+                    capacity,}
             });
-            console.log(response.data)
+            console.log(response)
+            setName("")
+            setTeacherId("")
+            setCapacity("")
 
         } catch (error) {
             console.error('failed:', error);

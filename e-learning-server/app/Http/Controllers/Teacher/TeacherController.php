@@ -23,56 +23,21 @@ class TeacherController extends Controller
         ], 200);
     }
 
-    public function recordAttendance(Request $request)
+    public function recordAttendance(Request $request, $courseId)
     {
-        // $studentIds0 = $request->input('student_ids-0', []);
-        // $studentIds1 = $request->input('student_ids-1', []);
-        // $courseId = $request->input('course_id');
 
+        $attendanceArray = $request->input('students');
 
-        // foreach ($studentIds0 as $studentId) {
-        //     $attendance0[] = Attendance::create([
-        //         'student_id' => $studentId,
-        //         'course_id' => $courseId,
-        //         'status' => 0,
-        //     ]);
-        // }
+        foreach($attendanceArray as $attendanceData) {
+            $attendance = new Attendance([
+            'course_id' => $courseId,
+            'student_id' => $attendanceData['studentId'],
+            'status' => $attendanceData['status'],
+            ]);
+            $attendance->save();
+        }
 
-        // foreach ($studentIds1 as $studentId) {
-        //     $attendance1[] = Attendance::create([
-        //         'student_id' => $studentId,
-        //         'course_id' => $courseId,
-        //         'status' => 1,
-        //     ]);
-        // }
-        // return response()->json([
-        //     'message' => 'Attendance saved for selected students in course ' . $courseId . '.',
-        //     'attendance0' => $attendance0,
-        //     'attendance1' => $attendance1,
-        // ]);
-
-
-        $request->validate([
-            'course_id' => 'required|exists:courses,id',
-            'student_id' => 'required|exists:users,id',
-            'status' => 'required|boolean',
-        ]);
-
-        //just to ensure that the course and student exists 
-        $course = Course::findOrFail($request->course_id);
-        $student = User::findOrFail($request->student_id);
-
-        $attendance = new Attendance([
-            'course_id' => $course->id,
-            'student_id' => $student->id,
-            'status' => $request->status,
-        ]);
-        $attendance->save();
-
-        return response()->json([
-            'message' => 'Attendance recorded successfully',
-            'attendance' => $attendance
-        ], 201);
+        return response()->json(['message' => 'Attendance processed successfully']);
     }
 
     public function updateSubmission(Request $request)
@@ -98,9 +63,11 @@ class TeacherController extends Controller
         $submission->feedback = $request->feedback;
         $submission->save();
 
+        $student = User::find($submission->student_id);
+        $submission->student = $student;
+
         return response()->json([
-            'message' => 'Submission updated successfully',
-            'submission' => $submission,
+            'data' => $submission
         ], 200);
     }
 }

@@ -4,5 +4,6 @@
 
 .admin-outlet {
   width: 100%;
-  border: 2pt red solid;
+  margin-left: 100px;
+  border-radius: 3em;
 }

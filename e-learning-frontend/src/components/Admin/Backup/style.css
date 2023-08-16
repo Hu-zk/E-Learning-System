@@ -1,0 +1,21 @@
+.backup-container {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding: 1em;
+  background-color: rgb(233, 233, 233);
+  border-radius: 0.2em;
+}
+
+.backup-button {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  padding: 0.7em;
+  border-radius: 0.4em;
+  color: white;
+  background-color: black;
+}

@@ -1,0 +1,70 @@
+.lists {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5em;
+  border: 1pt solid black;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 40%;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr {
+  /* border: 2px solid #333333; */
+  background-color: #dfdfdf;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #444;
+}
+
+.list-buttons {
+  background-color: white;
+}
+
+.delete-button,
+.edit-button {
+  border: none;
+  padding: 0.7em 1em;
+  margin: 0 0.5em;
+  font-size: 1em;
+  border-radius: 0.5em;
+  font-weight: 500;
+  background-color: black;
+  color: white;
+}
+
+.delete-button:hover,
+.edit-button:hover {
+  background-color: rgb(49, 49, 49);
+}
+
+.course-report {
+  height: 400px;
+  width: 400px;
+}
+
+.close-text {
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  margin-left: 1em;
+  justify-content: flex-end;
+}

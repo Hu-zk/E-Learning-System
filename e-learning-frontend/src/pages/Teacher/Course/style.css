@@ -1,6 +1,8 @@
 .teacher-course-page {
-    padding: 40px 200px;
+    padding: 40px 50px;
     width: 100%;
+    max-width: 1000px;
+    margin: auto;
 }
 
 .teacher-course-page .buttons {
@@ -50,7 +52,7 @@
     flex: 3;
 }
 
-.teacher-course-page .stream .right-stream .attendance {
+.teacher-course-page .stream .right-stream .attendance-course {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -63,14 +65,15 @@
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+    height: 150px !important;
 }
 
-.teacher-course-page .stream .right-stream .attendance h4 {
+.teacher-course-page .stream .right-stream .attendance-course h4 {
     font-weight: 500;
     font-size: 1.25rem;
 }
 
-.teacher-course-page .stream .right-stream .attendance button {
+.teacher-course-page .stream .right-stream .attendance-course button {
     padding: 12px;
     font-size: 1rem;
     border: none;
@@ -80,6 +83,7 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     background-color: #ccccccc0;
+    width: 100%;
 }
 
 .dropdown {
@@ -131,6 +135,7 @@
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.356);
     padding: 20px;
+    z-index: 999;
 }
 
 
@@ -139,7 +144,7 @@
     flex-direction: column;
     gap: 20px;
     background-color: black;
-    padding: 20px;
+    padding: 30px 20px;
     width: 100%;
     max-width: 400px;
     border-radius: 10px;
@@ -173,7 +178,7 @@
     height: 100px;
 }
 
-.modal .box input, .modal .box textarea, .modal .box .upload-file {
+.modal .box input, .modal .box textarea, .modal .box .upload-file, .modal .box .assign {
     padding: 10px 15px;
     width: 100%;
     border-radius: 5px;
@@ -195,6 +200,18 @@
     width: 50%;
 }
 
-.modal .box .upload-file {
-    width: 50%;
+
+@media (max-width: 1000px) {
+    
+    .teacher-course-page .stream {
+        flex-direction: column-reverse;
+    }
+
+    .teacher-course-page .stream .left-stream {
+        flex: 8;
+    }
+
+    .teacher-course-page .stream .right-stream {
+        flex: 4;
+    }
 }
