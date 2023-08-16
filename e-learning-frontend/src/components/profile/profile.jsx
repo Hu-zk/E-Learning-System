@@ -6,6 +6,7 @@ import { ChildCard } from "../child_card/childCard";
 
 export const Profile = () =>{
     const [meeting, setMeeting] = useState(false);
+    const [availableMeets, setAvailableMeets] = useState([]);
       const [children, setChildren] = useState([]);
 
     const user_data = localStorage.getItem('userData');
@@ -27,6 +28,15 @@ export const Profile = () =>{
             setMeeting(false);
         }else{
             setMeeting(true);
+            console.log("meetings",data.send)
+            const parent_meet = data.send.map(item => ({
+            id: item.id,
+            link_url: item.link_url,
+            name: item.receiver_meet.name})
+            // console.log("attend", item.attendance_status)
+        );
+        setAvailableMeets(parent_meet);
+        console.log("availble",availableMeets)
         }
     }
 
@@ -67,7 +77,11 @@ export const Profile = () =>{
             </div>
             <div className={styles.meet_container}>
                 <div className={styles.card_title}>Scheduled meetings:</div>
-                {meeting ?(<Card/>):
+                {meeting ?(
+                    availableMeets.map(item => (
+                        <Card name={item.name} link={item.link_url} id={item.id}/>
+                    ))
+                ):
                 ( 
                 <div className={styles.meeting_message}>no meetings scheduled</div>
                 )}
