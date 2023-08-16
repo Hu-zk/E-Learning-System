@@ -4,6 +4,7 @@
   --black: rgb(30, 27, 27);
   --white: white;
   --gray: #ccc;
+  --blue: rgb(37, 106, 255);
 }
 
 * {
@@ -14,8 +15,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  /* background-color: var(--black);
-  color: var(--white); */
+  background-color: var(--white);
 }
 
 a {
