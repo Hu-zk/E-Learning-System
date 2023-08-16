@@ -49,16 +49,19 @@ const Course = () => {
                     ? true
                     : false
             };
+            console.log(body)
+            console.log(file)
             try {
-                let {data} = await axios.post(`http://127.0.0.1:8000/api/user/teacher/${id}/create-assignment-quiz`, body, {
+                let { data } = await axios.post(
+                  `http://127.0.0.1:8000/api/user/teacher/${id}/create-assignment-quiz`,
+                  body,
+                  {
                     headers: {
-                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
-                                "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTI0MzY5LCJleHAiOjE2OTIxMjc5NjksIm5iZiI6" +
-                                "MTY5MjEyNDM2OSwianRpIjoiUVhJV1hNTllNeVJVUEV0WSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
-                                "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rXmmhEnIK5rHMmHsFURR8AEat-wkrqiq" +
-                                "VQrAWJbUzeI"
-                    }
-                });
+                      Authorization:
+                        "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTQyOTkwLCJleHAiOjE2OTIxNDY1OTAsIm5iZiI6MTY5MjE0Mjk5MCwianRpIjoidW1rQzk2djlCb09JcmszaCIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.WcXFl_u9wMKyxeUfLiDRn1M3Sd__4ZJ6QA8nQQ1qfXE",
+                    },
+                  }
+                );
                 setMaterials(prev => [
                     data.content, ...prev
                 ])
@@ -79,15 +82,16 @@ const Course = () => {
                 is_announcement: false
             };
             try {
-                let {data} = await axios.post(`http://127.0.0.1:8000/api/user/teacher/${id}/create-material`, body, {
+                let { data } = await axios.post(
+                  `http://127.0.0.1:8000/api/user/teacher/${id}/create-material`,
+                  body,
+                  {
                     headers: {
-                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgw" +
-                                "MDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTI0MzY5LCJleHAiOjE2OTIxMjc5NjksIm5iZiI6" +
-                                "MTY5MjEyNDM2OSwianRpIjoiUVhJV1hNTllNeVJVUEV0WSIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4" +
-                                "OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rXmmhEnIK5rHMmHsFURR8AEat-wkrqiq" +
-                                "VQrAWJbUzeI"
-                    }
-                });
+                      Authorization:
+                        "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTQyOTkwLCJleHAiOjE2OTIxNDY1OTAsIm5iZiI6MTY5MjE0Mjk5MCwianRpIjoidW1rQzk2djlCb09JcmszaCIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.WcXFl_u9wMKyxeUfLiDRn1M3Sd__4ZJ6QA8nQQ1qfXE",
+                    },
+                  }
+                );
                 setMaterials(prev => [
                     data.content, ...prev
                 ])
