@@ -1,9 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { sendRequest } from "../core/config/request";
 
 export const ModeContext = createContext();
 
-export const ModeContexttProvider = ({ children }) => {
+export const ModeContextProvider = ({ children }) => {
   const [mode, setMode] = useState("light");
 
   if (mode === "dark") {

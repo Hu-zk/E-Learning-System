@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./coursePage.css";
-import { AuthContext } from "../../../Context/AuthContext";
+import { AuthContext } from "../../../Context/modeContext";
 import Lecture from "../../../components/Student/lecture/Lecture";
 import Quiz from "../../../components/Student/quiz/Quiz";
 import BookMeetModal from "../../../components/Student/modal/Modal";
