@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Http\Request;
@@ -59,12 +60,13 @@ class UserController extends Controller
             "students" => User::where('user_type_id', 4)->get(),
             "parents" => User::where('user_type_id', 3)->get(),
             "teachers" => User::where('user_type_id', 2)->get(),
+            "courses" => Course::all(),
         ];
 
         return response()->json(['data' => $content]);
     }
 
-    function teacherReports($teacherId)
+    function teacherReport($teacherId)
     {
 
         $teacher = User::find($teacherId);
@@ -92,19 +94,24 @@ class UserController extends Controller
         return response()->json(['message' => 'Backup created successfully']);
     }
 
-    // function updateAppearance(Request $request) {
+    function updateAppearance(Request $request)
+    {
 
-    //     $user_type = UserType::find(1);
+        $user_type = UserType::find(1);
 
-    //     $rules = json_decode($user_type->rules, true);
+        if ($user_type->rules !== null) {
+            $result = explode(',', $user_type->rules);
+            if ($request->mode) {
+                $result[0] = $request->mode;
+            }
+            if ($request->email) {
+                $result[1] = $request->email;
+            }
+            $new = implode(",", $result);
+            $user_type->rules = "\"" . $new . "\"";
+            $user_type->save();
 
-    //     if($request->mode) {
-    //         $rules["mode"] = $request->mode;
-    //     }
-
-    //     $user_type->rules = $rules;
-    //     $user_type->save();
-
-    //     return response()->json(['status' => 'success', 'message' => 'appearance updated successfully']);
-    // }
+            return response()->json($result);
+        }
+    }
 }

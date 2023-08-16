@@ -1,0 +1,7 @@
+.setting-page {
+  display: flex;
+  margin: 0 4.7em;
+  margin-bottom: 3em;
+  flex-direction: column;
+  gap: 2em;
+}

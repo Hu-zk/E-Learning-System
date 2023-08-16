@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Storage;
 class CourseController extends Controller
 {
 
-    function createCourse(Request $request) {
+    function createCourse(Request $request)
+    {
 
         $validatedData = $request->validate([
             "teacher_id" => 'required|exists:users,id',
@@ -24,18 +25,24 @@ class CourseController extends Controller
             "capacity" => 'required|integer'
         ]);
 
-        $course = Course::create($validatedData);
+        $teacher = User::find($request->teacher_id);
+
+        if ($teacher->user_type_id == 2) {
+            $course = Course::create($validatedData);
+        }
 
         return response()->json(["message" => "course created successfully", "course" => $course]);
     }
 
-    function updateCourse(Request $request, $courseId) {
+    function updateCourse(Request $request, $courseId)
+    {
 
         $course = Course::find($courseId);
 
         $course->name = $request->name;
         $course->capacity = $request->capacity;
         $course->teacher_id = $request->teacher_id;
+        $course->save();
 
         // $validatedData = $request->validate([
         //     "teacher_id" => 'required|exists:users,id',
@@ -48,58 +55,82 @@ class CourseController extends Controller
         return response()->json(["message" => "course updated successfully", "course" => $course]);
     }
 
-    function courseReport($courseReport) {
+    function courseReport($courseId)
+    {
 
-        $course = Course::find($courseReport);
+        $course = Course::find($courseId);
 
         $totalEnrollments = $course->enrollments->count();
         $completedEnrollments = $course->enrollments->where("is_completed", true)->count();
 
         return response()->json([
-            "course" => $course,
+            // "course" => $course,
             "total_enrollments" => $totalEnrollments,
             "completed_enrollments" => $completedEnrollments,
         ]);
     }
 
-    function teacherReport($teacherId) {
+    function teacherReport($teacherId)
+    {
 
-        $teacher = User::find($teacherId);
         $teacher_courses = Course::where('teacher_id', $teacherId)->get();
+        $data = [];
 
-        return response()->json($teacher_courses);
-    }
+        foreach ($teacher_courses as $course) {
+            $course_assignments = $course->assignmentsQuizzes;
 
-    function studentReport($studentId) {
+            $totalCourseGrade = 0;
+            $totalAssignments = count($course_assignments);
 
-        $student = User::find($studentId);
-        $enrolled_courses = $student->enrolledCourses;
+            foreach ($course_assignments as $course_assignment) {
+                $course_submissions = $course_assignment->submissions;
 
-        // return response()->json($enrolled_courses);
-
-        $content = [];
-
-        foreach($enrolled_courses as $enrolledCourse) {
-            $enrollments = $enrolledCourse->enrollments;
-
-            foreach($enrollments as $enrollment) {
-                $avg_grade = $enrollment->submission->avg("grade");
-                return response()->json($avg_grade);
+                foreach ($course_submissions as $submission) {
+                    $totalCourseGrade += $submission->grade ?? 0;
+                }
             }
 
-
-            $content[] = [
-                "course" => $enrolledCourse,
-                // "grade" => $avg_grade
+            $averageCourseGrade = $totalAssignments > 0 ? $totalCourseGrade / $totalAssignments : 0;
+            $data[] = [
+                'course' => $course->name,
+                'average_grade' => $averageCourseGrade,
             ];
         }
 
-        return response()->json([
-            'message' => 'success',
-            'data' => $content
-        ]);
+        return response()->json($data);
     }
-    
+
+    function studentReport($studentId)
+    {
+
+        $user = User::find($studentId);
+        $enrolledCourses = $user->EnrolledCourses;
+
+        $data = [];
+
+        foreach ($enrolledCourses as $course) {
+            $course_assignments = $course->assignmentsQuizzes;
+
+            $totalCourseGrade = 0;
+            $totalAssignments = count($course_assignments);
+
+            foreach ($course_assignments as $course_assignment) {
+                $course_assignment->load('submissions');
+                $course_submission = $course_assignment->submissions;
+                // dd($course_submission);
+                $totalCourseGrade += $course_submission->grade ?? 0;
+            }
+
+            $averageCourseGrade = $totalAssignments > 0 ? $totalCourseGrade / $totalAssignments : 0;
+            $data[] = [
+                'course' => $course->name,
+                'average_grade' => $averageCourseGrade,
+            ];
+        }
+
+        return response()->json($data);
+    }
+
     public function getCourseContent($courseId)
     {
         $course = Course::findOrFail($courseId);
@@ -195,24 +226,34 @@ class CourseController extends Controller
         ], 201);
     }
 
-    function courseAttandance()
-    {
-        $auth_user_id = Auth::user()->id;
-        $student = User::child($auth_user_id)->first();
-        $attendance = Attendance::AttendanceStatus()->where("student_id", $student->id);
-        if ($attendance->exists()) {
-            $course_attend = $attendance->with('course')->get();
-        } else {
-            return response()->json([
-                "status" => "success",
-                "message" => "Not atttendent courses"
-            ]);
+    function courseAttendance()
+{
+    $auth_user_id = Auth::user()->id;
+    $student = User::child($auth_user_id)->first();
+    $attendance = Attendance::AttendanceStatus()->where("student_id", $student->id);
+
+    if ($attendance->exists()) {
+        $course_attend = $attendance->with('course')->get();
+
+        $data = [];
+        foreach ($course_attend as $attendance) {
+            $data[] = [
+                "course_name" => $attendance->course->name,
+                "attendance_status" => $attendance->status
+            ];
         }
+
         return response()->json([
             "status" => "success",
-            "data" => $course_attend
+            "data" => $data
+        ]);
+    } else {
+        return response()->json([
+            "status" => "success",
+            "message" => "Not attended courses"
         ]);
     }
+}
 
     function getCoursesTeacher()
     {
@@ -220,8 +261,20 @@ class CourseController extends Controller
         $child_course = User::child($auth_user_id)->first();
         $all_data = $child_course->StudentEnroll()->with('course.teacher');
         if ($all_data->exists()) {
+            $data = $all_data->get();
             $data=$all_data->get();
             $courseTeachers = [];
+
+        foreach ($data as $enrollment) {
+            $teacherId = $enrollment->course->teacher->id;
+            $teacherName = $enrollment->course->teacher->name;
+
+            $courseTeachers[] = [
+                "teacher_id" => $teacherId,
+                "teacher_name" => $teacherName
+            ];
+        }
+        $courseTeachers = $data->pluck('course.teacher.name')->toArray();
 
         foreach ($data as $enrollment) {
             $teacherId = $enrollment->course->teacher->id;
@@ -245,6 +298,7 @@ class CourseController extends Controller
     }
 }
  
+
     //enrolled courses by signed in student
     function getCourses()
     {

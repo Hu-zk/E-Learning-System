@@ -60,7 +60,7 @@ class StudentContoller extends Controller
 
         if ($student) {
             $student_id = $student->id;
-            $student_courses = Enrollment::Completed()->where("student_id", $student_id)->get();
+            $student_courses = Enrollment::Completed()->with('course')->where("student_id", $student_id)->get();
 
             if ($student_courses->isNotEmpty()) {
                 return response()->json([

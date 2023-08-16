@@ -31,7 +31,7 @@ class ParentController extends Controller
             "receive" => $receive,
         ]);
     }
-
+    
     function getChild()
     {
         $auth_user_id = Auth::user()->id;

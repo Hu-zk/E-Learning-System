@@ -5,10 +5,12 @@ import './style.css';
 
 function Create() {
     const[createUser,setCreateUser] = useState(true);
+    // const[UserTitle,setUserTitle] = useState();
+    // const[CourseTitle,setCourseTitle] = useState();
 
     return (
         <div className='create-page-container'>
-            {createUser ? (<UserForm  onToggle={() => setCreateUser(false)}/>) : (<CourseForm  onToggle={() => setCreateUser(true)}/>)}
+            {createUser ? (<UserForm onToggle={() => setCreateUser(false)}/>) : (<CourseForm  onToggle={() => setCreateUser(true)}/>)}
         </div>
     )
 }

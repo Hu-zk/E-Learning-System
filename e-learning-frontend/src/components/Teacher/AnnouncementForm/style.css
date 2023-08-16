@@ -1,0 +1,71 @@
+.announcement-form {
+    -webkit-box-shadow: 10px -1px 36px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px -1px 36px -12px rgba(0,0,0,0.75);
+    box-shadow: 10px -1px 36px -12px rgba(0,0,0,0.75);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.announcement-form .bottom-announcement-form {
+    padding: 15px;
+}
+
+.announcement-form .bottom-announcement-form textarea {
+    font-size: 1.125rem;
+    height: 100px;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border: 1px solid #737373;
+}
+
+.top-announcement-form {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.top-announcement-form .profile-pic img {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    object-fit: cover;
+}
+
+.top-announcement-form input {
+    flex: 1;
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    outline: none;
+}
+
+.top-announcement-form .send {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+    background-color: #ccccccb6;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    cursor: pointer;
+}

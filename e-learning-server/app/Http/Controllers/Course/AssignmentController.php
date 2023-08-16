@@ -36,4 +36,11 @@ class AssignmentController extends Controller
             'assignment' => $assignment,
         ], 200);
     }
+
+    function getSubmittedSolution($studentId, $assignmentId) {
+
+        $solution = Submission::where('student_id', $studentId)->where('assignment_id', $assignmentId)->first();
+
+        return response()->json(['data' => $solution]);
+    }
 }

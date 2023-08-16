@@ -1,0 +1,44 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+.accordian_container{
+    width: 400px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+button {
+   padding: 8px 20px;
+   background-color: #F5F5DC;
+   color: black;
+   border: none;
+   cursor: pointer;
+   margin-right: 10px;
+   font-size: 16px;
+   border-radius: 8px;
+   display: flex;
+   justify-content: space-between;
+   border: 0.4px solid black;
+}
+
+.accordion_body{
+    width: 400px;
+    height: 55px;
+    background-color: aliceblue;
+    font-size: 14px;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    border-radius: 0 0 4px 4px;
+}
+
+button:hover {
+   background-color: #e9e9d9;
+}
+
+button:focus {
+   outline: none;
+}
