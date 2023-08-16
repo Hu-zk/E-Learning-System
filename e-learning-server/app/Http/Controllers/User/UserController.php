@@ -66,7 +66,8 @@ class UserController extends Controller
         return response()->json(['data' => $content]);
     }
 
-    function teacherReport($teacherId) {
+    function teacherReport($teacherId)
+    {
 
         $teacher = User::find($teacherId);
         $teacher_courses = $teacher->courses()->get();
@@ -93,18 +94,23 @@ class UserController extends Controller
         return response()->json(['message' => 'Backup created successfully']);
     }
 
-    function updateAppearance(Request $request) {
+    function updateAppearance(Request $request)
+    {
 
         $user_type = UserType::find(1);
 
-        if($user_type->rules !== null) {
+        if ($user_type->rules !== null) {
             $result = explode(',', $user_type->rules);
-            if($request->mode) {
+            if ($request->mode) {
                 $result[0] = $request->mode;
             }
-            if($request->email) {
+            if ($request->email) {
                 $result[1] = $request->email;
             }
+            $new = implode(",", $result);
+            $user_type->rules = "\"" . $new . "\"";
+            $user_type->save();
+
             return response()->json($result);
         }
     }

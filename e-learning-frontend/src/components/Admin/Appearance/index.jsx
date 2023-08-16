@@ -5,15 +5,25 @@ import "./style.css"
 
 function Appearance() {
 
-    const [mode, setMode] = useState();
-    
+    const [mode, setMode] = useState('light');
+
+    if(mode === "dark"){
+        document.documentElement.style.setProperty('--white', "black");
+        document.documentElement.style.setProperty('--black', "white");
+    }else{
+        document.documentElement.style.setProperty('--white', "white");
+        document.documentElement.style.setProperty('--black', "black");
+    }
+
     useEffect(() => {
         const fetchData = async () =>{
             try {
                 const response = await sendRequest({
-                    // route: "/user/admin/get-users",
-                    method: requestMethods.GET,
+                    route: "/user/admin/update-appearance",
+                    method: requestMethods.POST,
+                    body:{mode},
                 });
+                console.log(mode)
                 console.log(response)
             } catch (error) {
                 console.error('failed:', error);
@@ -29,12 +39,12 @@ function Appearance() {
 
             <div className="modes">
                 <div className="label-radio">
-                    <input required type="radio" name="appearance-mode" value="0" onClick={(e) => setMode(e.target.value)}/>
+                    <input required type="radio" name="appearance-mode" value="dark" onClick={(e) => setMode(e.target.value)}/>
                     <label htmlFor="Dark">Dark Mode</label>
                 </div>
 
                 <div className="label-radio">
-                    <input required type="radio" name="appearance-mode" value="1" onClick={(e) => setMode(e.target.value)}/>
+                    <input required type="radio" name="appearance-mode" value="light" onClick={(e) => setMode(e.target.value)}/>
                     <label htmlFor="Light">Light Mode</label>
                 </div>
 
