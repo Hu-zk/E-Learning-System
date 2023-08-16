@@ -51,6 +51,12 @@ class User extends Authenticatable implements JWTSubject
         return $query->where("parent_id", $id);
     }
 
+    public function EnrolledCoursesWithAvgGrade()
+{
+    return $this->belongsToMany(Course::class, 'enrollements', 'student_id', 'course_id')
+        ->with(['enrollmentsAvgGrade']);
+}
+
 
     protected $fillable = [
         'name',

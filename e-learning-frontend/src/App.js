@@ -59,7 +59,6 @@ function App() {
             element={<Grades />}
           />
         </Route>
-
         <Route path="/parent">
           <Route index element={<h1>Parent</h1>} />
         </Route>
