@@ -94,6 +94,11 @@ class UserController extends Controller
         return response()->json(['message' => 'Backup created successfully']);
     }
 
+    function getAppearance()
+    {
+        $user_type = UserType::find(1);
+        return response()->json($user_type->rules);
+    }
     function updateAppearance(Request $request)
     {
         $user_type = UserType::find(1);
