@@ -114,12 +114,12 @@ class CourseController extends Controller
             $totalAssignments = count($course_assignments);
 
             foreach($course_assignments as $course_assignment) {
-            $course_assignment->load('submissions');
-            $course_submission = $course_assignment->submissions;
-            dd($course_submission);
+            $student_submissions = $course_assignment->submissions->where('student_id', $studentId);
 
+            foreach ($student_submissions as $submission) {
+                $totalCourseGrade += $submission->grade ?? 0;
+            }
 
-            $totalCourseGrade += $course_submission->grade ?? 0;
         }
 
         $averageCourseGrade = $totalAssignments > 0 ? $totalCourseGrade / $totalAssignments : 0;

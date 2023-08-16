@@ -105,7 +105,10 @@ class UserController extends Controller
             if($request->email) {
                 $result[1] = $request->email;
             }
-            return response()->json($result);
+            $new = implode(",", $result);
+            $user_type->rules = "\"" . $new . "\"";
+            $user_type->save();
+            return response()->json($user_type->rules);
         }
     }
 }
