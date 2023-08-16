@@ -15,17 +15,20 @@ class ParentController extends Controller
         $parent = User::find($auth_user->id);
 
         if ($parent->UserSendMeet()->exists()) {
-            $data = $parent->UserSendMeet()->with("receiverMeet")->with("sendMeet")->get();
-        } else {
-            return response()->json([
-                "status" => "success",
-                "message" => "No meeting"
-            ]);
+            $send = $parent->UserSendMeet()->with("receiverMeet")->with("sendMeet")->get();
+        }else{
+            $send=[];
+        }
+        if ($parent->UserReceiveMeet()->exists()){
+            $receive = $parent->UserReceiveMeet()->with("receiverMeet")->with("sendMeet")->get();
+        }else{
+            $receive=[];
         }
 
         return response()->json([
             "status" => "success",
-            "data" => $data
+            "send" => $send,
+            "receive" => $receive,
         ]);
     }
 

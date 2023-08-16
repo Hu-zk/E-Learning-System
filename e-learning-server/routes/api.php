@@ -38,9 +38,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'parent',  'middleware' => 'auth.parent'], function () {
 
-        Route::get("get_parent", [ParentController::class, "getParent"]);
         Route::get("get_child", [ParentController::class, "getChild"]);
-        Route::get("get_is_submited", [StudentContoller::class, "IsSubmitted"]);
         Route::get("get_is_completed", [StudentContoller::class, "IsCompleted"]);
         Route::get("attendance_course", [CourseController::class, "courseAttandance"]);
         Route::get("teachers_courses", [CourseController::class, "getCoursesTeacher"]);
@@ -49,7 +47,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
 
     Route::group(['prefix' => 'student',  'middleware' => 'auth.student'], function () {
-
         Route::post('upload-submission', [StudentContoller::class, 'uploadSubmission']);
         Route::get("enrolled_courses", [CourseController::class, "getCourses"]);
         Route::get("courses", [CourseController::class, "allCourses"]);
@@ -86,6 +83,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'shared', 'middleware' => 'auth.user'], function () {
 
         Route::get("course_stats", [CourseController::class, "courseStats"]);
+        Route::get("get_parent", [ParentController::class, "getParent"]);
+        Route::get("get_is_submited", [StudentContoller::class, "IsSubmitted"]);
         Route::get("completed_courses", [CourseController::class, "completedCourses"]);
         Route::post("send_meet", [MeetController::class, "createMeet"]);
         Route::get("check_meet", [MeetController::class, "checkMeet"]);

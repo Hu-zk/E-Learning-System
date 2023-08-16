@@ -35,7 +35,7 @@ function App() {
           <Route index element={<Landing />} />
           <Route path="inprogress" element={<Inprogress />} />
           <Route path="completed" element={<Completed />} />
-          <Route path="course/:id" element={<CoursePage />} />
+          <Route path="course/:id/:name" element={<CoursePage />} />
         </Route>
 
         <Route path="/teacher" element={<TeacherLayout />}>

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./quiz.css";
 import axios from "axios";
 
-function Quiz({ quizData }) {
+function Quiz({ quizData, param }) {
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [quizSubmited, setQuizSubmited] = useState(false);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -23,7 +24,32 @@ function Quiz({ quizData }) {
       console.error(error);
     }
   };
-  useEffect(() => {});
+  const isSumbit = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/user/shared/get_is_submited"
+      );
+      console.log(response.data.data);
+      const data = await response.data.data;
+
+      data.forEach((ele) => {
+        if (
+          ele.submission_data.assignment_quiz.course_id == param.id &&
+          ele.submission_data.assignment_id == quizData.id
+        ) {
+          return setQuizSubmited(true);
+        } else {
+          setQuizSubmited(false);
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  console.log(quizSubmited);
+  useEffect(() => {
+    isSumbit();
+  }, [quizData.id]);
   return (
     <div className="quiz-container">
       <div className="quizinfo">
@@ -52,9 +78,13 @@ function Quiz({ quizData }) {
             </label>
             <input type="file" id="submit" onChange={handleFileUpload} />
           </div>
-          <div className="SubmitBtn" onClick={submitData}>
-            submit
-          </div>
+          {!quizSubmited ? (
+            <div className="SubmitBtn" onClick={submitData}>
+              Submit
+            </div>
+          ) : (
+            <div className="SubmitBtn">Submited</div>
+          )}
         </div>
       </div>
       <p>Created on: {quizData.created_at.split("T")[0]}</p>

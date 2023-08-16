@@ -39,7 +39,7 @@ class User extends Authenticatable implements JWTSubject
     }
     function UserReceiveMeet()
     {
-        return $this->HasMany(Meeting::class, "reciever_id");
+        return $this->HasMany(Meeting::class, "receiver_id");
     }
     function StudentEnroll()
     {

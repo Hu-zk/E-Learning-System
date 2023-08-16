@@ -1,23 +1,20 @@
 .progress {
     display: flex;
-    flex-direction: column;
     gap: 30px;
     padding: 20px;
-    width: 70%;
-    flex: 120;
+    height: 500px;
+        flex-wrap: wrap;
 
 }
 .chart {
     display: flex;
-    justify-content: space-between;
     margin-left: 100px;
     padding: 20px;
     border: 1px solid rgba(42, 41, 41, 0.466);
     border-radius: 10px;
 
 }
-.right-side{
-    width: 30%;
+.right-side {
     display: flex;
     flex-direction: column;
     justify-content: space-around;

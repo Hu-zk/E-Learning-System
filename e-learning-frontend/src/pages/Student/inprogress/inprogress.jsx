@@ -65,43 +65,43 @@ function Inprogress() {
         <div key={index} className="chart">
           <div className="right-side">
             <h3>{course.name}</h3>
+            <div className="responsivePie">
+              <MyResponsivePie
+                data={[
+                  {
+                    id: "attandence",
+                    label: "Attendance",
+                    value: course.attandence,
+                    color: "hsl(36, 70%, 50%)",
+                  },
+                  {
+                    id: "absent",
+                    label: "Absent",
+                    value: course.absent,
+                    color: "hsl(262, 70%, 50%)",
+                  },
+                  {
+                    id: "Submited",
+                    label: "Submitted",
+                    value: course.submited,
+                    color: "hsl(185, 70%, 50%)",
+                  },
+                  {
+                    id: "Not Submited",
+                    label: "Not Submitted",
+                    value: course.notSumbited,
+                    color: "hsl(121, 70%, 50%)",
+                  },
+                ]}
+              />
+            </div>
             <button
               className="courseBtn"
               onClick={() => {
-                navigate(`/student/course/${course.id}`);
+                navigate(`/student/course/${course.id}/${course.name}`);
               }}>
               Enter course
             </button>
-          </div>
-          <div className="responsivePie">
-            <MyResponsivePie
-              data={[
-                {
-                  id: "attandence",
-                  label: "Attendance",
-                  value: course.attandence,
-                  color: "hsl(36, 70%, 50%)",
-                },
-                {
-                  id: "absent",
-                  label: "Absent",
-                  value: course.absent,
-                  color: "hsl(262, 70%, 50%)",
-                },
-                {
-                  id: "Submited",
-                  label: "Submitted",
-                  value: course.submited,
-                  color: "hsl(185, 70%, 50%)",
-                },
-                {
-                  id: "Not Submited",
-                  label: "Not Submitted",
-                  value: course.notSumbited,
-                  color: "hsl(121, 70%, 50%)",
-                },
-              ]}
-            />
           </div>
         </div>
       ))}

@@ -1,0 +1,19 @@
+.book-meet-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal styles */
+.book-meet-modal {
+    position: absolute;
+    background-color: white;
+    top: 10px;
+    right: 15%;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}

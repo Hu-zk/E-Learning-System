@@ -16,6 +16,7 @@ class MeetController extends Controller
         $meet->sender_id =  Auth::id();
         $meet->receiver_id = $request->receiver_id;
         $meet->link_url = $request->link_url;
+        $meet->date = $request->date;
         $meet->save();
 
         return response()->json([
