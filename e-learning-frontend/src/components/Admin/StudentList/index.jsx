@@ -59,9 +59,9 @@ function StudentList() {
                         <td>{students.name}</td>
                         <td>{students.parent_id}</td>
                         <td>{students.email}</td>
-                        <td className='list-buttons'>
+                        {/* <td className='list-buttons'>
                             <button className='edit-button' onClick={() => handleEdit(students.id)}>Statistics</button>
-                        </td>
+                        </td> */}
                     </tr>
                 ))}
             </tbody>
