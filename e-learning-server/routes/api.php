@@ -76,7 +76,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get('{courseId}/content', [CourseController::class, 'getCourseContent']);
         Route::get("get_is_submited", [StudentContoller::class, "IsSubmitted"]);
         Route::get("get_parent", [ParentController::class, "getParent"]);
-
     });
 
 
@@ -84,7 +83,3 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
     Route::post("logout", [AuthController::class, "logout"]);
     Route::post("refresh", [AuthController::class, "refresh"]);
 });
-
-
-
-// Route::get('/student-report/{studentId}', [CourseController::class, 'studentReport']);
