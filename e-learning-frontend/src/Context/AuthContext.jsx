@@ -18,12 +18,10 @@ export const ModeContexttProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const response = await sendRequest({
-          route: "/user/admin/update-appearance",
-          method: requestMethods.POST,
-          body: { mode },
+          route: "/user/shared/get-appearance",
         });
         console.log(mode);
-        console.log(response);
+        setMode(response.data);
       } catch (error) {
         console.error("failed:", error);
       }
