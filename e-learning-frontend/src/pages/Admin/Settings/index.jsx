@@ -2,10 +2,10 @@ import React from 'react'
 import Navbar from '../../../components/Admin/Navbar'
 import Appearance from '../../../components/Admin/Appearance';
 import EmailSection from '../../../components/Admin/EmailSection';
-import "./style.css";
 import Backup from '../../../components/Admin/Backup';
+import "./style.css";
 
-function Settings() {
+function Settings({mode,setMode}) {
 
     const nav={
         "title":'Settings :',
@@ -16,7 +16,7 @@ function Settings() {
             <Navbar nav={nav}/>
             <div className='setting-page'>
                 <EmailSection/>
-                <Appearance/>
+                <Appearance mode={mode} setMode={setMode}/>
                 <Backup/>
             </div>
         </div>

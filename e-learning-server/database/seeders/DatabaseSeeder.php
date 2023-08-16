@@ -168,7 +168,6 @@ class DatabaseSeeder extends Seeder
             'feedback' => '2023-08-12',
             'file_url' => "file",
         ]);
-
         DB::table('meetings')->insert([
             'sender_id' => 3,
             "receiver_id" => 2,
