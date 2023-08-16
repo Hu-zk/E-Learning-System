@@ -161,5 +161,25 @@ class DatabaseSeeder extends Seeder
             'file_url' => "file",
             'is_quiz' => false,
         ]);
+        DB::table('submissions')->insert([
+            'student_id' => 4,
+            "assignment_id" => 1,
+            'grade' => 80,
+            'feedback' => '2023-08-12',
+            'file_url' => "file",
+        ]);
+
+        DB::table('meetings')->insert([
+            'sender_id' => 3,
+            "receiver_id" => 2,
+            'link_url' => "file",
+            "date" => "1999/12/23"
+        ]);
+        DB::table('meetings')->insert([
+            'sender_id' => 3,
+            "receiver_id" => 2,
+            'link_url' => "file",
+            "date" => "1969/12/23"
+        ]);
     }
 }

@@ -96,12 +96,11 @@ class UserController extends Controller
 
     function updateAppearance(Request $request)
     {
+        $user_type = UserType::where("id",1)->first();
 
-        $user_type = UserType::find(1);
-
-        $user_type->rules = $request->mode;
+        // $user_type->rules = $request->mode;
         $user_type->save();
 
-        return response()->json($user_type);
+        return response()->json(["admin"=>$user_type]);
     }
 }
