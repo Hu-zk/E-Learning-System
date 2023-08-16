@@ -10,6 +10,8 @@ import {MdOutlineAddBox} from "react-icons/md";
 
 const BookMeeting = () => {
     const [teachers, setTeachers] = useState([]);
+    const [url, setUrl] = useState('');
+    const [teacherId, setTeacherId] = useState('');
     const [date, setDate] = useState(new Date());
     // const [isAvailable, setIsAvailable] = useState(false);
     const title = "Teacher";
@@ -46,6 +48,31 @@ const BookMeeting = () => {
         }
     }
 
+    const bookAMeeting = async () => {
+        const body = {
+            receiver_id: teacherId,
+            link_url: url,
+            date: date
+        }
+        const token = localStorage.getItem('jwtToken');
+        const response = await axios.post('http://127.0.0.1:8000/api/user/shared/send_meet',body, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+    
+    }
+
+    const inputChange = (event) => {
+    setUrl(event.target.value);
+    };
+
+    const getTeacherID = (id) =>{
+        setTeacherId(id)
+    }
+
+    console.log("my teacherId" , teacherId)
+
     useEffect(()=>{
         getAnnouncments();
     },[])
@@ -60,7 +87,7 @@ const BookMeeting = () => {
                 <div className={styles.body_left}>
                     <div className={styles.page_header}>Book a meeting
                         <div className={styles.button_add}>
-                            <MdOutlineAddBox size={30}/>
+                            <MdOutlineAddBox size={30} onClick={()=>bookAMeeting()}/>
                         </div>
                     </div>
                     <div className={styles.stats_container}>
@@ -69,7 +96,7 @@ const BookMeeting = () => {
                                 <div className={styles.teacher_container_header}>{title}</div>
                                 <div className={styles.teacher_list}>
                                     {teachers.map(teacher=>(
-                                        <div key={teacher.teacher_id}  className={styles.teachers_container}>
+                                        <div key={teacher.teacher_id}  className={styles.teachers_container} onClick={()=>getTeacherID(teacher.teacher_id)}>
                                             <div className={styles.name}>{teacher.teacher_name}</div>
                                         </div>
                                     ))}
@@ -79,7 +106,7 @@ const BookMeeting = () => {
                         <div className={styles.right_container}>
                             <div className={styles.input}>
                                 <div className={styles.input_title}>meet-link</div>
-                                <input type="text" placeholder='enter meet url' />
+                                <input type="text" placeholder='enter meet url' value={url} onChange={inputChange}/>
                             </div>
                             <div className={styles.calendar}>
                                 <Calendar onChange={handleDateChange} value={date} />
