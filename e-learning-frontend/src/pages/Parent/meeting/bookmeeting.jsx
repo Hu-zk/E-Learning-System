@@ -6,15 +6,24 @@ import { Assignment } from '../../../components/parent/assignment/assignmentComp
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import {MdOutlineAddBox} from "react-icons/md";
-
+// import { format } from 'date-fns';
 
 const BookMeeting = () => {
     const [teachers, setTeachers] = useState([]);
     const [url, setUrl] = useState('');
     const [teacherId, setTeacherId] = useState('');
     const [date, setDate] = useState(new Date());
-    // const [isAvailable, setIsAvailable] = useState(false);
     const title = "Teacher";
+
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    const hours = String(currentDate.getHours()).padStart(2, "0");
+    const minutes = String(currentDate.getMinutes()).padStart(2, "0");
+    const mysqlFormattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
+
+    console.log(teacherId, url, date);
 
     const getAnnouncments = async () => {
         const token = localStorage.getItem('jwtToken');
@@ -24,27 +33,18 @@ const BookMeeting = () => {
             }
         });
         const data = response.data;
-        // console.log("data= response.data",data[0].teacher_id);
         if(data.status == 'success'){
-            // console.log("data.data",data.data[0].teacher_id)
-            // setTeachers(data);
-            // console.log(teachers[0][0])
-
-            // const course_teacher = data.data.map(item => 
-            //     item.teacher_id);
             
-
-            const course_teacher = data.data.map(item => ({
-            teacher_id: item.teacher_id,
-            teacher_name: item.teacher_name})
-            // console.log("attend", item.attendance_status)
-        );
+         const course_teacher = data.data
+            .filter(item => item.teacher_id && item.teacher_name) 
+            .map(item => ({
+                teacher_id: item.teacher_id,
+                teacher_name: item.teacher_name
+            }));
         setTeachers(course_teacher)
-        console.log("teachers",teachers)
-            // setIsAvailable(true);            console.log(teachers)
+        console.log("course_teacher",course_teacher)
 
         }else{
-            // setIsAvailable(false);
             console.log("there are no teachers");
         }
     }
@@ -53,7 +53,7 @@ const BookMeeting = () => {
         const body = {
             receiver_id: teacherId,
             link_url: url,
-            date: date
+            date: mysqlFormattedDate
         }
         const token = localStorage.getItem('jwtToken');
         const response = await axios.post('http://127.0.0.1:8000/api/user/shared/send_meet',body, {

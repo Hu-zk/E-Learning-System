@@ -2,6 +2,10 @@
     display: flex;
 }
 
+.side_bar_container{
+    height: 600px;
+}
+
 .outlet_parent {
     width: 100%;
     margin-left: 90px;

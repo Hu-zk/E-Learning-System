@@ -15,7 +15,7 @@ const Home = () => {
             }
         });
         const data = response.data;
-        console.log("dataaaaa",data);
+        // console.log("dataaaaa",data);
         if(data.status == 'success'){
             setAnnouncment(data.data);
             setIsAvailable(true);

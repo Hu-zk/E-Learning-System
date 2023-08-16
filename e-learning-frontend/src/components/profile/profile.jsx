@@ -12,10 +12,6 @@ export const Profile = () =>{
     const user_data = localStorage.getItem('userData');
     const user_info  = JSON.parse(user_data);
 
-    // if(user_info.user_type_id == 3){
-    //     setType("parent");
-    // }
-
     const getMeeting = async () => {
         const token = localStorage.getItem('jwtToken');
         const response = await axios.get('http://127.0.0.1:8000/api/user/shared/get_parent', {
@@ -28,7 +24,7 @@ export const Profile = () =>{
             setMeeting(false);
         }else{
             setMeeting(true);
-            console.log("meetings",data.send)
+            // console.log("meetings",data.send)
             const parent_meet = data.send.map(item => ({
             id: item.id,
             link_url: item.link_url,
@@ -36,7 +32,7 @@ export const Profile = () =>{
             // console.log("attend", item.attendance_status)
         );
         setAvailableMeets(parent_meet);
-        console.log("availble",availableMeets)
+        // console.log("availble",availableMeets)
         }
     }
 
@@ -50,7 +46,7 @@ export const Profile = () =>{
         const data = response.data;
         if(data.status === 'success'){
             setChildren(data.data);
-            console.log('children', children)
+            // console.log('children', children)
         }else{
             console.log("no children exist")
         }

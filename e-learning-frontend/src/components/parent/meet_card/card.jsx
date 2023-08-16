@@ -5,7 +5,6 @@ import {BsCameraVideoFill} from "react-icons/bs";
 import {GrFormClose} from "react-icons/gr";
 
 export const Card = ({name,link,id}) =>{
-    console.log("my id is", id)
 
     const goToMeet = () => {
         window.location.href = `${link}`
