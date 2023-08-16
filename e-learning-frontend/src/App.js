@@ -34,7 +34,7 @@ function App() {
       const fetchData = async () =>{
           try {
               const response = await sendRequest({
-                  route: "/user/shared/get-appearance",
+                  route: "/guest/get-appearance",
                   method: requestMethods.GET,
               });
               setMode(response)
@@ -43,12 +43,12 @@ function App() {
           }
       }
       fetchData();
-  }, []);
+  }, [mode]);
 
   if(mode === "dark"){
     document.documentElement.style.setProperty('--white', "black");
     document.documentElement.style.setProperty('--black', "white");
-}else{
+}else if(mode === "light"){
     document.documentElement.style.setProperty('--white', "white");
     document.documentElement.style.setProperty('--black', "black");
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\Meet\MeetController;
 
 Route::group(['prefix' => 'guest'], function () {
 
+    Route::get("get-appearance", [UserController::class, 'getAppearance']);
     Route::get("unauthorized", [AuthController::class, "unauthorized"])->name("unauthorized");
     Route::post('login', [AuthController::class, 'login']);
 });
@@ -66,7 +67,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'shared', 'middleware' => 'auth.user'], function () {
 
-        Route::get("/get-appearance", [UserController::class, 'getAppearance']);
         Route::get("course_stats", [CourseController::class, "courseStats"]);
         Route::get("get_parent", [ParentController::class, "getParent"]);
         Route::get("get_is_submited", [StudentContoller::class, "IsSubmitted"]);
