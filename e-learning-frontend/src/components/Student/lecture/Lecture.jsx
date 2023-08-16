@@ -5,7 +5,7 @@ function Lecture({ lectureData }) {
   console.log(lectureData);
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = lectureData.file_url;
+    link.href = `http://127.0.0.1:8000/uploads/Videos/${lectureData.file_url}`;
     link.download = lectureData.title;
     document.body.appendChild(link);
     link.click();
