@@ -43,7 +43,7 @@ const Course = (props) => {
           <BsThreeDotsVertical size={25} />
         </div>
       </div>
-      <div className="mid-class">
+      <div className="mid-complete-class">
         {location.pathname == "/student/Completed" ? (
           assignments_quizzes.map((quiz) => (
             <div key={quiz.id} className="quiz">
@@ -54,7 +54,7 @@ const Course = (props) => {
                   ? quiz.submissions[0].grade
                   : "Not graded"}
               </p>
-              <style>{".class .mid-class { padding-top: 80px; }"}</style>
+              <style>{".mid-complete-class { padding-top: 120px; }"}</style>
             </div>
           ))
         ) : (

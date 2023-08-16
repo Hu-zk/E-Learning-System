@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import Course from "../course/course";
 import axios from "axios";
-import { AuthContext } from "../../../Context/AuthContext";
 import "./courses.css";
 
 function Courses() {
   const [courses, setCourses] = useState([]);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
-  // const { userData } = useContext(AuthContext);
   const jwtToken = localStorage.getItem("jwtToken");
   axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
 
@@ -33,8 +31,8 @@ function Courses() {
       console.error(error);
     }
   };
-  const enrolledCourseIds = enrolledCourses.map((course) => course.id);
-  const filteredCourses = courses.filter(
+  const enrolledCourseIds = enrolledCourses?.map((course) => course.id);
+  const filteredCourses = courses?.filter(
     (course) => !enrolledCourseIds.includes(course.id)
   );
 
@@ -44,7 +42,7 @@ function Courses() {
   }, []);
   return (
     <div className="card-container">
-      {filteredCourses.map((ele) => {
+      {filteredCourses?.map((ele) => {
         return <Course course={ele} key={ele.id} />;
       })}
     </div>
