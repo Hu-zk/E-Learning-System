@@ -103,10 +103,4 @@ class UserController extends Controller
 
         return response()->json($user_type->rules);
     }
-
-    function getAppearance()
-    {
-        $user_type = UserType::find(1);
-        return response()->json($user_type->rules);
-    }
 }
