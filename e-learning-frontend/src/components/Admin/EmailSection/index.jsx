@@ -53,7 +53,6 @@ function EmailSection() {
             <h3>Email Templates :</h3>
 
             <div>
-            {/* <p>Select an email template:</p> */}
             <select value={selectedTemplate} onChange={handleTemplateChange}>
                 <option value="">Select a template</option>
                 <option value="welcomeTeacher">Welcome Email to Teacher</option>

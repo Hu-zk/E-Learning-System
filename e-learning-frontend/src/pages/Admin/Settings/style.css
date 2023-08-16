@@ -1,7 +1,8 @@
 .setting-page {
   display: flex;
   margin: 0 4.7em;
+  margin-bottom: 3em;
   flex-direction: column;
-  gap: 3em;
-  border: 1pt solid rgb(255, 1, 1);
+  gap: 2em;
+  /* border: 1pt solid rgb(255, 1, 1); */
 }
