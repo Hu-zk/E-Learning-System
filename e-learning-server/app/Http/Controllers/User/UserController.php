@@ -96,7 +96,6 @@ class UserController extends Controller
 
     function updateAppearance(Request $request)
     {
-
         $user_type = UserType::find(1);
 
         $user_type->rules = $request->mode;

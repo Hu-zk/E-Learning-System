@@ -14,7 +14,7 @@ function Appearance() {
         document.documentElement.style.setProperty('--white', "white");
         document.documentElement.style.setProperty('--black', "black");
     }
-
+    
     useEffect(() => {
         const fetchData = async () =>{
             try {

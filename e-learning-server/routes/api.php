@@ -63,9 +63,10 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::post('{courseId}/create-material', [CourseController::class, 'createMaterial']);
         Route::get("/solution/{studentId}/{assignmentId}", [AssignmentController::class, 'getSubmittedSolution']);
     });
-    
+
     Route::group(['prefix' => 'shared', 'middleware' => 'auth.user'], function () {
-        
+
+        Route::get("/get-appearance", [UserController::class, 'getAppearance']);
         Route::get("course_stats", [CourseController::class, "courseStats"]);
         Route::get("get_parent", [ParentController::class, "getParent"]);
         Route::get("get_is_submited", [StudentContoller::class, "IsSubmitted"]);
@@ -77,7 +78,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get('{courseId}/students', [CourseController::class, 'getEnrolledStudents']);
         Route::get("get_is_submited", [StudentContoller::class, "IsSubmitted"]);
         Route::get("get_parent", [ParentController::class, "getParent"]);
-
     });
 
 
@@ -85,7 +85,3 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
     Route::post("logout", [AuthController::class, "logout"]);
     Route::post("refresh", [AuthController::class, "refresh"]);
 });
-
-
-
-// Route::get('/student-report/{studentId}', [CourseController::class, 'studentReport']);

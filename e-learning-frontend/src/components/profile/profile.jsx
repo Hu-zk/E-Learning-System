@@ -7,7 +7,7 @@ import { ChildCard } from "../parent/child_card/childCard";
 export const Profile = () =>{
     const [meeting, setMeeting] = useState(false);
     const [availableMeets, setAvailableMeets] = useState([]);
-      const [children, setChildren] = useState([]);
+    const [children, setChildren] = useState([]);
 
     const user_data = localStorage.getItem('userData');
     const user_info  = JSON.parse(user_data);
@@ -24,7 +24,7 @@ export const Profile = () =>{
             }
         });
         const data = response.data;
-        if(data.message == 'No meeting'){
+        if(data.message === 'No meeting'){
             setMeeting(false);
         }else{
             setMeeting(true);
@@ -48,7 +48,7 @@ export const Profile = () =>{
             }
         });
         const data = response.data;
-        if(data.status == 'success'){
+        if(data.status === 'success'){
             setChildren(data.data);
             console.log('children', children)
         }else{
@@ -66,7 +66,7 @@ export const Profile = () =>{
             <div className={styles.container_header}>
                 <div className={styles.header}>
                     <div className={styles.image_container}>
-                        <img src="/image.jpg" alt="user profile image"/>
+                        <img src="/image.jpg" alt="user profile image1"/>
                     </div>
                     <div className={styles.user_name}>{user_info.name}</div>
                 </div>

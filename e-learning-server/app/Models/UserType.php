@@ -10,8 +10,8 @@ class UserType extends Model
     use HasFactory;
 
     protected $casts = [
-    'rules' => 'json',
-];
+        'rules',
+    ];
 
 
     public function users()
@@ -20,9 +20,8 @@ class UserType extends Model
     }
 
 
-public function setRulesAttribute($value)
-{
-    $this->attributes['rules'] = $value;
-}
-
+    public function setRulesAttribute($value)
+    {
+        $this->attributes['rules'] = $value;
+    }
 }

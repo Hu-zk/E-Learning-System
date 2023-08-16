@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('user_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string("rules");
+            $table->string('rules');
             $table->timestamps();
         });
 
