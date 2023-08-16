@@ -99,7 +99,10 @@ function CoursePage() {
         </div>
         <div className="contentSide">
           {type == "" ? (
-            <div>wlecome</div>
+            <div className="wlecome">
+              <div>welcome back to {thisCourse.name}</div>
+              <div>Are you exited for learning...</div>
+            </div>
           ) : type == "lecture" ? (
             <Lecture lectureData={selectedData} />
           ) : (
