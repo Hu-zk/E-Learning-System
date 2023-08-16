@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 30px 0 30px;
+    padding: 0 30px;
 }
 .book-meet{
     color: rgba(71, 83, 247, 0.766);
@@ -17,6 +17,8 @@
 }
 .course-name {
     padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .course-container {
@@ -24,6 +26,8 @@
     padding: 20px;
     width: 100%;
     background-color: rgba(254, 254, 254, 0.985);
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .title-side {
@@ -32,11 +36,12 @@
     padding: 10px;
     width: 300px;
     height: 600px;
+    background-color: #fff;
     overflow-y: auto;
 }
 
 .title {
-    padding: 40px;
+    padding: 20px;
     border-bottom: 1px solid rgba(65, 64, 64, 0.36);
     cursor: pointer;
 }
@@ -46,4 +51,5 @@
 }
 .contentSide {
     width: 100%;
+
 }
