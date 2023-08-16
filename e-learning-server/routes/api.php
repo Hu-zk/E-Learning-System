@@ -87,7 +87,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get("completed_courses", [CourseController::class, "completedCourses"]);
         Route::post("send_meet", [MeetController::class, "createMeet"]);
         Route::get("check_meet", [MeetController::class, "checkMeet"]);
-        Route::post("remove_meet", [MeetController::class, "removeMeet"]);
+        Route::delete("remove_meet/{id}", [MeetController::class, "removeMeet"]);
         Route::get('{courseId}/content', [CourseController::class, 'getCourseContent']);
         Route::get("get_is_submited", [StudentContoller::class, "IsSubmitted"]);
         Route::get("get_parent", [ParentController::class, "getParent"]);
