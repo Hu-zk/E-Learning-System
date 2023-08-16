@@ -114,20 +114,19 @@ class CourseController extends Controller
             $totalCourseGrade = 0;
             $totalAssignments = count($course_assignments);
 
-            foreach($course_assignments as $course_assignment) {
-            $student_submissions = $course_assignment->submissions->where('student_id', $studentId);
+            foreach ($course_assignments as $course_assignment) {
+                $student_submissions = $course_assignment->submissions->where('student_id', $studentId);
 
-            foreach ($student_submissions as $submission) {
-                $totalCourseGrade += $submission->grade ?? 0;
+                foreach ($student_submissions as $submission) {
+                    $totalCourseGrade += $submission->grade ?? 0;
+                }
             }
 
-        }
-
-        $averageCourseGrade = $totalAssignments > 0 ? $totalCourseGrade / $totalAssignments : 0;
-        $data[] = [
-            'course' => $course->name,
-            'average_grade' => $averageCourseGrade,
-        ];
+            $averageCourseGrade = $totalAssignments > 0 ? $totalCourseGrade / $totalAssignments : 0;
+            $data[] = [
+                'course' => $course->name,
+                'average_grade' => $averageCourseGrade,
+            ];
         }
 
         return response()->json($data);
@@ -161,37 +160,37 @@ class CourseController extends Controller
 
     public function createAssignmentQuiz(Request $request, $courseId)
     {
-       $request->validate([
-        'title' => 'required|string',
-        'description' => 'required|string',
-        'is_announcement' => 'required|boolean',
-        'file_url' => 'required|mimes:pdf,doc,docx|max:20000',
-    ]);
-
-    if ($request->hasFile('file')) {
-        $file = $request->file('file');
-        $fileName = time() . '_' . $file->getClientOriginalName();
-        $file->move(public_path('uploads/files'), $fileName);
-
-        $material = new Material([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'file_url' => $fileName, 
-            'is_announcement' => $request->input('is_announcement'),
+        $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'is_announcement' => 'required|boolean',
+            'file_url' => 'required|mimes:pdf,doc,docx,jpg,png|max:20000',
         ]);
 
-        $course = Course::findOrFail($courseId);
-        $course->materials()->save($material);
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/files'), $fileName);
+
+            $material = new Material([
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+                'file_url' => $fileName,
+                'is_announcement' => $request->input('is_announcement'),
+            ]);
+
+            $course = Course::findOrFail($courseId);
+            $course->materials()->save($material);
+
+            return response()->json([
+                'message' => 'File uploaded successfully',
+                'content' => $material
+            ], 201);
+        }
 
         return response()->json([
-            'message' => 'File uploaded successfully',
-            'content' => $material
-        ], 201);
-    }
-
-    return response()->json([
-        'message' => 'File upload failed',
-    ], 400);
+            'message' => 'File upload failed',
+        ], 400);
     }
 
 
@@ -201,15 +200,15 @@ class CourseController extends Controller
             'title' => 'required|string',
             'description' => 'required|string',
             'is_announcement' => 'required|boolean',
-            'video' => 'required|mimes:mp4|max:20000',
+            'video' => 'nullable|mimes:mp4|max:20000',
         ]);
 
-       if ($request->hasFile('video')) {
-        $video = $request->file('video');
-        $videoName = time() . '_' . $video->getClientOriginalName();
-        $video->move(public_path('uploads/Videos'), $videoName);
+        if ($request->hasFile('video')) {
+            $video = $request->file('video');
+            $videoName = time() . '_' . $video->getClientOriginalName();
+            $video->move(public_path('uploads/Videos'), $videoName);
         } else {
-            $videoUrl = null;
+            $videoName = null;
         }
 
         $material = new Material([
@@ -229,33 +228,33 @@ class CourseController extends Controller
     }
 
     function courseAttendance()
-{
-    $auth_user_id = Auth::user()->id;
-    $student = User::child($auth_user_id)->first();
-    $attendance = Attendance::AttendanceStatus()->where("student_id", $student->id);
+    {
+        $auth_user_id = Auth::user()->id;
+        $student = User::child($auth_user_id)->first();
+        $attendance = Attendance::AttendanceStatus()->where("student_id", $student->id);
 
-    if ($attendance->exists()) {
-        $course_attend = $attendance->with('course')->get();
+        if ($attendance->exists()) {
+            $course_attend = $attendance->with('course')->get();
 
-        $data = [];
-        foreach ($course_attend as $attendance) {
-            $data[] = [
-                "course_name" => $attendance->course->name,
-                "attendance_status" => $attendance->status
-            ];
+            $data = [];
+            foreach ($course_attend as $attendance) {
+                $data[] = [
+                    "course_name" => $attendance->course->name,
+                    "attendance_status" => $attendance->status
+                ];
+            }
+
+            return response()->json([
+                "status" => "success",
+                "data" => $data
+            ]);
+        } else {
+            return response()->json([
+                "status" => "success",
+                "message" => "Not attended courses"
+            ]);
         }
-
-        return response()->json([
-            "status" => "success",
-            "data" => $data
-        ]);
-    } else {
-        return response()->json([
-            "status" => "success",
-            "message" => "Not attended courses"
-        ]);
     }
-}
 
     function getCoursesTeacher()
     {
@@ -264,42 +263,42 @@ class CourseController extends Controller
         $all_data = $child_course->StudentEnroll()->with('course.teacher');
         if ($all_data->exists()) {
             $data = $all_data->get();
-            $data=$all_data->get();
+            $data = $all_data->get();
             $courseTeachers = [];
 
-        foreach ($data as $enrollment) {
-            $teacherId = $enrollment->course->teacher->id;
-            $teacherName = $enrollment->course->teacher->name;
+            foreach ($data as $enrollment) {
+                $teacherId = $enrollment->course->teacher->id;
+                $teacherName = $enrollment->course->teacher->name;
 
-            $courseTeachers[] = [
-                "teacher_id" => $teacherId,
-                "teacher_name" => $teacherName
-            ];
-        }
-        $courseTeachers = $data->pluck('course.teacher.name')->toArray();
+                $courseTeachers[] = [
+                    "teacher_id" => $teacherId,
+                    "teacher_name" => $teacherName
+                ];
+            }
+            $courseTeachers = $data->pluck('course.teacher.name')->toArray();
 
-        foreach ($data as $enrollment) {
-            $teacherId = $enrollment->course->teacher->id;
-            $teacherName = $enrollment->course->teacher->name;
+            foreach ($data as $enrollment) {
+                $teacherId = $enrollment->course->teacher->id;
+                $teacherName = $enrollment->course->teacher->name;
 
-            $courseTeachers[] = [
-                "teacher_id" => $teacherId,
-                "teacher_name" => $teacherName
-            ];
-        }
+                $courseTeachers[] = [
+                    "teacher_id" => $teacherId,
+                    "teacher_name" => $teacherName
+                ];
+            }
 
-        return response()->json([
-            "status" => "success",
-            "data" => $courseTeachers
-        ]);
+            return response()->json([
+                "status" => "success",
+                "data" => $courseTeachers
+            ]);
         } else {
-        return response()->json([
-            "status" => "success",
-            "message" => "No courses found"
-        ]);
+            return response()->json([
+                "status" => "success",
+                "message" => "No courses found"
+            ]);
+        }
     }
-}
- 
+
 
     //enrolled courses by signed in student
     function getCourses()

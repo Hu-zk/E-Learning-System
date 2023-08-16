@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Course from "../Course/Course";
 import "./style.css";
-import axios from "axios"
 import { sendRequest } from "../../../core/config/request";
 import { requestMethods } from "../../../core/enums/requestMethods";
 
