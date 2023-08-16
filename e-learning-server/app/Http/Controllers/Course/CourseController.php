@@ -165,7 +165,7 @@ class CourseController extends Controller
         'title' => 'required|string',
         'description' => 'required|string',
         'is_announcement' => 'required|boolean',
-        'file_url' => 'required|mimes:pdf,doc,docx|max:20000',
+        'file' => 'required|mimes:pdf,doc,docx,jpg,jpeg,png,gif|max:20000',
     ]);
 
     if ($request->hasFile('file')) {
@@ -176,7 +176,7 @@ class CourseController extends Controller
         $material = new Material([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'file_url' => $fileName, 
+            'file' => $fileName, 
             'is_announcement' => $request->input('is_announcement'),
         ]);
 
