@@ -3,6 +3,8 @@ import StudentAttendance from "../../../components/Teacher/StudentAttendance/Stu
 import "./Attendance.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { sendRequest } from "../../../core/config/request";
+import { requestMethods } from "../../../core/enums/requestMethods";
 
 const Attendance = () => {
 
@@ -14,46 +16,38 @@ const Attendance = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        try {
-            const getEnrolledStudents = async() => {
-                let { data } = await axios.get(
-                  `http://127.0.0.1:8000/api/user/teacher/${id}/students`,
-                  {
-                    headers: {
-                      Authorization:
-                        "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTQxOTI2LCJleHAiOjE2OTIxNDU1MjYsIm5iZiI6MTY5MjE0MTkyNiwianRpIjoibUpZRDV1MlhLUm5ObWlDaiIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.HtKyULCx8uce-pGrrcpQFaqA2JCdbClcYGHCNYP2hNY",
-                    },
-                  }
-                );
-                console.log(data)
-                setStudents(data.students)
-                console.log(data.students)
-
-                const initialAttendance = data
-                    .students
-                    .map((student) => ({studentId: student.id, status: false}));
+        const fetchData = async () =>{
+            try {
+                const response = await sendRequest({
+                    route: `/user/shared/${id}/students`,
+                    method: requestMethods.GET,
+                });
+                console.log(response)
+                setStudents(response.students)
+                const initialAttendance = response.students.map((student) => ({studentId: student.id, status: false}));
 
                 setAttendance(initialAttendance)
-            };
-            getEnrolledStudents();
-        } catch (error) {
-            console.log(error)
+
+            } catch (error) {
+                console.error('failed:', error);
+            }
         }
-    }, [])
+        fetchData();
+    }, []);
 
     const handleAttendance = async() => {
         try {
             const token = localStorage.getItem("jwtToken")
             await axios.post(
-              `http://127.0.0.1:8000/api/user/teacher/record-attendance/${id}`,
-              {
+                `http://127.0.0.1:8000/api/user/teacher/record-attendance/${id}`,
+                {
                 students: attendance,
-              },
-              {
-                headers: {
-                  Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2d1ZXN0L2xvZ2luIiwiaWF0IjoxNjkyMTQxNjIyLCJleHAiOjE2OTIxNDUyMjIsIm5iZiI6MTY5MjE0MTYyMiwianRpIjoiVkZBSHNRTlJiVDBENm9mcyIsInN1YiI6IjciLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0tUvSifCvUG7_UrZCqOYSAfjVHCimPVRO4ZiMQGDbgU`,
                 },
-              }
+                {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                }
             );
             navigate(`/teacher/course/${id}`)
         } catch (error) {

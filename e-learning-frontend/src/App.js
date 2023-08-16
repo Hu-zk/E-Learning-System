@@ -86,7 +86,7 @@ function App() {
             element={<Attendance />}
           />
           <Route
-            path="/teacher/course/:id/assignment/:id"
+            path="/teacher/course/:id/assignment/:assignmentId"
             element={<Grades />}
           />
         </Route>
