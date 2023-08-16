@@ -26,7 +26,15 @@ function Login() {
         localStorage.setItem("jwtToken", token);
         localStorage.setItem("userData", JSON.stringify(data));
         setAuthToken(token);
-        window.location.href = "http://localhost:3000/student";
+        if(data.user_type_id ===1){
+          window.location.href = "http://localhost:3000/admin/create";
+        }else if (data.user_type_id ===2){
+          window.location.href = "http://localhost:3000/teacher";
+        }else if (data.user_type_id ===3){
+          window.location.href = "http://localhost:3000/parent";
+        }else{
+          window.location.href = "http://localhost:3000/student";
+        }
       }
     } catch (error) {
       console.error("Login failed:", error);
