@@ -24,7 +24,7 @@ export const Profile = () =>{
             }
         });
         const data = response.data;
-        if(data.message == 'No meeting'){
+        if(data.message === 'No meeting'){
             setMeeting(false);
         }else{
             setMeeting(true);

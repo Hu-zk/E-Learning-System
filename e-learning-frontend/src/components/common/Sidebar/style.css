@@ -1,16 +1,4 @@
 .sidebar {
-<<<<<<< HEAD
-    width: 100px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap:100px;
-    padding: 30px;
-    background-color: var(--black);
-    color: var(--white);
-
-=======
   width: 100px;
   height: 100vh;
   display: flex;
@@ -21,7 +9,6 @@
   padding: 30px;
   background-color: var(--black);
   color: var(--white);
->>>>>>> 5606b3f5601e9a1b6d2f29404b5401c93e9f5e93
 }
 
 .sidebar .mid {
