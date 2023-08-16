@@ -16,6 +16,6 @@ class Meeting extends Model
     }
     function receiverMeet()
     {
-        return $this->belongsTo(User::class, "reciever_id", "id");
+        return $this->belongsTo(User::class, "receiver_id", "id");
     }
 }

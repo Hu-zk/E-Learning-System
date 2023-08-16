@@ -227,24 +227,34 @@ class CourseController extends Controller
         ], 201);
     }
 
-    function courseAttandance()
-    {
-        $auth_user_id = Auth::user()->id;
-        $student = User::child($auth_user_id)->first();
-        $attendance = Attendance::AttendanceStatus()->where("student_id", $student->id);
-        if ($attendance->exists()) {
-            $course_attend = $attendance->with('course')->get();
-        } else {
-            return response()->json([
-                "status" => "success",
-                "message" => "Not atttendent courses"
-            ]);
+    function courseAttendance()
+{
+    $auth_user_id = Auth::user()->id;
+    $student = User::child($auth_user_id)->first();
+    $attendance = Attendance::AttendanceStatus()->where("student_id", $student->id);
+
+    if ($attendance->exists()) {
+        $course_attend = $attendance->with('course')->get();
+
+        $data = [];
+        foreach ($course_attend as $attendance) {
+            $data[] = [
+                "course_name" => $attendance->course->name,
+                "attendance_status" => $attendance->status
+            ];
         }
+
         return response()->json([
             "status" => "success",
-            "data" => $course_attend
+            "data" => $data
+        ]);
+    } else {
+        return response()->json([
+            "status" => "success",
+            "message" => "Not attended courses"
         ]);
     }
+}
 
     function getCoursesTeacher()
     {
@@ -253,15 +263,41 @@ class CourseController extends Controller
         $all_data = $child_course->StudentEnroll()->with('course.teacher');
         if ($all_data->exists()) {
             $data = $all_data->get();
+            $data=$all_data->get();
+            $courseTeachers = [];
+
+        foreach ($data as $enrollment) {
+            $teacherId = $enrollment->course->teacher->id;
+            $teacherName = $enrollment->course->teacher->name;
+
+            $courseTeachers[] = [
+                "teacher_id" => $teacherId,
+                "teacher_name" => $teacherName
+            ];
         }
         $courseTeachers = $data->pluck('course.teacher.name')->toArray();
 
+        foreach ($data as $enrollment) {
+            $teacherId = $enrollment->course->teacher->id;
+            $teacherName = $enrollment->course->teacher->name;
+
+            $courseTeachers[] = [
+                "teacher_id" => $teacherId,
+                "teacher_name" => $teacherName
+            ];
+        }
 
         return response()->json([
             "status" => "success",
             "data" => $courseTeachers
         ]);
+        } else {
+        return response()->json([
+            "status" => "success",
+            "message" => "No courses found"
+        ]);
     }
+}
 
     //enrolled courses by signed in student
     function getCourses()

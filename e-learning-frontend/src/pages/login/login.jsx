@@ -22,9 +22,9 @@ function Login() {
             console.log(data)
             if (token) {
                 localStorage.setItem('jwtToken', token);
-                localStorage.setItem('userData',data);
+                localStorage.setItem('userData', JSON.stringify(data));
                 setAuthToken(token);            
-                window.location.href='http://localhost:3000/admin'
+                window.location.href='http://localhost:3000/parent'
 
             }
         } catch (error) {
