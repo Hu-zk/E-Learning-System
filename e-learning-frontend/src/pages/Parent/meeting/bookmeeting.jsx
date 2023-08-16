@@ -4,7 +4,8 @@ import { Accordion } from "../../../components/accordion/accordion";
 import React, { useEffect, useState } from 'react';
 import { Assignment } from '../../../components/assignment/assignmentComp';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'; // Import the default styles
+import 'react-calendar/dist/Calendar.css';
+import {MdOutlineAddBox} from "react-icons/md";
 
 
 const BookMeeting = () => {
@@ -57,7 +58,11 @@ const BookMeeting = () => {
         <div className={styles.container}>
             <div className={styles.page_body}>
                 <div className={styles.body_left}>
-                    <div className={styles.page_header}>Analytics</div>
+                    <div className={styles.page_header}>Book a meeting
+                        <div className={styles.button_add}>
+                            <MdOutlineAddBox size={30}/>
+                        </div>
+                    </div>
                     <div className={styles.stats_container}>
                         <div className={styles.left_container}>
                             <div className={styles.teacher_container}>
