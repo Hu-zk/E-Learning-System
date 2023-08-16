@@ -23,10 +23,17 @@ class StudentContoller extends Controller
             $student = $auth_user;
         }
 
-        $assignments = Submission::where("student_id", $student->id);
+        $assignments = Submission::where("student_id", $student->id)->with("assignmentQuiz.course");
 
         if ($assignments->exists()) {
-            $data = $assignments->get();
+            $assignments_data = $assignments->get();
+            $data = [];
+            foreach ($assignments_data as $submission) {
+            $data[] = [
+            "course_name" => $submission->assignmentQuiz->course->name,
+            "submission_data" => $submission
+        ];
+    }
         } else {
             return response()->json([
                 "status" => "success",
@@ -53,7 +60,7 @@ class StudentContoller extends Controller
 
         if ($student) {
             $student_id = $student->id;
-            $student_courses = Enrollment::Completed()->where("student_id", $student_id)->get();
+            $student_courses = Enrollment::Completed()->with('course')->where("student_id", $student_id)->get();
 
             if ($student_courses->isNotEmpty()) {
                 return response()->json([
@@ -83,14 +90,19 @@ class StudentContoller extends Controller
         $auth_user = Auth::user();
         $assignment = AssignmentQuiz::findOrFail($request->assignment_id);
 
-        $fileUrl = $request->file('file')->store('submissions', 'public');
+        if ($request->hasFile('file')) {
+        $file = $request->file('file');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('uploads/Studentfiles'), $fileName);
+        }
+
 
         $submission = new Submission([
             'student_id' => $auth_user->id,
             'assignment_id' => $assignment->id,
             'grade' => null,
             'feedback' => null,
-            'file_url' => $fileUrl,
+            'file_url' => $fileName,
         ]);
 
         $submission->save();

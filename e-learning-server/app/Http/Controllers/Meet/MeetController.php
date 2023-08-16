@@ -16,6 +16,7 @@ class MeetController extends Controller
         $meet->sender_id =  Auth::id();
         $meet->receiver_id = $request->receiver_id;
         $meet->link_url = $request->link_url;
+        $meet->date = $request->date;
         $meet->save();
 
         return response()->json([
@@ -37,13 +38,13 @@ class MeetController extends Controller
     }
 
     //delete meet
-    function removeMeet()
+    function removeMeet($id)
     {
         $user = Auth::user();
         if ($user->user_type_id == 2) {
             $meet = Meeting::where('receiver_id', $user->id)->delete();
         } else if ($user->user_type_id == 3) {
-            $meet = Meeting::where('sender_id', $user->id)->delete();
+            $meet = Meeting::find($id)->where('sender_id', $user->id)->delete();
         }
     }
 }

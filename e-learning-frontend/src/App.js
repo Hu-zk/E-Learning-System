@@ -5,6 +5,8 @@ import Course from "./pages/Teacher/Course/Course";
 import Attendance from "./pages/Teacher/Attendance/Attendance";
 import Grades from "./pages/Teacher/Grades/Grades";
 import Landing from "./pages/Student/landing/landing";
+import Home from "./pages/Parent/Home/Home";
+import ParentLayout from "./utils/ParentLayout/ParentLayout";
 import Login from "./pages/login/login";
 import AdminLayout from "./utils/AdminLayout";
 import AdminHome from "./pages/Admin/Home";
@@ -14,6 +16,9 @@ import Settings from "./pages/Admin/Settings";
 import StudentLayout from "./utils/StudentLayout/StudentLayout";
 import Inprogress from "./pages/Student/inprogress/inprogress";
 import Completed from "./pages/Student/completed/completed";
+import CoursePage from "./pages/Student/coursePage/CoursePage";
+import Statistics from "./pages/Parent/statistics/statistics";
+import BookMeeting from "./pages/Parent/meeting/bookmeeting";
 import CourseList from "./components/Admin/CourseList";
 import StudentList from "./components/Admin/StudentList";
 import TeacherList from "./components/Admin/TeacherList";
@@ -31,9 +36,9 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminHome />} />
           <Route path="/admin/create" element={<Create />} />
-          <Route path="/admin/display" element={<Display />} >
+          <Route path="/admin/display" element={<Display />}>
             <Route path="/admin/display/users" element={<UserList />} />
-            <Route path="/admin/display/students" element={<StudentList/>} />
+            <Route path="/admin/display/students" element={<StudentList />} />
             <Route path="/admin/display/teachers" element={<TeacherList />} />
             <Route path="/admin/display/parents" element={<ParentList />} />
             <Route path="/admin/display/courses" element={<CourseList />} />
@@ -45,6 +50,7 @@ function App() {
           <Route index element={<Landing />} />
           <Route path="inprogress" element={<Inprogress />} />
           <Route path="completed" element={<Completed />} />
+          <Route path="course/:id/:name" element={<CoursePage />} />
         </Route>
 
         <Route path="/teacher" element={<TeacherLayout />}>
@@ -59,8 +65,11 @@ function App() {
             element={<Grades />}
           />
         </Route>
-        <Route path="/parent">
-          <Route index element={<h1>Parent</h1>} />
+
+        <Route path="/parent" element={<ParentLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/parent/statistics" element={<Statistics />} />
+          <Route path="/parent/bookmeet" element={<BookMeeting />} />
         </Route>
       </Routes>
     </div>

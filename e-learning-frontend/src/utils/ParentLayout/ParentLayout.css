@@ -1,0 +1,14 @@
+.Parent_layout {
+    display: flex;
+}
+
+.outlet_parent {
+    width: 100%;
+    margin-left: 90px;
+}
+
+.body_right{
+    width: 450px;
+    height: 100vh ;
+    background-color:bisque;
+}
