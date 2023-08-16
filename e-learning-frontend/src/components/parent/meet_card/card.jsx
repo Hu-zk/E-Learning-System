@@ -16,11 +16,14 @@ export const Card = ({name,link,id}) =>{
         }
         console.log("inner id", id)
         const token = localStorage.getItem('jwtToken');
-        const response = await axios.delete(`http://127.0.0.1:8000/api/user/shared/remove_meet/${id}`,body, {
+        const response = await axios.delete(
+          `http://127.0.0.1:8000/api/user/shared/remove_meet/${id}`,
+          {
             headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
     }
 
     return(
