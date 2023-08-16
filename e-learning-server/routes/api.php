@@ -53,7 +53,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get('/teacher-report/{teacherId}', [CourseController::class, 'teacherReport']);
         Route::get('/student-report/{studentId}', [CourseController::class, 'studentReport']);
 
-        Route::post("/update-appearance", [UserController::class, 'updateAppearance']); 
+        Route::post("/update-appearance", [UserController::class, 'updateAppearance']);
     });
 
     Route::group(['prefix' => 'teacher',  'middleware' => 'auth.teacher'], function () {
@@ -86,4 +86,4 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
 
 
-        Route::get('/student-report/{studentId}', [CourseController::class, 'studentReport']);
+// Route::get('/student-report/{studentId}', [CourseController::class, 'studentReport']);
