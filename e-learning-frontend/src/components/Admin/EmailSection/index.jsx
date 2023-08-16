@@ -80,7 +80,7 @@ function EmailSection() {
 
             {selectedTemplate === "welcomeStudent" && (
                 <div className="email-template">
-                    <h3>Welcome to Our Learning System, {name}!</h3>
+                    <h4>Welcome to Our Learning System, {name}!</h4>
                     <p>Dear <b>{name}</b>,</p> <br />
                     <p>We are thrilled to have you as a student in our learning system. Get ready for an exciting learning journey!</p>
                     <p>Your login details:</p>
@@ -97,7 +97,7 @@ function EmailSection() {
 
                 {selectedTemplate && (
                 <div className="email-footer">
-                    <h3>Modify Template</h3>
+                    <h3>Modify Template :</h3>
 
                     <div className='footer-inputs'>
                         <div className='label-input'>

@@ -1,10 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { requestMethods } from '../../../core/enums/requestMethods';
+import { sendRequest } from '../../../core/config/request';
 import "./style.css"
 
 function Appearance() {
 
     const [mode, setMode] = useState();
-    console.log(mode)
+    
+    useEffect(() => {
+        const fetchData = async () =>{
+            try {
+                const response = await sendRequest({
+                    // route: "/user/admin/get-users",
+                    method: requestMethods.GET,
+                });
+                console.log(response)
+            } catch (error) {
+                console.error('failed:', error);
+            }
+        }
+        fetchData();
+    }, [mode]);
+
 
     return (
         <div className="appearance-container">
