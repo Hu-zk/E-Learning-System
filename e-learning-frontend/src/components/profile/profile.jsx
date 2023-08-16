@@ -48,7 +48,7 @@ export const Profile = () =>{
             }
         });
         const data = response.data;
-        if(data.status == 'success'){
+        if(data.status === 'success'){
             setChildren(data.data);
             console.log('children', children)
         }else{
@@ -66,7 +66,7 @@ export const Profile = () =>{
             <div className={styles.container_header}>
                 <div className={styles.header}>
                     <div className={styles.image_container}>
-                        <img src="/image.jpg" alt="user profile image"/>
+                        <img src="/image.jpg" alt="user profile image1"/>
                     </div>
                     <div className={styles.user_name}>{user_info.name}</div>
                 </div>
