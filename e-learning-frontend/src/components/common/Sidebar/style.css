@@ -3,12 +3,14 @@
   height: 100vh;
   display: flex;
   position: fixed;
+  position: fixed;
   flex-direction: column;
   align-items: center;
   gap: 100px;
   padding: 30px;
   background-color: var(--black);
   color: var(--white);
+
 }
 
 .sidebar .mid {

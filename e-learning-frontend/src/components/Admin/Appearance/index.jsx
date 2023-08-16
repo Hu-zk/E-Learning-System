@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { requestMethods } from '../../../core/enums/requestMethods';
 import { sendRequest } from '../../../core/config/request';
 import "./style.css"
 
-function Appearance() {
-
-    const [mode, setMode] = useState('light');
+function Appearance({mode,setMode}) {
 
     if(mode === "dark"){
         document.documentElement.style.setProperty('--white', "black");
@@ -14,7 +12,7 @@ function Appearance() {
         document.documentElement.style.setProperty('--white', "white");
         document.documentElement.style.setProperty('--black', "black");
     }
-
+    
     useEffect(() => {
         const fetchData = async () =>{
             try {

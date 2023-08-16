@@ -9,7 +9,6 @@ import Home from "./pages/Parent/Home/Home";
 import ParentLayout from "./utils/ParentLayout/ParentLayout";
 import Login from "./pages/login/login";
 import AdminLayout from "./utils/AdminLayout";
-import AdminHome from "./pages/Admin/Home";
 import Create from "./pages/Admin/Create";
 import Display from "./pages/Admin/Display";
 import Settings from "./pages/Admin/Settings";
@@ -24,8 +23,35 @@ import StudentList from "./components/Admin/StudentList";
 import TeacherList from "./components/Admin/TeacherList";
 import ParentList from "./components/Admin/ParentList";
 import UserList from "./components/Admin/UsersList";
+import { useEffect, useState } from "react";
+import { sendRequest } from "./core/config/request";
+import { requestMethods } from "./core/enums/requestMethods";
 
 function App() {
+  const [mode, setMode] = useState('');
+
+  useEffect(() => {
+      const fetchData = async () =>{
+          try {
+              const response = await sendRequest({
+                  route: "/user/shared/get-appearance",
+                  method: requestMethods.GET,
+              });
+              setMode(response)
+          } catch (error) {
+              console.error('failed:', error);
+          }
+      }
+      fetchData();
+  }, []);
+
+  if(mode === "dark"){
+    document.documentElement.style.setProperty('--white', "black");
+    document.documentElement.style.setProperty('--black', "white");
+}else{
+    document.documentElement.style.setProperty('--white', "white");
+    document.documentElement.style.setProperty('--black', "black");
+}
   return (
     <div className="routes dark">
       <Routes>
@@ -34,7 +60,6 @@ function App() {
         <Route path="/" element={<h1>Login</h1>} />
 
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<AdminHome />} />
           <Route path="/admin/create" element={<Create />} />
           <Route path="/admin/display" element={<Display />}>
             <Route path="/admin/display/users" element={<UserList />} />
@@ -43,7 +68,7 @@ function App() {
             <Route path="/admin/display/parents" element={<ParentList />} />
             <Route path="/admin/display/courses" element={<CourseList />} />
           </Route>
-          <Route path="/admin/settings" element={<Settings />} />
+          <Route path="/admin/settings" element={<Settings mode={mode} setMode={setMode} />} />
         </Route>
 
         <Route path="/student" element={<StudentLayout />}>
