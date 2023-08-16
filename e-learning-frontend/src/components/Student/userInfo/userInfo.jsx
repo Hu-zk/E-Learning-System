@@ -61,11 +61,6 @@ export const Profile = () => {
                       <BsCameraVideoFill />
                     </div>
                   </div>
-                  <div className={styles.close}>
-                    <div className={styles.clickable}>
-                      <GrFormClose />
-                    </div>
-                  </div>
                 </div>
               );
             })}

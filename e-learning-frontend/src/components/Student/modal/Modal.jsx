@@ -29,7 +29,7 @@ function BookMeetModal({ isOpen, onClose, data }) {
         }
       );
       const meetdata = response.data;
-      console.log(meetdata);
+      onClose();
     } catch (error) {
       console.error(error);
     }

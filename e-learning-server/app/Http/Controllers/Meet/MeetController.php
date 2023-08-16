@@ -43,8 +43,13 @@ class MeetController extends Controller
         $user = Auth::user();
         if ($user->user_type_id == 2) {
             $meet = Meeting::where('receiver_id', $user->id)->delete();
-        } else if ($user->user_type_id == 3) {
+        }
+        if ($user->user_type_id == 3) {
             $meet = Meeting::find($id)->where('sender_id', $user->id)->delete();
+        }else {
+            return response()->json([
+            'status' => 'faild',
+        ]);
         }
     }
 }

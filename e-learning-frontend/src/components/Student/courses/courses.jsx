@@ -39,7 +39,7 @@ function Courses() {
   useEffect(() => {
     getCourses();
     getEnrollerCourses();
-  }, []);
+  }, [enrolledCourses]);
   return (
     <div className="card-container">
       {filteredCourses?.map((ele) => {
