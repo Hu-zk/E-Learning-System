@@ -5,7 +5,6 @@
     justify-content: center;
 }
 
-/* Modal styles */
 .book-meet-modal {
     position: absolute;
     background-color: white;
@@ -14,6 +13,33 @@
     padding: 20px;
     border-radius: 8px;
     width: 400px;
+    height: 300px;
     max-width: 90%;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.model-style {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.model-style input {
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.button-meet {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px
+}
+
+.button-meet button {
+    padding: 8px;
+    border: none;
+    border-radius: 3px;
+    background-color: rgba(227, 227, 227, 0.985);
+    ;
 }

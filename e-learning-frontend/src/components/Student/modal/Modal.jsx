@@ -42,15 +42,17 @@ function BookMeetModal({ isOpen, onClose, data }) {
       contentLabel="Book Meet Modal"
       className="book-meet-modal"
       overlayClassName="book-meet-overlay">
-      <div>
+      <div className="model-style">
         <h2>Book a Meet</h2>
         <input
           type="text"
           placeholder="Enter meet link"
           onChange={handleInputChange}
         />
-        <button onClick={onClose}>Close</button>
-        <button onClick={BookMeet}>Book</button>
+        <div className="button-meet">
+          <button onClick={onClose}>Close</button>
+          <button onClick={BookMeet}>Book</button>
+        </div>
       </div>
     </Modal>
   );

@@ -79,11 +79,11 @@ function Quiz({ quizData, param }) {
             <input type="file" id="submit" onChange={handleFileUpload} />
           </div>
           {!quizSubmited ? (
-            <div className="SubmitBtn" onClick={submitData}>
+            <div className="submitBtn" onClick={submitData}>
               Submit
             </div>
           ) : (
-            <div className="SubmitBtn">Submited</div>
+            <div className="submitBtn">Submited</div>
           )}
         </div>
       </div>

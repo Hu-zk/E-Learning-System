@@ -20,11 +20,16 @@
 // }
 
 // export default UserInfo;
+
 import React, { useEffect, useState } from "react";
 import styles from "./userInfo.module.css";
 import axios from "axios";
+import { BsCameraVideoFill } from "react-icons/bs";
+import { GrFormClose } from "react-icons/gr";
 export const Profile = () => {
   const [meeting, setMeeting] = useState(false);
+  const [sendMeetData, setSendMeetData] = useState([]);
+  const [receiveMeetData, setReceiveMeetData] = useState([]);
 
   const user_data = localStorage.getItem("userData");
   const user_info = JSON.parse(user_data);
@@ -40,6 +45,8 @@ export const Profile = () => {
       }
     );
     const data = response.data;
+    setSendMeetData(data.send);
+    setReceiveMeetData(data.receive);
     if (data.message == "No meeting") {
       setMeeting(false);
     } else {
@@ -67,15 +74,42 @@ export const Profile = () => {
       <div className={styles.meet_container}>
         <div className={styles.card_title}>Scheduled meetings:</div>
         {meeting ? (
-          <div className={styles.container}>
-            <div className={styles.card_body}>
-              <div className={styles.name}>charbel daoud</div>
-              <div className={styles.icon}>{/* <BsCameraVideoFill /> */}</div>
-            </div>
-            <div className={styles.close}>
-              <div className={styles.clickable}>{/* <GrFormClose /> */}</div>
-            </div>
-          </div>
+          <>
+            {sendMeetData.map((ele) => {
+              return (
+                <div className={styles.container} key={ele.id}>
+                  <div className={styles.card_body}>
+                    <div className={styles.name}>{ele.receiver_meet.name}</div>
+                    <div className={styles.icon}>
+                      <BsCameraVideoFill />
+                    </div>
+                  </div>
+                  <div className={styles.close}>
+                    <div className={styles.clickable}>
+                      <GrFormClose />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+            {receiveMeetData.map((ele) => {
+              return (
+                <div className={styles.container} key={ele.id}>
+                  <div className={styles.card_body}>
+                    <div className={styles.name}>{ele.receiver_meet.name}</div>
+                    <div className={styles.icon}>
+                      <BsCameraVideoFill />
+                    </div>
+                  </div>
+                  <div className={styles.close}>
+                    <div className={styles.clickable}>
+                      <GrFormClose />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </>
         ) : (
           <div className={styles.meeting_message}>no meetings scheduled</div>
         )}

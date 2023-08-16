@@ -13,7 +13,7 @@
 
 .file {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 #submit {
@@ -30,17 +30,20 @@
     padding: 20px;
     text-align: center;
     cursor: pointer;
+    width: 150px;
 }
 .buttonquiz {
     display: flex;
     justify-content: flex-end;
-    gap: 80px;
+    flex-direction: column;
+    gap: 10px;
     align-items: center;
 }
-
+/* 
 .SubmitBtn {
     background-color: rgba(78, 153, 224, 0.589);
     padding: 20px;
     text-align: center;
     cursor: pointer;
 }
+*/

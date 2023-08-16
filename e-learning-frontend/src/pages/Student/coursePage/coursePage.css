@@ -23,6 +23,7 @@
     display: flex;
     padding: 20px;
     width: 100%;
+    background-color: rgba(254, 254, 254, 0.985);
 }
 
 .title-side {
@@ -36,12 +37,12 @@
 
 .title {
     padding: 40px;
-    border: 1px solid black;
+    border-bottom: 1px solid rgba(65, 64, 64, 0.36);
     cursor: pointer;
 }
 
 .title:hover {
-    background-color: rgba(183, 183, 183, 0.496);
+    background-color: rgba(255, 255, 255, 0.773);
 }
 .contentSide {
     width: 100%;
