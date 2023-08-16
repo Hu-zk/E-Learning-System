@@ -7,7 +7,7 @@ import { ChildCard } from "../parent/child_card/childCard";
 export const Profile = () =>{
     const [meeting, setMeeting] = useState(false);
     const [availableMeets, setAvailableMeets] = useState([]);
-      const [children, setChildren] = useState([]);
+    const [children, setChildren] = useState([]);
 
     const user_data = localStorage.getItem('userData');
     const user_info  = JSON.parse(user_data);

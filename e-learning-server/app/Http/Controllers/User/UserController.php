@@ -99,19 +99,9 @@ class UserController extends Controller
 
         $user_type = UserType::find(1);
 
-        if ($user_type->rules !== null) {
-            $result = explode(',', $user_type->rules);
-            if ($request->mode) {
-                $result[0] = $request->mode;
-            }
-            if ($request->email) {
-                $result[1] = $request->email;
-            }
-            $new = implode(",", $result);
-            $user_type->rules = "\"" . $new . "\"";
-            $user_type->save();
+        $user_type->rules = $request->mode;
+        $user_type->save();
 
-            return response()->json($result);
-        }
+        return response()->json($user_type);
     }
 }
