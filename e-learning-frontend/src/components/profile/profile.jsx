@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from './profile.module.css';
-import { Card } from "../meet_card/card";
+import { Card } from "../parent/meet_card/card";
 import axios from 'axios';
-import { ChildCard } from "../child_card/childCard";
+import { ChildCard } from "../parent/child_card/childCard";
 
 export const Profile = () =>{
     const [meeting, setMeeting] = useState(false);

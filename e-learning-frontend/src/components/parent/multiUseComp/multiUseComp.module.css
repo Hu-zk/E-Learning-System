@@ -3,7 +3,7 @@
     height: 80px;
     display: flex;
     flex-direction: column;
-    background-color: aliceblue;
+    background-color: white;
     border-radius: 8px;
     border: 0.4px solid black;
 }

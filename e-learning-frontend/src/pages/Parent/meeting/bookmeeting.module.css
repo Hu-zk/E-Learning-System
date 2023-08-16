@@ -67,6 +67,8 @@
     border-radius: 8px;
     padding: 1rem 0 0 0;
     background-color: white;
+    border: 1px solid black;
+
 }
 
 .teacher_container_header{
@@ -116,6 +118,8 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    border: 1px solid black;
+
 }
 
 .input input{
@@ -129,10 +133,11 @@
 
 .calendar{
     width: 100%;
-    height: 300px;
+    height: 310px;
     padding: 1rem;
     border-radius: 8px;
     background-color: white;
+    border: 1px solid black;
 }
 
 .button_add{
