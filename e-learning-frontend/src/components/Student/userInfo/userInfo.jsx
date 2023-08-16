@@ -1,26 +1,3 @@
-// import React, { useContext } from "react";
-// import "./userInfo.css";
-// import { AuthContext } from "../../../Context/AuthContext";
-// function UserInfo() {
-//   // const { userData } = useContext(AuthContext);
-//   const userData = JSON.parse(localStorage.getItem("userData"));
-//   return (
-//     <div className="top-side">
-//       <div className="userInfo">
-//         <div className="image">
-//           <img src="image.jpg" alt="" />
-//         </div>
-//         <div className="info">
-//           <div className="name">{userData.name}</div>
-//           <div className="name">{userData.email}</div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default UserInfo;
-
 import React, { useEffect, useState } from "react";
 import styles from "./userInfo.module.css";
 import axios from "axios";
@@ -75,7 +52,7 @@ export const Profile = () => {
         <div className={styles.card_title}>Scheduled meetings:</div>
         {meeting ? (
           <>
-            {sendMeetData.map((ele) => {
+            {sendMeetData?.map((ele) => {
               return (
                 <div className={styles.container} key={ele.id}>
                   <div className={styles.card_body}>
