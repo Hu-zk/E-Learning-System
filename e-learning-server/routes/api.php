@@ -75,13 +75,12 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::post('record-attendance', [TeacherController::class, 'recordAttendance']);
         Route::post('update-submission', [TeacherController::class, 'updateSubmission']);
         Route::post('{courseId}/create-assignment-quiz', [CourseController::class, 'createAssignmentQuiz']);
-        Route::post('{courseId}/create-material', [CourseController::class, 'createMaterial']);
-        Route::get('{courseId}/students', [CourseController::class, 'getEnrolledStudents']);
         Route::get('{assignmentId}', [AssignmentController::class, 'getAssignmentDetails']);
     });
-
+    
     Route::group(['prefix' => 'shared', 'middleware' => 'auth.user'], function () {
-
+        
+        Route::post('{courseId}/create-material', [CourseController::class, 'createMaterial']);
         Route::get("course_stats", [CourseController::class, "courseStats"]);
         Route::get("get_parent", [ParentController::class, "getParent"]);
         Route::get("get_is_submited", [StudentContoller::class, "IsSubmitted"]);
@@ -90,6 +89,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::get("check_meet", [MeetController::class, "checkMeet"]);
         Route::post("remove_meet", [MeetController::class, "removeMeet"]);
         Route::get('{courseId}/content', [CourseController::class, 'getCourseContent']);
+        Route::get('{courseId}/students', [CourseController::class, 'getEnrolledStudents']);
+
     });
 
 

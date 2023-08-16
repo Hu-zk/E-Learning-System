@@ -11,6 +11,7 @@ use App\Models\Enrollment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
@@ -169,29 +170,29 @@ class CourseController extends Controller
             'title' => 'required|string',
             'description' => 'required|string',
             'is_announcement' => 'required|boolean',
-            // 'file_url' => 'nullable|string',
+            'video' => 'required|mimes:mp4|max:20000',
         ]);
 
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $fileUrl = $file->store('uploads', 'public');
+       if ($request->hasFile('video')) {
+        $video = $request->file('video');
+        $videoName = time() . '_' . $video->getClientOriginalName();
+        $video->move(public_path('uploads/Videos'), $videoName);
         } else {
-            $fileUrl = null;
+            $videoUrl = null;
         }
-
-        $course = Course::findOrFail($courseId);
 
         $material = new Material([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'file_url' => $fileUrl,
+            'file_url' => $videoName,
             'is_announcement' => $request->input('is_announcement'),
         ]);
 
+        $course = Course::findOrFail($courseId);
         $course->materials()->save($material);
 
         return response()->json([
-            'message' => 'Assignment or quiz created successfully',
+            'message' => 'Video uploaded successfully',
             'content' => $material
         ], 201);
     }

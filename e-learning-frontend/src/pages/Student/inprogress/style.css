@@ -3,7 +3,7 @@
     gap: 30px;
     padding: 20px;
     height: 500px;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
 
 }
 .chart {
@@ -11,8 +11,13 @@
     margin-left: 100px;
     padding: 20px;
     border: 1px solid rgba(42, 41, 41, 0.466);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 10px;
+}
 
+.chart:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
 }
 .right-side {
     display: flex;
@@ -21,9 +26,13 @@
 }
 .courseBtn{
     background-color: rgb(88, 88, 233);
-    padding: 10px;
+    padding: 10px 20px;
     border: none;
+    color: #fff;
     border-radius: 10px;
+}
+.courseBtn:hover {
+  background-color: rgb(62, 62, 207);
 }
 .responsivePie{
     height: 250px;

@@ -7,8 +7,8 @@ import { AuthContext } from "../../../Context/AuthContext";
 function Completed() {
   // const { userData } = useContext(AuthContext);
 
-  const jwtToken = localStorage.getItem("jwtToken");
-  axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
+    const jwtToken = localStorage.getItem("jwtToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
   const [completedCourse, setCompletedCourse] = useState([]);
 
   const fetchdata = async () => {

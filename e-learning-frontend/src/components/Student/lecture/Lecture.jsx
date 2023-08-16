@@ -19,9 +19,11 @@ function Lecture({ lectureData }) {
 
       {lectureData.file_url ? (
         <>
-          <video controls>
-            <source src={lectureData.file_url} type="video/mp4" />
-            Your browser does not support the video tag.
+          <video width="550" height="300" controls>
+            <source
+              src={`http://127.0.0.1:8000/uploads/Videos/${lectureData.file_url}`}
+              type="video/mp4"
+            />
           </video>
           <div>
             <button onClick={handleDownload}>Download Video</button>
