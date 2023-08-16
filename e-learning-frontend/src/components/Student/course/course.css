@@ -13,12 +13,11 @@
 
 }
 
-.class .top-class {
-    padding: 15px;
-    height: 100px;
-}
+
 
 .class .top-class {
+    height: 100px;
+    padding-bottom: 35px;
     background-image: url("https://plus.unsplash.com/premium_photo-1673697239936-c2599b0b0498?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80");
     background-repeat: no-repeat;
     background-size: cover;
@@ -38,20 +37,29 @@
 
 .class .mid-class {
     height: 135px;
+    overflow: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    padding: 10px;
+    justify-content: center;
+    padding-top: 10px;
 }
-
+    
+.completed-grade {
+    display: flex;
+    gap: 10px
+}
 .class .bottom-class {
     display: flex;
     align-items: center;
     gap: 8px;
     height: 50px;
-    justify-content: flex-end;
-    padding: 5px;
+    justify-content: space-between;
+    padding: 15px;
     border-top: 1px solid #ccc;
+    background-color: rgba(0, 0, 0, 0.456);
+    color: #fcfcfc;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .class .bottom-class>div {

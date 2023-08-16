@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
 import { MdGrade } from "react-icons/md";
-import UserInfo from "../../components/Student/userInfo/userInfo";
 
 const StudentLayout = () => {
   const navigate = useNavigate();
