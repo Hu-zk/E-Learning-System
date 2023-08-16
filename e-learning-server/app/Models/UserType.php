@@ -10,8 +10,8 @@ class UserType extends Model
     use HasFactory;
 
     protected $casts = [
-        'rules',
-    ];
+    'rules',
+];
 
 
     public function users()

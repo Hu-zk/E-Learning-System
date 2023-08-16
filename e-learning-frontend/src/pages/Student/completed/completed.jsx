@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./completed.css";
 import axios from "axios";
 import Course from "../../../components/Student/course/course";
-import { AuthContext } from "../../../Context/AuthContext";
+import { AuthContext } from "../../../Context/modeContext";
 // http:127.0.0.1:8000/api/user/shared/completed_courses
 function Completed() {
   // const { userData } = useContext(AuthContext);

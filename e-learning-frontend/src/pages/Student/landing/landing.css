@@ -1,6 +1,7 @@
 .page-content {
     flex: 120;
     display: flex;
+    padding-left: 100px;
     }
     
     .profile {
