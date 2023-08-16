@@ -40,6 +40,7 @@ const BookMeeting = () => {
             // console.log("attend", item.attendance_status)
         );
         setTeachers(course_teacher)
+        console.log("teachers",teachers)
             // setIsAvailable(true);            console.log(teachers)
 
         }else{

@@ -77,23 +77,27 @@ export const Profile = () =>{
             </div>
             <div className={styles.meet_container}>
                 <div className={styles.card_title}>Scheduled meetings:</div>
-                {meeting ?(
+                <div className={styles.scrollable_cont}>
+                    {meeting ?(
                     availableMeets.map(item => (
                         <Card name={item.name} link={item.link_url} id={item.id}/>
                     ))
-                ):
-                ( 
-                <div className={styles.meeting_message}>no meetings scheduled</div>
-                )}
+                    ):
+                    ( 
+                    <div className={styles.meeting_message}>no meetings scheduled</div>
+                    )}
+                </div>
             </div>
-            <div className={styles.meet_container}>
+            <div className={styles.child_container}>
                 <div className={styles.card_title}>Children:</div>
-                {children.map(child=>(
-                <ChildCard
-                key={child.id}
-                child={child}
-                />
-                ))}
+                <div className={styles.chilren_container}>
+                    {children.map(child=>(
+                        <ChildCard
+                        key={child.id}
+                        child={child}
+                        />
+                        ))}
+                </div>
             </div>
         </div>
     )
