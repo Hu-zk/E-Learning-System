@@ -3,9 +3,13 @@ import axios from 'axios';
 import { Accordion } from "../../../components/accordion/accordion";
 import React, { useEffect, useState } from 'react';
 import { Assignment } from '../../../components/assignment/assignmentComp';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css'; // Import the default styles
+
 
 const BookMeeting = () => {
     const [teachers, setTeachers] = useState([]);
+    const [date, setDate] = useState(new Date());
     // const [isAvailable, setIsAvailable] = useState(false);
     const title = "Teacher";
 
@@ -45,6 +49,10 @@ const BookMeeting = () => {
         getAnnouncments();
     },[])
 
+    const handleDateChange = (newDate) => {
+    setDate(newDate);
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.page_body}>
@@ -64,10 +72,13 @@ const BookMeeting = () => {
                             </div>
                         </div>
                         <div className={styles.right_container}>
-                            {/* <SharedComp title={completed} info={isCompleted}/> */}
-
-                            {/* <SharedComp title={enrolled} info={courses}/>
-                            <SharedComp title={attend} info={attendance}/> */}
+                            <div className={styles.input}>
+                                <div className={styles.input_title}>meet-link</div>
+                                <input type="text" placeholder='enter meet url' />
+                            </div>
+                            <div className={styles.calendar}>
+                                <Calendar onChange={handleDateChange} value={date} />
+                            </div>
                         </div>
                     </div>
                 </div>
