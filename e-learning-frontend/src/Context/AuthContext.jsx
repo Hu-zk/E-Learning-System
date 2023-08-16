@@ -1,36 +1,37 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
-export const AuthContext = createContext();
+export const ModeContext = createContext();
 
-export const AuthContextProvider = ({ children }) => {
-  const [userData, setUserData] = useState(
-    JSON.parse(localStorage.getItem("user")) || null
-  );
+export const ModeContexttProvider = ({ children }) => {
+  const [mode, setMode] = useState("light");
 
-  const login = async (data) => {
-    const response = await axios.post(
-      "http://127.0.0.1:8000/api/guest/login",
-      data
-    );
-    const userdata = await response.data;
-    setUserData(userdata.user);
-    localStorage.setItem("user", JSON.stringify(userdata));
-  };
-  const logout = async () => {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${userData.token}`;
-    await axios.post("http://127.0.0.1:8000/api/logout");
-    localStorage.clear();
-    setUserData(null);
-  };
+  if (mode === "dark") {
+    document.documentElement.style.setProperty("--white", "black");
+    document.documentElement.style.setProperty("--black", "white");
+  } else {
+    document.documentElement.style.setProperty("--white", "white");
+    document.documentElement.style.setProperty("--black", "black");
+  }
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(userData));
-  }, [userData]);
+    const fetchData = async () => {
+      try {
+        const response = await sendRequest({
+          route: "/user/admin/update-appearance",
+          method: requestMethods.POST,
+          body: { mode },
+        });
+        console.log(mode);
+        console.log(response);
+      } catch (error) {
+        console.error("failed:", error);
+      }
+    };
+    fetchData();
+  }, [mode]);
 
   return (
-    <AuthContext.Provider value={{ userData, login, logout }}>
-      {children}
-    </AuthContext.Provider>
+    <ModeContext.Provider value={{ mode }}>{children}</ModeContext.Provider>
   );
 };
