@@ -160,24 +160,24 @@ class CourseController extends Controller
 
     public function createAssignmentQuiz(Request $request, $courseId)
     {
-        $request->validate([
-            'title' => 'required|string',
-            'description' => 'required|string',
-            'is_quiz' => 'required|boolean',
-            // 'file' => 'required|mimes:pdf,doc,docx,jpg,png|max:20000',
-        ]);
+       $request->validate([
+        'title' => 'required|string',
+        'description' => 'required|string',
+        'is_announcement' => 'required|boolean',
+        'file_url' => 'required|mimes:pdf,doc,docx|max:20000',
+    ]);
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/files'), $fileName);
 
-            $material = new Material([
-                'title' => $request->input('title'),
-                'description' => $request->input('description'),
-                'file' => $fileName,
-                'is_quiz' => $request->input('is_quiz'),
-            ]);
+        $material = new Material([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'file_url' => $fileName, 
+            'is_announcement' => $request->input('is_announcement'),
+        ]);
 
             $course = Course::findOrFail($courseId);
             $course->materials()->save($material);
