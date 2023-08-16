@@ -29,7 +29,9 @@ const ParentLayout = () => {
 
     return (
         <div className="Parent_layout app dark">
-            <Sidebar sidebarContent={sidebar}/>
+            <div className="side_bar_container">
+                <Sidebar sidebarContent={sidebar}/>
+            </div>
             <div className="outlet_parent">
                 <Outlet/>
             </div>
