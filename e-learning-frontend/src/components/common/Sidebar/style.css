@@ -9,7 +9,6 @@
   padding: 30px;
   background-color: var(--black);
   color: var(--white);
-  position: fixed;
 
 }
 
@@ -30,7 +29,6 @@
   width: 50px;
   height: 50px;
 }
-
 .one-navigate {
   display: flex;
   flex-direction: column;

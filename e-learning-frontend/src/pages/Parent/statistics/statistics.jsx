@@ -48,7 +48,7 @@ const Statistics = () => {
                 'Authorization': `Bearer ${token}`
             }
         });
-        const data = response.data;
+        const data = await response.data;
         // console.log("data",data);
         // console.log("data.status",data.status)
         // console.log("data.data",data.data) 
