@@ -52,11 +52,13 @@ const Statistics = () => {
         // console.log("data",data);
         // console.log("data.status",data.status)
         // console.log("data.data",data.data) 
-        const course_names = data.data.map(course => (
+        const course_names = data.data?.map(
+          (course) => (
             setEnrolledCourses(course.course_name),
             setAttendance(course.attendance_status),
             console.log("attend", course.attendance_status)
-        ));
+          )
+        );
         console.log("info",courses)
     }
 
