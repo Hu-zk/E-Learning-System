@@ -97,7 +97,7 @@ function Quiz({ quizData, param }) {
           )}
         </div>
       </div>
-      <p>Created on: {quizData.created_at.split("T")[0]}</p>
+      <p>Created on: {quizData.created_at}</p>
     </div>
   );
 }
