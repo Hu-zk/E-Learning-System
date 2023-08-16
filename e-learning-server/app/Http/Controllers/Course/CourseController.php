@@ -171,22 +171,26 @@ class CourseController extends Controller
             $file = $request->file('file');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/files'), $fileName);
+        } else {
+            $fileName = null;
+        }
 
         $material = new Material([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'file_url' => $fileName, 
-            'is_announcement' => $request->input('is_announcement'),
+
+            'file' => $fileName,
+            'is_quiz' => $request->input('is_quiz'),
+
         ]);
 
-            $course = Course::findOrFail($courseId);
-            $course->materials()->save($material);
+        $course = Course::findOrFail($courseId);
+        $course->materials()->save($material);
 
-            return response()->json([
-                'message' => 'File uploaded successfully',
-                'content' => $material
-            ], 201);
-        }
+        return response()->json([
+            'message' => 'File uploaded successfully',
+            'content' => $material
+        ], 201);
 
         return response()->json([
             'message' => 'File upload failed',
