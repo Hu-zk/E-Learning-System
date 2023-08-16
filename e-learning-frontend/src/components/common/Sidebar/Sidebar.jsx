@@ -30,7 +30,8 @@ const Sidebar = ({ sidebarContent }) => {
       </div>
       <div
         className="bottom one-navigate"
-        onClick={() => { localStorage.removeItem("jwtToken");navigate("/")}}>
+        onClick={() => { localStorage.clear();
+          ;navigate("/")}}>
         <FiLogOut size={35} />
       </div>
     </div>

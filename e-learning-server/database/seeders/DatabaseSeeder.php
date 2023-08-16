@@ -39,40 +39,40 @@ class DatabaseSeeder extends Seeder
             'updated_at' => date('Y-m-d')
         ]);
 
-        DB::table('users')->insert([
-            'user_type_id' => 1,
-            'parent_id' => null,
-            'name' => 'Admin',
-            'email' => 'a@a',
-            'password' => Hash::make('123456')
-        ]);
-        DB::table('users')->insert([
-            'user_type_id' => 2,
-            'parent_id' => null,
-            'name' => 'Teacher',
-            'email' => 'teacher@gmail.com',
-            'password' => Hash::make('123456')
-        ]);
-        DB::table('users')->insert([
-            'user_type_id' => 3,
-            'parent_id' => null,
-            'name' => 'Parent',
-            'email' => 'parent@gmail.com',
-            'password' => Hash::make('123456')
-        ]);
-        DB::table('users')->insert([
-            'user_type_id' => 4,
-            'parent_id' => null,
-            'name' => 'student',
-            'email' => 'student22@gmail.com',
-            'password' => Hash::make('123456')
-        ]);
+        // DB::table('users')->insert([
+        //     'user_type_id' => 1,
+        //     'parent_id' => null,
+        //     'name' => 'Hussien',
+        //     'email' => 'hsn@gmail.com',
+        //     'password' => Hash::make('123456')
+        // ]);
+        // DB::table('users')->insert([
+        //     'user_type_id' => 2,
+        //     'parent_id' => null,
+        //     'name' => 'Teacher',
+        //     'email' => 'teacher@gmail.com',
+        //     'password' => Hash::make('123456')
+        // ]);
+        // DB::table('users')->insert([
+        //     'user_type_id' => 3,
+        //     'parent_id' => null,
+        //     'name' => 'Parent',
+        //     'email' => 'parent@gmail.com',
+        //     'password' => Hash::make('123456')
+        // ]);
+        // DB::table('users')->insert([
+        //     'user_type_id' => 4,
+        //     'parent_id' => null,
+        //     'name' => 'student',
+        //     'email' => 'student22@gmail.com',
+        //     'password' => Hash::make('123456')
+        // ]);
 
-        DB::table('courses')->insert([
-            'teacher_id' => 2,
-            'name' => 'Computer Science',
-            'capacity' => 50,
-        ]);
+        // DB::table('courses')->insert([
+        //     'teacher_id' => 2,
+        //     'name' => 'Computer Science',
+        //     'capacity' => 50,
+        // ]);
 
         DB::table('courses')->insert([
             'teacher_id' => 2,
@@ -94,47 +94,45 @@ class DatabaseSeeder extends Seeder
             'is_announcement' => false,
         ]);
 
-        DB::table('materials')->insert([
-            'course_id' => 1,
-            'title' => 'Announcement 1',
-            'description' => 'First Computer Science Announcement',
-            'file_url' => "file",
-            'is_announcement' => true,
-        ]);
-        DB::table('assignments_quizzes')->insert([
-            'course_id' => 1,
-            'title' => 'Quiz 1',
-            'grade' => 100,
-            'deadline' => '2023-08-12',
-            'description' => 'First Computer Science Quiz',
-            'file_url' => "file",
-            'is_quiz' => true,
-        ]);
-        DB::table('assignments_quizzes')->insert([
-            'course_id' => 1,
-            'title' => 'Assignment 1',
-            'grade' => 100,
-            'deadline' => '2023-08-12',
-            'description' => 'First Computer Science Assignment',
-            'file_url' => "file",
-            'is_quiz' => false,
-        ]);
+        // DB::table('enrollements')->insert([
+        //     'course_id' => 1,
+        //     'student_id' => 5,
+        //     'is_completed' => false,
+        // ]);
 
-        DB::table('users')->insert([
-            'user_type_id' => 4,
-            'parent_id' => null,
-            'name' => 'mj',
-            'email' => 'mj@gmail.com',
-            'password' => Hash::make('123456')
-        ]);
+        // DB::table('materials')->insert([
+        //     'course_id' => 1,
+        //     'title' => 'Lecture 1',
+        //     'description' => 'First Computer Science Lecture',
+        //     'file_url' => "file",
+        //     'is_announcement' => false,
+        // ]);
 
-        DB::table('users')->insert([
-            'user_type_id' => 2,
-            'parent_id' => null,
-            'name' => 'teacherTwo',
-            'email' => 'teachetTwo@gmail.com',
-            'password' => Hash::make('123456')
-        ]);
+        // DB::table('materials')->insert([
+        //     'course_id' => 1,
+        //     'title' => 'Announcement 1',
+        //     'description' => 'First Computer Science Announcement',
+        //     'file_url' => "file",
+        //     'is_announcement' => true,
+        // ]);
+        // DB::table('assignments_quizzes')->insert([
+        //     'course_id' => 1,
+        //     'title' => 'Quiz 1',
+        //     'grade' => 100,
+        //     'deadline' => '2023-08-12',
+        //     'description' => 'First Computer Science Quiz',
+        //     'file_url' => "file",
+        //     'is_quiz' => true,
+        // ]);
+        // DB::table('assignments_quizzes')->insert([
+        //     'course_id' => 1,
+        //     'title' => 'Assignment 1',
+        //     'grade' => 100,
+        //     'deadline' => '2023-08-12',
+        //     'description' => 'First Computer Science Assignment',
+        //     'file_url' => "file",
+        //     'is_quiz' => false,
+        // ]);
 
         DB::table('materials')->insert([
             'course_id' => 2,

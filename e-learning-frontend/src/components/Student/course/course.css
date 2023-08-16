@@ -10,11 +10,7 @@
 
 .class:hover {
     box-shadow: 10px 10px 26px -8px rgba(0, 0, 0, 0.6);
-
 }
-
-
-
 .class .top-class {
     height: 100px;
     padding-bottom: 35px;
@@ -41,7 +37,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 10px;
+    padding: 10px;
 }
     
 .completed-grade {
@@ -74,4 +70,13 @@
 
 .class .bottom-class div:hover {
     background-color: #cccccc33;
+}
+
+.mid-complete-class {
+    height: 135px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
 }
