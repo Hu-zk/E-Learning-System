@@ -163,8 +163,8 @@ class CourseController extends Controller
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
-            'is_announcement' => 'required|boolean',
-            'file_url' => 'required|mimes:pdf,doc,docx,jpg,png|max:20000',
+            'is_quiz' => 'required|boolean',
+            // 'file' => 'required|mimes:pdf,doc,docx,jpg,png|max:20000',
         ]);
 
         if ($request->hasFile('file')) {
@@ -175,8 +175,8 @@ class CourseController extends Controller
             $material = new Material([
                 'title' => $request->input('title'),
                 'description' => $request->input('description'),
-                'file_url' => $fileName,
-                'is_announcement' => $request->input('is_announcement'),
+                'file' => $fileName,
+                'is_quiz' => $request->input('is_quiz'),
             ]);
 
             $course = Course::findOrFail($courseId);
