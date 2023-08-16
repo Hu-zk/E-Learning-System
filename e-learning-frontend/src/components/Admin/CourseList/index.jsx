@@ -35,6 +35,7 @@ function CourseList() {
     const handleReport = (course) => {
         setSelectedCourse(course);
         setShowReportModal(true);
+        setShowEditModal(false);
     };
     const handleCloseReportModal = () => {
         setShowReportModal(false);
@@ -43,6 +44,7 @@ function CourseList() {
     const handleEdit = (course) => {
         setSelectedCourse(course);
         setShowEditModal(true);
+        setShowReportModal(false);
     };
     const handleCloseModal = () => {
         setShowEditModal(false);
