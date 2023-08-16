@@ -67,3 +67,7 @@ a:hover {
 #submit{
     display: none;
 }
+.assgnfile{
+    display: flex;
+    flex-direction: column;
+}

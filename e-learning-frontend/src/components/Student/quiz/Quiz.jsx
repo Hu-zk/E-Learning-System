@@ -10,18 +10,21 @@ function Quiz({ quizData, param }) {
     const file = event.target.files[0];
     setUploadedFile(file);
   };
-  console.log(uploadedFile);
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = `http://127.0.0.1:8000/uploads/Quizfiles/${quizData.file_url}`;
+    link.download = quizData.title;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   const submitData = async () => {
     const data = new FormData();
-    data.append("video", uploadedFile);
-    data.append("title", "1111");
-    data.append("description", "123456");
-    data.append("is_announcement", "0");
-    // data.append("assignment_id", quizData.id);
-
+    data.append("file", uploadedFile);
+    data.append("assignment_id", quizData.id);
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/user/shared/2/create-material",
+        "http://127.0.0.1:8000/api/user/student/upload-submission",
         data
       );
       console.log(response);
@@ -65,17 +68,19 @@ function Quiz({ quizData, param }) {
       <p>{quizData.description}</p>
       <div className="file">
         {quizData.file_url ? (
-          <div>
+          <div className="assgnfile">
             <a
               href={quizData.file_url}
               target="_blank"
               rel="noopener noreferrer">
               {quizData.title} - File
             </a>
+            <button onClick={handleDownload}>Download file</button>
           </div>
         ) : (
           <p>No file available for this quiz.</p>
         )}
+
         <div className="buttonquiz">
           <div className="inputfile">
             <label htmlFor="submit" className="submitBtn">

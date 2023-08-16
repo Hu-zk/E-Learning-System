@@ -76,11 +76,11 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
         Route::post('update-submission', [TeacherController::class, 'updateSubmission']);
         Route::post('{courseId}/create-assignment-quiz', [CourseController::class, 'createAssignmentQuiz']);
         Route::get('{assignmentId}', [AssignmentController::class, 'getAssignmentDetails']);
+        Route::post('{courseId}/create-material', [CourseController::class, 'createMaterial']);
     });
     
     Route::group(['prefix' => 'shared', 'middleware' => 'auth.user'], function () {
         
-        Route::post('{courseId}/create-material', [CourseController::class, 'createMaterial']);
         Route::get("course_stats", [CourseController::class, "courseStats"]);
         Route::get("get_parent", [ParentController::class, "getParent"]);
         Route::get("get_is_submited", [StudentContoller::class, "IsSubmitted"]);

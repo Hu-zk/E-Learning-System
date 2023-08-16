@@ -128,39 +128,37 @@ class CourseController extends Controller
 
     public function createAssignmentQuiz(Request $request, $courseId)
     {
-        $request->validate([
-            'is_quiz' => 'required|boolean',
-            'title' => 'required|string',
-            'description' => 'required|string',
-            'grade' => 'required|integer',
-            'deadline' => 'required|date',
-            // 'file_url' => 'nullable|string',
-        ]);
+       $request->validate([
+        'title' => 'required|string',
+        'description' => 'required|string',
+        'is_announcement' => 'required|boolean',
+        'file_url' => 'required|mimes:pdf,doc,docx|max:20000',
+    ]);
 
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $fileUrl = $file->store('uploads', 'public');
-        } else {
-            $fileUrl = null;
-        }
+    if ($request->hasFile('file')) {
+        $file = $request->file('file');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('uploads/files'), $fileName);
 
-        $course = Course::findOrFail($courseId);
-
-        $assignmentQuiz = new AssignmentQuiz([
-            'is_quiz' => $request->input('is_quiz'),
+        $material = new Material([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'grade' => $request->input('grade'),
-            'deadline' => $request->input('deadline'),
-            'file_url' => $fileUrl,
+            'file_url' => $fileName, 
+            'is_announcement' => $request->input('is_announcement'),
         ]);
 
-        $course->assignmentsQuizzes()->save($assignmentQuiz);
+        $course = Course::findOrFail($courseId);
+        $course->materials()->save($material);
 
         return response()->json([
-            'message' => 'Assignment or quiz created successfully',
-            'content' => $assignmentQuiz
+            'message' => 'File uploaded successfully',
+            'content' => $material
         ], 201);
+    }
+
+    return response()->json([
+        'message' => 'File upload failed',
+    ], 400);
     }
 
 

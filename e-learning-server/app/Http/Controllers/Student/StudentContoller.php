@@ -90,14 +90,19 @@ class StudentContoller extends Controller
         $auth_user = Auth::user();
         $assignment = AssignmentQuiz::findOrFail($request->assignment_id);
 
-        $fileUrl = $request->file('file')->store('submissions', 'public');
+        if ($request->hasFile('file')) {
+        $file = $request->file('file');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('uploads/Studentfiles'), $fileName);
+        }
+
 
         $submission = new Submission([
             'student_id' => $auth_user->id,
             'assignment_id' => $assignment->id,
             'grade' => null,
             'feedback' => null,
-            'file_url' => $fileUrl,
+            'file_url' => $fileName,
         ]);
 
         $submission->save();
