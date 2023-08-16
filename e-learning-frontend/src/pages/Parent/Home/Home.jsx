@@ -1,6 +1,6 @@
 import styles from './style.module.css';
 import axios from 'axios';
-import { Accordion } from "../../../components/accordion/accordion";
+import { Accordion } from "../../../components/parent/accordion/accordion";
 import React, { useEffect, useState } from 'react';
 
 const Home = () => {

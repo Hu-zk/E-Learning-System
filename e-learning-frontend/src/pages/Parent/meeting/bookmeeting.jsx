@@ -1,8 +1,8 @@
 import styles from './bookmeeting.module.css';
 import axios from 'axios';
-import { Accordion } from "../../../components/accordion/accordion";
+import { Accordion } from "../../../components/parent/accordion/accordion";
 import React, { useEffect, useState } from 'react';
-import { Assignment } from '../../../components/assignment/assignmentComp';
+import { Assignment } from '../../../components/parent/assignment/assignmentComp';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import {MdOutlineAddBox} from "react-icons/md";

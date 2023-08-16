@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import styles from './statistics.module.css';
-import { Assignment } from "../../../components/assignment/assignmentComp";
-import { SharedComp } from "../../../components/multiUseComp/multiUseComp";
+import { Assignment } from "../../../components/parent/assignment/assignmentComp";
+import { SharedComp } from "../../../components/parent/multiUseComp/multiUseComp";
 
 const Statistics = () => {
     const [isCompleted,setIsCompleted] = useState([]);
