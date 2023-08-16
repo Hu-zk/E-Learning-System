@@ -1,13 +1,11 @@
 import React from 'react'
 import Navbar from '../../../components/Admin/Navbar'
 import Appearance from '../../../components/Admin/Appearance';
-import { Outlet } from 'react-router-dom';
-import "./style.css";
 import EmailSection from '../../../components/Admin/EmailSection';
+import "./style.css";
+import Backup from '../../../components/Admin/Backup';
 
 function Settings() {
-
-    // const navigate = useNavigate();
 
     const nav={
         "title":'Settings :',
@@ -17,8 +15,9 @@ function Settings() {
         <div>
             <Navbar nav={nav}/>
             <div className='setting-page'>
-                <Appearance/>
                 <EmailSection/>
+                <Appearance/>
+                <Backup/>
             </div>
         </div>
     )

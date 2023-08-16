@@ -1,0 +1,83 @@
+.email-section {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  background-color: rgb(233, 233, 233);
+  border-radius: 0.2em;
+}
+
+.email-header {
+  display: flex;
+  gap: 2em;
+}
+
+.email-header select {
+  padding: 0.5em;
+  border-radius: 0.2em;
+}
+
+.email-header select option {
+  font-size: 1.1em;
+  border-radius: 0.2em;
+  border: none;
+}
+
+.email-template {
+  border-radius: 0.2em;
+  background-color: white;
+  padding: 1.5em;
+  margin: 2em;
+}
+
+.teacher-template-label {
+  background-color: #e8ff02;
+  width: fit-content;
+  margin: 0.2em;
+}
+.student-template-label {
+  background-color: #289828;
+  width: fit-content;
+  margin: 0.2em;
+}
+
+.email-footer {
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+}
+
+.email-footer .footer-inputs {
+  display: flex;
+  justify-content: flex-start;
+  gap: 4em;
+}
+
+.email-footer .label-input {
+  gap: 1em;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.email-button {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.4em;
+  font-weight: 600;
+  padding: 0.7em;
+  border-radius: 0.4em;
+  color: white;
+  background-color: black;
+}
+
+.email-button:hover {
+  background-color: rgb(44, 44, 44);
+}
+
+.email-footer input {
+  padding: 0.5em;
+  border-radius: 0.2em;
+  width: fit-content;
+}
