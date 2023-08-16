@@ -9,7 +9,6 @@ import Home from "./pages/Parent/Home/Home";
 import ParentLayout from "./utils/ParentLayout/ParentLayout";
 import Login from "./pages/login/login";
 import AdminLayout from "./utils/AdminLayout";
-import AdminHome from "./pages/Admin/Home";
 import Create from "./pages/Admin/Create";
 import Display from "./pages/Admin/Display";
 import Settings from "./pages/Admin/Settings";
@@ -34,7 +33,6 @@ function App() {
         <Route path="/" element={<h1>Login</h1>} />
 
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<AdminHome />} />
           <Route path="/admin/create" element={<Create />} />
           <Route path="/admin/display" element={<Display />}>
             <Route path="/admin/display/users" element={<UserList />} />

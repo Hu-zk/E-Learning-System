@@ -19,7 +19,7 @@ class AuthenticateUser
         $user = Auth::user();
         $type =  $user->user_type_id;
 
-        if ($type === 4 || $type === 3 || $type === 2) {
+        if ($type === 4 || $type === 3 || $type === 2 || $type === 1) {
             return $next($request);
         }
 
